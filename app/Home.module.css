@@ -1,0 +1,17 @@
+.image{
+    position: relative;
+    width: 25vw;
+    aspect-ratio: 3/4;
+}
+
+.title{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.date{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
