@@ -13,9 +13,10 @@ export default function Home() {
         style={{objectFit: "contain"}}
       />
       </div>
-      
+      <div className={s.hero}>
      <h1 className={s.title} >Schaffhauser Kantonalschützenfest 2027</h1>
      <h2 className={s.date}>August 2027</h2>
+     </div>
     </main>
   );
 }
