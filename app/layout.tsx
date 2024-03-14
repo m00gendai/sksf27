@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar/Navbar";
 import "@/globals/globals.css";
+import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
 
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="de">
       <body>
         <Navbar />
+        <Navbar_Mobile />
         {children}
       </body>
     </html>
