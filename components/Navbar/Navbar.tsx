@@ -34,7 +34,7 @@ export default function Navbar(){
 
 
     return(
-        <nav className ={s.nav}>
+        <nav className ={`${s.nav} desktop`}>
             <div className={s.logoContainer}>
                 <Image
                     src={SH}
