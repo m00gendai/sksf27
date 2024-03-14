@@ -2,42 +2,73 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import s from "../styles/Navbar.module.css"
-import {GiHamburgerMenu} from "react-icons/gi"
+import s from "./Navbar_Mobile.module.css"
 import {useState} from "react"
-import Logo from "../public/logoSq.png"
+import { navbar } from "./navbarStructure";
+import SH from "@/public/SH.png"
+import React from "react"
 
 export default function Navbar_Mobile(){
 
-    const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false)
-    const [rotate, setRotate] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(false)
+    const [submenu, setSubmenu] = useState<string>("")
 
-    function handleHamburgerOpen(){
-        setRotate(!rotate)
-        setHamburgerOpen(!hamburgerOpen)
+    function handleSubMenuTrigger(e:React.MouseEvent, menu:string){
+        submenu === menu ? setSubmenu("") : setSubmenu(menu)
     }
 
+    function handleLinkClick(){
+        setTimeout(function(){
+            setVisible(!visible)
+        }, 250)
+    }
     return(
-        <nav className={s.navMobile}>
-        <div className={s.logoContainer}>
-            <Link href="/" className={s.logo}>
+        <nav className ={`${s.nav} mobile`}>
+            <div className={s.logoContainer}>
                 <Image
-                    src={Logo}
-                    alt={`Schussfreude Logo`}
+                    src={SH}
                     fill={true}
+                    alt={"Schaffhauser Wappen"}
+                    style={{objectFit: "contain"}}
+                    className={s.logo}
                 />
-            </Link>
-        </div>
-        <div className={s.tagline}>schussfreude.ch</div>
-        <div className={s.container}>
-            <GiHamburgerMenu className={`${s.burger}`} style={rotate ? {transform: "rotate(90deg)"} : {}} onClick={()=>handleHamburgerOpen()}/>
-            {hamburgerOpen ? <div className={s.subcontainer}>
-                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/">Home</Link>
-                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/artikel">Artikel</Link>
-                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/zeitdokumente">Zeitdokumente</Link>
-                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
-            </div> : null}
-        </div>
+            </div>
+            <div className={s.tagline}>
+                <p className={s.taglineText}>{`Schaffhauser Kantonalschützenfest 2027`}</p>
+            </div>
+            <div className={s.menu} onClick={()=>{setVisible(!visible)}} title="Menü">
+            {visible ?
+                <div>X</div>
+            :
+            <div>O</div>
+            }
+            </div>
+        {visible ?
+            <div className={s.container}>
+                {navbar.map((item, index)=>{
+                    return (
+                        item.sub ? 
+                        <React.Fragment key={`subMain_${index}`}>
+                            <div className={s.link} onClick={(e)=>{handleSubMenuTrigger(e, item.name)}}>{`${item.name}`}{submenu === item.name ? "M" : "W"}</div>
+                            {submenu === item.name ? 
+                                <div className={s.subLinkContainer}>
+                                    {item.sub?.map((sub, index)=>{
+                                        return <Link className={s.sublink} href={sub.url} key={`sub_${index}`} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link>
+                                    })}
+                                </div>
+                            
+                            :
+                                null
+                            }
+                        </React.Fragment>
+                        :
+                        < Link className={s.link} href={item.url} key={`main_${index}`} onClick={()=>handleLinkClick()}>{`${item.name}`}</Link>
+                    )
+                })}
+            </div>
+        : 
+            null
+        }
         </nav>
     )
 }
