@@ -12,11 +12,22 @@ body{
   align-items: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 main{
   position: relative;
-  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+section{
+  position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
