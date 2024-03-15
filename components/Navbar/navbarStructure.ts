@@ -12,6 +12,7 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Schiessplan",
                 url: "/schiessen/sschiessplan",
+                isQuickLink: true
             },
             {
                 name: "Anmeldung",
@@ -24,10 +25,12 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Schiessanlagen",
                 url: "/schiessen/schiessanlagen",
+                isQuickLink: true
             },
             {
                 name: "Resultate",
                 url: "/schiessen/resultate",
+                isQuickLink: true
             },
             {
                 name: "Auszeichnungen & Gaben",
@@ -42,6 +45,11 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Festzentrum",
                 url: "/informationen/festzentrum"
+            },
+            {
+                name: "Terminplan",
+                url: "/informationen/terminplan",
+                isQuickLink: true
             },
             {
                 name: "Organisation",
