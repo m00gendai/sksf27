@@ -1,6 +1,6 @@
 import { Medium } from "@/globals/globals_interface"
 
-export interface Hero{
+export interface HeroItem{
     image: Medium
     mainText: string
     sideText: string

@@ -1,4 +1,4 @@
-import { Hero } from "./Interface_Hero"
+import { HeroItem } from "./Interface_Hero"
 import s from "./Hero.module.css"
 import Image from "next/image"
 
@@ -15,14 +15,14 @@ async function getHero(){
         }
     )
 
-    const hero:Hero[] = await getHero.json()
+    const hero:HeroItem[] = await getHero.json()
     return hero
 }
 
 export default async function Hero(){
     
-    const hero:Hero[] = await getHero()
-console.log(hero)
+    const hero:HeroItem[] = await getHero()
+
     return (
         <div className={s.container}>
             <div className={s.image}>
