@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero/Hero";
+import MapContainer from "@/components/Map/MapContainer";
 import QuickLinks from "@/components/QuickLinks/QuickLinks";
 
 export default function Home() {
@@ -6,7 +7,8 @@ export default function Home() {
     <main>
      <Hero />
      <QuickLinks />
-     <section>text</section>
+     <MapContainer />
+     <section></section>
     </main>
   );
 }
