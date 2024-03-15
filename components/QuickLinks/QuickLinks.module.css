@@ -1,0 +1,23 @@
+.container{
+    position: relative;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 0.5rem;
+    padding: 0.5rem;
+    background: black;
+}
+
+.item{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21/10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+}
+
+.item:hover{
+    opacity: 1;
+}
