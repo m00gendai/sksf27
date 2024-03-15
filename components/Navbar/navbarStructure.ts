@@ -12,7 +12,8 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Schiessplan",
                 url: "/schiessen/sschiessplan",
-                isQuickLink: true
+                isQuickLink: true,
+                icon: "book-svgrepo-com.png"
             },
             {
                 name: "Anmeldung",
@@ -25,12 +26,12 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Schiessanlagen",
                 url: "/schiessen/schiessanlagen",
-                isQuickLink: true
+                isQuickLink: true,
             },
             {
                 name: "Resultate",
                 url: "/schiessen/resultate",
-                isQuickLink: true
+                isQuickLink: true,
             },
             {
                 name: "Auszeichnungen & Gaben",
@@ -49,7 +50,7 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Terminplan",
                 url: "/informationen/terminplan",
-                isQuickLink: true
+                isQuickLink: true,
             },
             {
                 name: "Organisation",
