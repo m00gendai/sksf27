@@ -18,7 +18,8 @@ export default function QuickLinks(){
                         if(sub.isQuickLink){
                             return(
                                 <Link key={`quicklink_${sub.name}`} href={sub.url} className={s.item}>
-                                    {sub.name}
+                                    <div className={s.icon}>{sub.icon}</div>
+                                    <div className={s.name}>{sub.name}</div>
                                 </Link>
                             )
                         }
