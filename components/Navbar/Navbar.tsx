@@ -36,7 +36,7 @@ export default function Navbar(){
 
     return(
         <nav className ={`${s.nav} desktop`}>
-            <div className={s.logoContainer}>
+            <Link href="/" className={s.logoContainer}>
                 <Image
                     src={SH}
                     fill={true}
@@ -44,7 +44,7 @@ export default function Navbar(){
                     style={{objectFit: "contain"}}
                     className={s.logo}
                 />
-            </div>
+            </Link>
             <div className={s.tagline}>
                 {`Schaffhauser Kantonalschützenfest 2027`}
             </div>

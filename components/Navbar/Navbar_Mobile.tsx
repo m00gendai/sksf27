@@ -27,7 +27,7 @@ export default function Navbar_Mobile(){
     }
     return(
         <nav className ={`${s.nav} mobile`}>
-            <div className={s.logoContainer}>
+            <Link href="/" className={s.logoContainer}>
                 <Image
                     src={SH}
                     fill={true}
@@ -35,7 +35,7 @@ export default function Navbar_Mobile(){
                     style={{objectFit: "contain"}}
                     className={s.logo}
                 />
-            </div>
+            </Link>
             <div className={s.tagline}>
                 <p className={s.taglineText}>{`Schaffhauser Kantonalschützenfest 2027`}</p>
             </div>
