@@ -21,7 +21,7 @@ export const navbar:NavbarItem[] = [
             },
             {
                 name: "Rangeurübersicht",
-                url: "/fest/rangeuruebersicht"
+                url: "/schiessen/rangeure"
             },
             {
                 name: "Schiessanlagen",
@@ -35,7 +35,7 @@ export const navbar:NavbarItem[] = [
             },
             {
                 name: "Auszeichnungen & Gaben",
-                url: "/schiessen/anmeldung"
+                url: "/schiessen/auszeichnungen"
             },
         ]
     },
@@ -49,7 +49,7 @@ export const navbar:NavbarItem[] = [
             },
             {
                 name: "Terminplan",
-                url: "/informationen/terminplan",
+                url: "/informationen/termine",
                 isQuickLink: true,
             },
             {
@@ -63,8 +63,8 @@ export const navbar:NavbarItem[] = [
         url: "",
         sub: [
             {
-                name: "Pressemitteilungen",
-                url: "/medien/pressemitteilungen"
+                name: "Presse",
+                url: "/medien/presse"
             },
             {
                 name: "Bilder",
