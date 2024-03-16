@@ -26,7 +26,7 @@ export default async function ShootingRanges(){
     return(
         <div className={s.container}>
             {ranges.map(range=>{
-                return <ShootingRange range={range} />
+                return <ShootingRange key={range._id} range={range} />
             })}
         </div>
     )

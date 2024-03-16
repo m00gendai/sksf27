@@ -1,6 +1,6 @@
 "use client"
 
-import { ShootingRange } from "../Map/Interface_Map"
+import { ShootingRange as RangeType } from "../Map/Interface_Map"
 import { Card } from 'primereact/card';
 import s from "./ShootingRange.module.css"
 import Image from "next/image"
@@ -10,7 +10,7 @@ import { useState } from "react";
 import MapSingle from "../Map/MapSingle";
 
 interface Props{
-    range: ShootingRange
+    range: RangeType
 }
 
 export default function ShootingRange({range}:Props){
@@ -42,12 +42,12 @@ export default function ShootingRange({range}:Props){
                         <td className={s.key}>
                             Kategorie
                         </td>
-                        <td className={s.value}>{range.category.map(cat => <p>{cat}</p>)}</td>
+                        <td className={s.value}>{range.category.map(cat => <p key={cat}>{cat}</p>)}</td>
                     </tr>
                     <tr className={s.tableRow}>
                         <td className={s.key}>Scheiben</td>
                         <td className={s.value}>{range.targets?.map(target=>{
-                            return <p>{`${target.amount} ${target.type}`}</p>
+                            return <p key={target.type}>{`${target.amount} ${target.type}`}</p>
                         })}</td>
                     </tr>
                     <tr className={s.tableRow}>
