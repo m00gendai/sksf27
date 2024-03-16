@@ -11,7 +11,7 @@ export const navbar:NavbarItem[] = [
         sub: [
             {
                 name: "Schiessplan",
-                url: "/schiessen/sschiessplan",
+                url: "/schiessen/schiessplan",
                 isQuickLink: true,
                 icon: "book-svgrepo-com.png"
             },
