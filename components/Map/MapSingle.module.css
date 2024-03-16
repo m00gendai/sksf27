@@ -1,0 +1,30 @@
+.container{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+
+.mapsLink{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 4rem;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background: white;
+    box-shadow: 0px 0px 5px 0px black;
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    position: relative;
+    width: 75%;
+    aspect-ratio: 1/1;
+}
+
+.mapsLink:hover{
+    cursor: pointer;
+}

@@ -1,11 +1,12 @@
 import PageHeading from "@/components/PageHeading/PageHeading";
+import ShootingRanges from "@/components/ShootingRanges/ShootingRanges";
 
 export default async function Page(){
     return(
         <main>
             <section>
                 <PageHeading />
-                <p>Diese Seite ist noch im Aufbau...</p>
+                <ShootingRanges />
             </section>
         </main>
     )

@@ -1,0 +1,31 @@
+.header{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21/10;
+}
+
+.data{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    margin: 1rem 0 0 0;
+}
+
+.table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableRow{
+    border: 2px solid rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.tableRow td{
+    padding: 1rem 0.5rem;
+}
+
+.key{
+    font-weight: bolder;
+}
