@@ -6,6 +6,7 @@ import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 
 import "primereact/resources/themes/saga-green/theme.css";
+import Footer from "@/components/Footer/Footer";
 
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Navbar_Mobile />
         {children}
         </PrimeReactProvider>
+        <Footer />
       </body>
     </html>
   );
