@@ -7,6 +7,9 @@ import {useState} from "react"
 import { navbar } from "./navbarStructure";
 import SH from "@/public/SH.png"
 import React from "react"
+import { LiaHamburgerSolid } from "react-icons/lia"
+import { GiKnifeFork } from "react-icons/gi"
+import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5"
 
 export default function Navbar_Mobile(){
 
@@ -38,9 +41,9 @@ export default function Navbar_Mobile(){
             </div>
             <div className={s.menu} onClick={()=>{setVisible(!visible)}} title="Menü">
             {visible ?
-                <div>X</div>
+                <div><GiKnifeFork /></div>
             :
-            <div>O</div>
+            <div><LiaHamburgerSolid /></div>
             }
             </div>
         {visible ?
@@ -49,7 +52,7 @@ export default function Navbar_Mobile(){
                     return (
                         item.sub ? 
                         <React.Fragment key={`subMain_${index}`}>
-                            <div className={s.link} onClick={(e)=>{handleSubMenuTrigger(e, item.name)}}>{`${item.name}`}{submenu === item.name ? "M" : "W"}</div>
+                            <div className={s.link} onClick={(e)=>{handleSubMenuTrigger(e, item.name)}}>{`${item.name}`}{submenu === item.name ? <IoCaretUpSharp style={{margin: "0 0.5rem"}}/> : <IoCaretDownSharp style={{margin: "0 0.5rem"}}/>}</div>
                             {submenu === item.name ? 
                                 <div className={s.subLinkContainer}>
                                     {item.sub?.map((sub, index)=>{

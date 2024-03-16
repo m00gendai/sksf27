@@ -7,6 +7,7 @@ import Image from "next/image"
 import { navbar } from "./navbarStructure";
 import s from "./Navbar.module.css"
 import SH from "@/public/SH.png"
+import { IoCaretDownSharp } from "react-icons/io5"
 
 export default function Navbar(){
 
@@ -52,7 +53,7 @@ export default function Navbar(){
                     return(
                         item.sub ?
                         <div className={s.surLinkContainer} onMouseEnter={(e)=>handleSubMenuTrigger(e, item.name)} onMouseLeave={(e)=>handleSubMenuTrigger(e, item.name)} key={`subMain_${index}`}>
-                            <div className={s.link} >{`${item.name}`} </div>
+                            <div className={s.link} >{`${item.name}`} <IoCaretDownSharp style={{margin: "0 0.5rem"}}/></div>
                             {visible && submenu === item.name ?
                                 <div className={s.subLinkContainer}>
                                     <div className={s.buffer}></div>
