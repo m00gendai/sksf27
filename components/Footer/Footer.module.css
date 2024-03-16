@@ -1,0 +1,18 @@
+.footer{
+    position: relative;
+    width: 100%;
+    background: green;
+    padding: 1rem 0;
+}
+
+.copyright{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.shamelessPlug{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
