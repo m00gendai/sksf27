@@ -1,4 +1,6 @@
+import { GiCalendar, GiLaurelCrown, GiSpellBook, GiTargetPoster } from "react-icons/gi";
 import { NavbarItem } from "./Interface_Navbar";
+import { LuTarget } from "react-icons/lu";
 
 export const navbar:NavbarItem[] = [
     {
@@ -13,7 +15,7 @@ export const navbar:NavbarItem[] = [
                 name: "Schiessplan",
                 url: "/schiessen/schiessplan",
                 isQuickLink: true,
-                icon: "book-svgrepo-com.png"
+                icon: <GiSpellBook style={{fontSize: "10rem"}}/>
             },
             {
                 name: "Anmeldung",
@@ -27,11 +29,13 @@ export const navbar:NavbarItem[] = [
                 name: "Schiessanlagen",
                 url: "/schiessen/schiessanlagen",
                 isQuickLink: true,
+                icon: <GiTargetPoster style={{fontSize: "10rem"}}/>
             },
             {
                 name: "Resultate",
                 url: "/schiessen/resultate",
                 isQuickLink: true,
+                icon: <GiLaurelCrown style={{fontSize: "10rem"}}/>
             },
             {
                 name: "Auszeichnungen & Gaben",
@@ -51,6 +55,7 @@ export const navbar:NavbarItem[] = [
                 name: "Terminplan",
                 url: "/informationen/termine",
                 isQuickLink: true,
+                icon: <GiCalendar style={{fontSize: "10rem"}}/>
             },
             {
                 name: "Organisation",

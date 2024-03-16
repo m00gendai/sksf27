@@ -3,5 +3,5 @@ export interface NavbarItem{
     url: string
     sub?: NavbarItem[]
     isQuickLink?: boolean
-    icon?: string
+    icon?: any
 }
