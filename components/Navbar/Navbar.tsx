@@ -36,7 +36,7 @@ export default function Navbar(){
 
     return(
         <nav className ={`${s.nav} desktop`}>
-            <Link href="/" className={s.logoContainer}>
+            <Link href="/" className={s.logoContainer}  title={`Link zur Startseite`}>
                 <Image
                     src={SH}
                     fill={true}
@@ -61,7 +61,7 @@ export default function Navbar(){
                                         <div className={s.items}>
                                             {item.sub?.map((sub, index)=>{
                                                 return(
-                                                    <Link className={s.sublink} href={sub.url} key={`sub_${index}`}>{`${sub.name}`}</Link>
+                                                    <Link className={s.sublink} href={sub.url} key={`sub_${index}`}  title={`Link zur Seite: ${sub.name}`}>{`${sub.name}`}</Link>
                                                 )
                                             })}
                                         </div>
@@ -73,7 +73,7 @@ export default function Navbar(){
                         </div>
                         :
 
-                            <Link className={s.link} href={item.url} key={`main_${index}`}>{`${item.name}`}</Link>
+                            <Link className={s.link} href={item.url} key={`main_${index}`}  title={`Link zur Seite: ${item.name}`}>{`${item.name}`}</Link>
 
                         )
                 })}

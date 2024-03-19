@@ -8,8 +8,9 @@ import { navbar } from "./navbarStructure";
 import SH from "@/public/SH.png"
 import React from "react"
 import { LiaHamburgerSolid } from "react-icons/lia"
-import { GiKnifeFork } from "react-icons/gi"
+import { GiHamburger, GiKnifeFork } from "react-icons/gi"
 import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5"
+import { IoIosReturnRight } from "react-icons/io"
 
 export default function Navbar_Mobile(){
 
@@ -41,9 +42,9 @@ export default function Navbar_Mobile(){
             </div>
             <div className={s.menu} onClick={()=>{setVisible(!visible)}} title="Menü">
             {visible ?
-                <div><GiKnifeFork /></div>
+                <div className={s.menuIcon}><GiKnifeFork /></div>
             :
-            <div><LiaHamburgerSolid /></div>
+            <div className={s.menuIcon}> <GiHamburger /></div>
             }
             </div>
         {visible ?
@@ -56,7 +57,7 @@ export default function Navbar_Mobile(){
                             {submenu === item.name ? 
                                 <div className={s.subLinkContainer}>
                                     {item.sub?.map((sub, index)=>{
-                                        return <Link className={s.sublink} href={sub.url} key={`sub_${index}`} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link>
+                                        return <div  className={s.sublink}><IoIosReturnRight style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} key={`sub_${index}`} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
                                     })}
                                 </div>
                             
