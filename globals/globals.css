@@ -1,5 +1,5 @@
 :root{
-  --mainColor: green;
+  --mainColor: #FFD730;
 }
 
 body{
@@ -40,13 +40,13 @@ section{
 
 @media screen and (max-aspect-ratio: 13/9){
   .desktop{
-    display: none;
+    display: none!important;
   }
 }
 
 @media screen and (min-aspect-ratio: 13/9){
   .mobile{
-    display: none;
+    display: none!important;
   }
 }
 
