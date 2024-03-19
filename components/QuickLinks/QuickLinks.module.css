@@ -4,20 +4,33 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 0.5rem;
-    padding: 0.5rem;
+    padding: 0 0 0.5rem ;
     background: black;
+}
+
+@media screen and (max-aspect-ratio: 13/9){
+    .container{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .item{
     position: relative;
     width: 100%;
-    aspect-ratio: 21/10;
+    aspect-ratio: 21/9;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: yellow;
+    background-color: var(--mainColor);
     flex-wrap: wrap;
     text-decoration: none;
+    padding: 0.5rem;
+}
+
+@media screen and (max-aspect-ratio: 13/9){
+    .item{
+        aspect-ratio: 4/3;
+    }
 }
 
 .item:hover{
@@ -26,20 +39,36 @@
 
 .icon{
     position: relative;
-    width: 100%;
-    flex-grow: 1;
+    width: 50%;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: black;
 }
 
+.icon svg{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 .name{
     position: relative;
     width: 100%;
-    height: 3rem;
+    height: 30%;
     font-size: 1.5rem;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     color: black;
+    hyphens: auto;
 }
 
+@media screen and (max-aspect-ratio: 13/9){
+    .name{
+        font-size: 1rem;
+    }
+}
