@@ -57,7 +57,7 @@ export default function Navbar_Mobile(){
                             {submenu === item.name ? 
                                 <div className={s.subLinkContainer}>
                                     {item.sub?.map((sub, index)=>{
-                                        return <div  className={s.sublink}><IoIosReturnRight style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} key={`sub_${index}`} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
+                                        return <div key={`sub_${index}`} className={s.sublink}><IoIosReturnRight style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
                                     })}
                                 </div>
                             
