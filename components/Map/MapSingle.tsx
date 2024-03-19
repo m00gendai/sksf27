@@ -15,7 +15,7 @@ interface Props{
 export default function MapSingle({range}:Props){
     return(
         <div className={s.container}>
-            <Link href={`https://www.google.com/maps/search/?api=1&query=${range.coordinates.lat}%2C${range.coordinates.lon}`} target="_blank" className={s.mapsLink}>
+            <Link href={`https://www.google.com/maps/search/?api=1&query=${range.coordinates.lat}%2C${range.coordinates.lon}`} target="_blank" className={s.mapsLink}  title={`${range.name} in Google Maps öffnen`}>
                 <div className={s.icon}>
                     <Image
                         className={s.marker}
