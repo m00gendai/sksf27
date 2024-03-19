@@ -1,8 +1,9 @@
 .footer{
     position: relative;
     width: 100%;
-    background: green;
+    background: black;
     padding: 1rem 0;
+    color: var(--mainColor);
 }
 
 .copyright{
@@ -15,4 +16,11 @@
     position: relative;
     width: 100%;
     text-align: center;
+    text-decoration: none;
+    color: var(--mainColor);
+}
+
+.shamelessPlug a{
+    text-decoration: none;
+    color: var(--mainColor);
 }

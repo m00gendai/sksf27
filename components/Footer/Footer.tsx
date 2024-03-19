@@ -9,7 +9,7 @@ export default async function Footer(){
     return(
         <footer className={s.footer}>
             <div className={s.copyright}>{`© ${creationYear}${currentYear === creationYear ? "" : `-${currentYear}`} Schaffhauser Kantonalschützenfest 2027`}</div>
-            <div className={s.shamelessPlug} dangerouslySetInnerHTML={{__html: `Webdesign von <a href="https://mrweber.ch" target="_blank">mrweber.ch</a>`}}></div>
+            <div className={s.shamelessPlug} dangerouslySetInnerHTML={{__html: `Webdesign von <a href="https://mrweber.ch" target="_blank" title="Webseite von mrweber.ch Webdesign besuchen"><u>mrweber.ch</u></a>`}}></div>
         </footer>
     )
     }
