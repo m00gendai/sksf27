@@ -1,5 +1,5 @@
 import { HeroItem } from "./Interface_Hero"
-import s from "./Hero.module.css"
+import s from "./Hero_Mobile.module.css"
 import Image from "next/image"
 
 async function getHero(){
@@ -24,7 +24,7 @@ export default async function Hero(){
     const hero:HeroItem[] = await getHero()
 
     return (
-        <div className={`${s.container} desktop`}>
+        <div className={`${s.container} mobile`}>
             <div className={s.image}>
                 <Image
                     src={`${process.env.NEXT_PUBLIC_STORAGE}${hero[0].image.path}`}
