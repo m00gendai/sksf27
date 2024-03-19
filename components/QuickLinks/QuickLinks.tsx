@@ -8,7 +8,7 @@ export default function QuickLinks(){
             {navbar.map(item=>{
                 if(item.isQuickLink){
                     return(
-                        <Link key={`quicklink_${item.name}`} href={item.url} className={s.item}>
+                        <Link key={`quicklink_${item.name}`} href={item.url} className={s.item} title={`Link zur Seite: ${item.name}`}>
                             {item.name}
                         </Link>
                     )
@@ -17,7 +17,7 @@ export default function QuickLinks(){
                     return item.sub.map(sub=>{
                         if(sub.isQuickLink){
                             return(
-                                <Link key={`quicklink_${sub.name}`} href={sub.url} className={s.item}>
+                                <Link key={`quicklink_${sub.name}`} href={sub.url} className={s.item}  title={`Link zur Seite: ${sub.name}`}>
                                     <div className={s.icon}>{sub.icon}</div>
                                     <div className={s.name}>{sub.name}</div>
                                 </Link>

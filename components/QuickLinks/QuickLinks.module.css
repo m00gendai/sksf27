@@ -25,6 +25,7 @@
     flex-wrap: wrap;
     text-decoration: none;
     padding: 0.5rem;
+    transition: 0.1s;
 }
 
 @media screen and (max-aspect-ratio: 13/9){
@@ -34,7 +35,7 @@
 }
 
 .item:hover{
-    opacity: 1;
+    background: yellow;
 }
 
 .icon{
