@@ -5,6 +5,10 @@ import "organization-chart-react/dist/style.css";
 import { OK } from "./Interface_Organisation";
 import TestBild from "@/public/testbild.png"
 import s from "./OrgChart.module.css"
+import { Suspense, useRef } from "react";
+import { Margin, Resolution, usePDF } from 'react-to-pdf';
+import { Button } from 'primereact/button';
+import React from "react";
 
 interface Props{
   org: OK[]
@@ -77,12 +81,65 @@ export default function OrganizationalChart({org}:Props){
     }).filter(obj => obj !== undefined)
   };
 
+  const options = {
+    // default is `save`
+    method: 'open',
+    // default is Resolution.MEDIUM = 3, which should be enough, higher values
+    // increases the image quality but also the size of the PDF, so be careful
+    // using values higher than 10 when having multiple pages generated, it
+    // might cause the page to crash or hang.
+    resolution: Resolution.HIGH,
+    page: {
+       // margin is in MM, default is Margin.NONE = 0
+       margin: Margin.SMALL,
+       // default is 'A4'
+       format: 'letter',
+       // default is 'portrait'
+       orientation: 'landscape',
+    },
+    canvas: {
+       // default is 'image/jpeg' for better size performance
+       mimeType: 'image/png',
+       qualityRatio: 1
+    },
+    // Customize any value passed to the jsPDF instance and html2canvas
+    // function. You probably will not need this and things can break, 
+    // so use with caution.
+    overrides: {
+       // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
+       pdf: {
+          compress: true
+       },
+       // see https://html2canvas.hertzen.com/configuration for more options
+       canvas: {
+          useCORS: true
+       }
+    },
+ };
+
+ const { toPDF, targetRef } = usePDF(
+  {filename: 'SKSF27 Organigramm.pdf', 
+  page: {
+  // margin is in MM, default is Margin.NONE = 0
+  margin: Margin.LARGE,
+  // default is 'A4'
+  format: 'A4',
+  // default is 'portrait'
+  orientation: 'landscape',
+}});
+
   return(
     <>
     <h2>Organigramm</h2>
-      <div className={s.container}>
-        <OrganizationChart data={orgData} onClickNode={onClickNode}/>   
+    {/* On mobile, the org chart is not displayed. But having display: none; on it interferes with the PDF generation. It is thus handled with zero width/height in the .container CSS*/}
+      <div className={`${s.container}`} > 
+        <Suspense fallback={<p>Laden...</p>}>
+        <div ref={targetRef}><OrganizationChart  data={orgData} onClickNode={onClickNode}/> </div>
+        </Suspense>
       </div>
+      <Button className={"desktop"} label={"als PDF speichern"} onClick={() => toPDF()} />
+      <Button className={"mobile"} label={"Organigramm öffnen"} onClick={() => toPDF()} />
       </>
   )
 }
+
