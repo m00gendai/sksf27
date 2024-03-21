@@ -16,7 +16,7 @@ export default function Organisation({people}:Props){
         <h2>Personen im Detail</h2>
         {categories.map(category =>{
             return(
-                <div className={s.container}>
+                <div className={s.container} key={`cat_${category}`}>
                     <h3>{category}</h3>
                     <div className={s.cardContainer}>    
                     {people.map(person =>{
