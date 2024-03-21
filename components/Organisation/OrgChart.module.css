@@ -1,0 +1,10 @@
+.container{
+    position: relative;
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0px 2px 5px -2px black;
+    padding: 1rem;
+}
