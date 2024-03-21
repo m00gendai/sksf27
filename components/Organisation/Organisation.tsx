@@ -27,7 +27,6 @@ export default function Organisation({people}:Props){
                                             <Image src={person.foto ? `${process.env.NEXT_PUBLIC_STORAGE}${person.foto.path}` : TestBild.src} alt="" fill={true} style={{objectFit: "contain"}}/>
                                         </div>
                                     <div className={s.info}>
-                                        
                                         <p className={s.title}>{person.title}</p>
                                         <p className={s.name}>{person.name}</p>
                                     </div>
