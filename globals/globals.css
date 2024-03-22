@@ -79,3 +79,12 @@ p{
   position: relative;
   width: 100%;
 }
+
+.button:hover{
+  cursor: pointer;
+}
+
+.radix-themes{
+  position: relative;
+  width: 100%;
+}
