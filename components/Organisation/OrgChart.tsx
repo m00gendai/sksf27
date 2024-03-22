@@ -7,8 +7,9 @@ import TestBild from "@/public/testbild.png"
 import s from "./OrgChart.module.css"
 import { Suspense, useRef } from "react";
 import { Margin, Resolution, usePDF } from 'react-to-pdf';
-import { Button } from 'primereact/button';
+
 import React from "react";
+import { Button } from "@radix-ui/themes";
 
 interface Props{
   org: OK[]
@@ -137,8 +138,8 @@ export default function OrganizationalChart({org}:Props){
         <div ref={targetRef}><OrganizationChart  data={orgData} onClickNode={onClickNode}/> </div>
         </Suspense>
       </div>
-      <Button className={"desktop"} label={"als PDF speichern"} onClick={() => toPDF()} />
-      <Button className={"mobile"} label={"Organigramm öffnen"} onClick={() => toPDF()} />
+      <Button className={`desktop button`} onClick={() => toPDF()}>{`Als PDF speichern`}</Button>
+      <Button className={`mobile button`} onClick={() => toPDF()}>{`Organigramm als PDF öffnen`}</Button>
       </>
   )
 }
