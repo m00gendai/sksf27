@@ -5,7 +5,7 @@ import s from "./ShootingRange.module.css"
 import Image from "next/image"
 import Testbild from "@/public/testbild.png"
 import MapSingle from "../Map/MapSingle";
-import { Card, Tabs } from "@radix-ui/themes"
+import { Card, Inset, Tabs } from "@radix-ui/themes"
 import IconBar from "../IconBar/IconBar"
 
 interface Props{
@@ -15,11 +15,14 @@ interface Props{
 export default function ShootingRange({range}:Props){
 
     return(
-        <Card>
+        <Card className={"boxShadow"}>
+            <Inset side="top" clip="padding-box" className={s.cardTop}>
             <div className={s.title}>{range.name}</div>
+            </Inset>
             <IconBar degrees={range.direction} category={range.category}/>
+            
             <div className={s.header}>
-            {range.images ? <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${range.images[0].path}`} alt={""} fill={true} style={{objectFit: "cover"}} /> : <Image src={Testbild} alt={"Testbild"} fill={true} style={{objectFit: "cover"}} />}
+            {range.images ? <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${range.images[0].path}`} alt={""} fill={true} style={{objectFit: "cover"}} className="boxShadow"/> : <Image src={Testbild} alt={"Testbild"} fill={true} style={{objectFit: "cover"}} className="boxShadow"/>}
             </div>
             <Tabs.Root defaultValue="data">
                 <Tabs.List>
@@ -68,6 +71,7 @@ export default function ShootingRange({range}:Props){
                 <Tabs.Content value="img">
                 </Tabs.Content>
             </Tabs.Root>
+            
         </Card>
     )
 }

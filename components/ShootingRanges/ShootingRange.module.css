@@ -1,9 +1,15 @@
+.cardTop{
+    background: var(--mainColor);
+    padding: 0.5rem;
+}
+
 .title{
     position: relative;
     width: 100%;
     font-weight: bolder;
     font-size: 1.25rem;
     text-align: left;
+    
 }
 
 .header{
