@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar/Navbar";
 import "@/globals/globals.css";
 import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
-
-import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-
-import "primereact/resources/themes/saga-green/theme.css";
+import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 import Footer from "@/components/Footer/Footer";
 
 
@@ -22,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body>
-      <PrimeReactProvider>
+        <Theme accentColor="grass">
         <Navbar />
         <Navbar_Mobile />
         {children}
-        </PrimeReactProvider>
+        </Theme>
         <Footer />
       </body>
     </html>
