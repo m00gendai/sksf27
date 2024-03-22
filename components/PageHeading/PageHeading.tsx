@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation"
 import { navbar } from "../Navbar/navbarStructure"
 import s from "./PageHeading.module.css"
-import Divider from "../Divider/Divider"
 
 export default function PageHeading(){
 
@@ -23,9 +22,7 @@ export default function PageHeading(){
     })
 
     return(
-        <>
+
         <h1 className={s.heading}>{title}</h1> 
-        <Divider />
-        </>
     )
 }
