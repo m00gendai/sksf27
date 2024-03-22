@@ -12,7 +12,7 @@ export default function Compass({degrees}:Props){
 
     return(
         <div className={s.container} title={`Schussrichtung: ${degrees}`}>
-            <div className={s.icon} style={{transform: `rotate(${deg}deg)`}}>
+            <div className={s.icon} style={{transform: ` translate(-50%, -50%) rotate(${deg}deg)`}}>
                 <div className={s.helper}>
                     <ImCompass className={s.needle}/>
                 </div>

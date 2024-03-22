@@ -6,8 +6,7 @@ import Image from "next/image"
 import Testbild from "@/public/testbild.png"
 import MapSingle from "../Map/MapSingle";
 import { Card, Tabs } from "@radix-ui/themes"
-import Compass from "../Compass/Compass"
-import { GiFnFal, GiGlock, GiLeeEnfield } from "react-icons/gi"
+import IconBar from "../IconBar/IconBar"
 
 interface Props{
     range: RangeType
@@ -18,19 +17,7 @@ export default function ShootingRange({range}:Props){
     return(
         <Card>
             <div className={s.title}>{range.name}</div>
-            <div className={s.iconRow}>
-                <Compass degrees={range.direction} />
-                <div className={s.iconRowItem} title={`Gewehr`}>
-                    <div className={s.icon}>
-                        <GiFnFal />
-                    </div>
-                </div>
-                <div className={s.iconRowItem} title={`Pistole`}>
-                    <div className={s.icon}>
-                        <GiGlock />
-                    </div>
-                </div>
-            </div>
+            <IconBar degrees={range.direction} category={range.category}/>
             <div className={s.header}>
             {range.images ? <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${range.images[0].path}`} alt={""} fill={true} style={{objectFit: "cover"}} /> : <Image src={Testbild} alt={"Testbild"} fill={true} style={{objectFit: "cover"}} />}
             </div>
