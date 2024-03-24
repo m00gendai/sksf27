@@ -27,3 +27,16 @@ export interface Medium {
     _cby: string
     _id: string
 }
+
+export interface Metadata{
+  page: string;
+  title: string;
+  description: string;
+  image: Medium,
+  _modified: number;
+  _mby: string;
+  _created: number;
+  _state: number;
+  _cby: string;
+  _id: string;
+}
