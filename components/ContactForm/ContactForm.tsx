@@ -49,7 +49,7 @@ export default function ContactForm(){
     }
     if(cooldown){
         setFeedbackVisible(true);
-        setFeedback({ color: 'red', content: 'Bitte warten SIe 10 Sekunden zwischen dem Senden.' });
+        setFeedback({ color: 'red', content: 'Bitte warten Sie 10 Sekunden zwischen dem Senden.' });
     } else {
     if (feedbackVisible) {
       setFeedbackVisible(false);
