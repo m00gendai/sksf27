@@ -3,6 +3,7 @@ import { Medium } from "@/globals/globals_interface"
 export interface OK{
     title: string
     name: string
+    mail?: string
     foto: Medium
     category: string
     parent: string
