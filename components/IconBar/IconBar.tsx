@@ -1,4 +1,4 @@
-import { GiFnFal, GiGlock } from "react-icons/gi"
+import { GiColtM1911, GiFnFal, GiGlock } from "react-icons/gi"
 import Compass from "./Compass/Compass"
 import s from "./IconBar.module.css"
 
@@ -28,7 +28,7 @@ export default function IconBar({degrees, category}:Props){
             {category.includes("Pistole 25m") ?
             <div className={s.iconRowItem} title={`Pistole`}>
                 <div className={s.iconContainer}>
-                    <GiGlock className={s.icon} /><div className={s.distance}>{`25`}</div>
+                    <GiColtM1911 className={s.icon} /><div className={s.distance}>{`25`}</div>
                 </div>
             </div>
             :

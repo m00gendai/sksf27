@@ -36,3 +36,42 @@
     width: 100%;
     height: 100%;
 }
+
+.n,
+.o,
+.s,
+.w{
+    position: absolute;
+    width: 0.75rem;
+    aspect-ratio: 1/1;
+    font-size: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: rgba(0,0,0,0.5);
+}
+
+.n{
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.o{
+    top: 50%;
+    right: 0%;
+    transform: translate(50%, -50%)
+}
+
+.s{
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.w{
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+}
