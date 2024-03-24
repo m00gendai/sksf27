@@ -82,6 +82,18 @@ p{
   justify-content: flex-start;
   align-items: center;
   align-content: center;
+  flex-wrap: wrap;
+}
+
+.content{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-width: 0;
+  word-wrap: break-word;
 }
 
 .button:hover{
