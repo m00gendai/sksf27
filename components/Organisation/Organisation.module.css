@@ -66,3 +66,11 @@
     width: 100%;
     margin: 0;
 }
+
+.iconContainer{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

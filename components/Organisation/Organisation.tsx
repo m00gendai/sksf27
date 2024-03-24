@@ -33,7 +33,8 @@ export default function Organisation({people}:Props){
                                         </div>
                                     <div className={s.info}>
                                         <p className={s.name}><LuUser2 style={{margin: "0 1rem 0 0"}}/>{person.name}</p>
-                                        {person.mail ? <p><LuMail style={{margin: "0 1rem 0 0"}}/><a href={`mailto:${person.mail}`}>{person.mail}</a></p> : null}
+                                        {person.mail ? <p className="desktop"><LuMail style={{margin: "0 1rem 0 0"}}/><a href={`mailto:${person.mail}`}>{person.mail}</a></p> : null}
+                                        {person.mail ? <div className={`${s.iconContainer} mobile`}><a href={`mailto:${person.mail}`}><LuMail /></a></div> : null}
                                     </div>
                                 </Card>
                             )
