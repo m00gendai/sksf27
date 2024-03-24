@@ -29,12 +29,11 @@ export default function Organisation({people}:Props){
                                    
                                         </Inset>
                                         <div className={s.image}>
-                                            <Image src={person.foto ? `${process.env.NEXT_PUBLIC_STORAGE}${person.foto.path}` : TestBild.src} alt="" fill={true} style={{objectFit: "cover"}}/>
+                                            <Image src={person.foto ? `${process.env.NEXT_PUBLIC_STORAGE}${person.foto.path}` : TestBild.src} alt="" fill={true} className={s.imageItem}/>
                                         </div>
                                     <div className={s.info}>
                                         <p className={s.name}><LuUser2 style={{margin: "0 1rem 0 0"}}/>{person.name}</p>
-                                        {person.mail ? <p className="desktop"><LuMail style={{margin: "0 1rem 0 0"}}/><a href={`mailto:${person.mail}`}>{person.mail}</a></p> : null}
-                                        {person.mail ? <div className={`${s.iconContainer} mobile`}><a href={`mailto:${person.mail}`}><LuMail /></a></div> : null}
+                                        {person.mail ? <p><LuMail style={{margin: "0 1rem 0 0"}}/><a href={`mailto:${person.mail}`}>{person.mail}</a></p> : null}
                                     </div>
                                 </Card>
                             )

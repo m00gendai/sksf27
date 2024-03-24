@@ -11,12 +11,6 @@
     grid-gap: 1rem;
 }
 
-@media screen and (max-aspect-ratio: 13/9){
-    .cardContainer{
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
 .cardTop{
     background: var(--mainColor);
     padding: 0.5rem;
@@ -29,10 +23,22 @@
     margin: 2rem 0 0 0;
 }
 
+.imageItem{
+    object-fit: cover;
+}
+
 @media screen and (max-aspect-ratio: 13/9){
     .image{
+        width: 100%;
+        aspect-ratio: 21/10;
+        display: flex;
+        justify-content: center;
         margin: 1rem 0 0 0;
     }
+    .imageItem{
+        object-fit: contain;
+    }
+    
 }
 
 .title{
