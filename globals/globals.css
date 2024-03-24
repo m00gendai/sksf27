@@ -92,3 +92,7 @@ p{
 .boxShadow{
   box-shadow: 0px 2px 5px -2px black;
 }
+
+.rt-CardInner{
+  overflow: visible!important;
+}
