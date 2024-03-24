@@ -1,5 +1,6 @@
 import { PageContent } from "@/globals/globals_interface"
 import s from "../../components/PageHeading/PageHeading.module.css"
+import React from "react"
 
 async function getContent(){
     const getContent:Response = await fetch(
@@ -29,10 +30,10 @@ export default async function Page(){
                 <h1 className={s.heading}>{pageContent.page}</h1>
                 {pageContent.content.map(element =>{
                     return(
-                        <>
+                        <React.Fragment key={element.title}>
                         <h2>{element.title}</h2>
                         <div className="content" dangerouslySetInnerHTML={{__html: element.text}}></div>
-                        </>
+                        </React.Fragment>
                     )
                 })}
             </section>
