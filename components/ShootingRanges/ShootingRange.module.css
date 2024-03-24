@@ -43,3 +43,26 @@
 .key{
     font-weight: bolder;
 }
+
+.trigger{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    z-index: 9999999;
+    padding: 0;
+    border: none;
+    background: var(--secondaryColor);
+    color: white;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border: 2px solid white;
+}
+
+.trigger:hover{
+    cursor: pointer;
+}
