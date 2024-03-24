@@ -1,0 +1,54 @@
+.container{
+    position: relative;
+    width: 100vw;
+    aspect-ratio: 4/3;
+    background: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21/9;
+
+}
+
+.text{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.mainText{
+    position: relative;
+    width: 100%;
+    color: var(--mainColor);
+    text-align: right;
+    font-size: 0.75rem;
+}
+
+.mainText h1{
+    margin: 0;
+    text-shadow: 1px 1px 1px black;
+}
+
+.sideText{
+    position: relative;
+    width: 100%;
+    color: var(--mainColor);
+    text-align: right;
+    font-size: 1rem;
+}
+
+.sideText p{
+    margin: 0;
+    text-shadow: 1px 1px 1px black;
+}

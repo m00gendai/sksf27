@@ -1,6 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Website for the Schaffhauser Kantonalschützenfest 2027
 
-## Getting Started
+## Description
+
+This is a Next.js 14 (App Router) Website written in React and TypeScript.
+Dependencies see ```package.json```
+
+Uses Cockpit v2 as a headless CMS for content.
+
+Components are enclosed in a directory complete with CSS and interface declaration files.
+Global files are in the globals folder at root.
+
+## Dev Environment
 
 First, run the development server:
 
@@ -16,21 +26,5 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You need a .env file with a Cockpit CMS API key and the upload storage URL.
+Model Types are in the respective interface files if you want to mock them.

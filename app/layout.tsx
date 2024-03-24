@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import Navbar from "@/components/Navbar/Navbar";
+import "@/globals/globals.css";
+import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
+import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
+import Footer from "@/components/Footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SKSF27",
@@ -15,8 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="de">
+      <body>
+        <Theme accentColor="grass">
+        <Navbar />
+        <Navbar_Mobile />
+        {children}
+        </Theme>
+        <Footer />
+      </body>
     </html>
   );
 }

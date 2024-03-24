@@ -1,0 +1,68 @@
+.cardTop{
+    background: var(--mainColor);
+    padding: 0.5rem;
+}
+
+.title{
+    position: relative;
+    width: 100%;
+    font-weight: bolder;
+    font-size: 1.25rem;
+    text-align: left;
+    
+}
+
+.header{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21/10;
+}
+
+.data{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    margin: 1rem 0 0 0;
+}
+
+.table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableRow{
+    border: 2px solid rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.tableRow td{
+    padding: 1rem 0.5rem;
+}
+
+.key{
+    font-weight: bolder;
+}
+
+.trigger{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: var(--secondaryColor);
+    color: white;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border: 2px solid white;
+}
+
+.trigger:hover{
+    cursor: pointer;
+}

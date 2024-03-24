@@ -1,0 +1,114 @@
+:root{
+  --mainColor: #FFD730;
+  --secondaryColor: #228B22;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+main{
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+section{
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-aspect-ratio: 13/9){
+  .desktop{
+    display: none!important;
+  }
+}
+
+@media screen and (min-aspect-ratio: 13/9){
+  .mobile{
+    display: none!important;
+  }
+}
+
+.siteTitle{
+  position: relative;
+  width: 100%;
+  font-size: 2rem;
+  text-align: left;
+  margin: 0 0 2rem 0;
+}
+
+h2{
+  position: relative;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: left;
+  margin: 2rem 0 1rem 0;
+}
+
+h3{
+  position: relative;
+  width: 100%;
+  font-size: 1.25rem;
+  text-align: left;
+  margin: 2rem 0 0.5rem 0;
+}
+
+p{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.content{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+.radix-themes{
+  position: relative;
+  width: 100%;
+}
+
+.boxShadow{
+  box-shadow: 0px 2px 5px -2px black;
+}
+
+.rt-CardInner{
+  overflow: visible!important;
+}
