@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,6 +13,7 @@
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/themes": "^2.0.3",
     "next": "14.1.3",
+    "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.13",
     "organization-chart-react": "^1.0.1",
     "pigeon-maps": "^0.21.4",
