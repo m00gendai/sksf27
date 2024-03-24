@@ -16,3 +16,14 @@ export interface Medium {
     folder: string
     _id: string
   }
+
+  export interface PageContent{
+    page: string
+    content: {title:string, text:string}[]
+    _modified: number
+    _mby: string
+    _created:number
+    _state: number
+    _cby: string
+    _id: string
+}
