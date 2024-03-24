@@ -1,3 +1,5 @@
+import { Metadata } from "./globals_interface"
+
 export function getCompassDegrees(direction:string){
     switch(direction){
         case "Norden":
@@ -34,5 +36,42 @@ export function getCompassDegrees(direction:string){
             return 337.5
         default:
             return 0
+    }
+}
+
+export async function pageMetadata(pageName:string){
+    const getMetadata: Response = await fetch(
+        `https://cms.sksf27.ch/api/content/item/taglines?filter=%7Bpage%3A%22${pageName}%22%7D&populate=1`,
+        {
+            headers: {
+                'api-key': `${process.env.CMS}`,
+            },
+        }
+    )
+    const metadata:Metadata = await getMetadata.json()
+
+    return {
+        title: metadata.title,
+        description: metadata.description,
+        openGraph: {
+            title: metadata.title,
+            description: metadata.description,
+            images: [
+                {
+                    url: metadata.image ? `${process.env.NEXT_PUBLIC_STORAGE}${metadata.image.path}` : "/placeholder.jpg",
+                }
+            ],
+            locale: 'de_CH',
+            type: 'website',
+        },
+        icons: {
+            icon: '/SH.png',
+            shortcut: 'SH.png',
+            apple: '/SH.png',
+            other: {
+                rel: 'apple-touch-icon-precomposed',
+                url: '/SH.png',
+            },
+        },
     }
 }
