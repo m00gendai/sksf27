@@ -78,6 +78,10 @@ h3{
 p{
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
 }
 
 .button:hover{
