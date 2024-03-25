@@ -24,14 +24,14 @@ export default function ShootingRange({range}:Props){
     const [isOpen, setOpen] = useState<boolean>(false)
 
     return(
-        <Card className={[`${s.card}, boxShadow`].join(" ")} >
+        <Card className={[`${s.card}, boxShadow`].join(" ")} id={range.name}>
             <Inset side="top" clip="padding-box" className={s.cardTop}>
             <div className={s.title}>{range.name}</div>
             </Inset>
-            <IconBar degrees={range.direction} category={range.category}/>
+            <IconBar degrees={range.direction} category={range.category} positions={range.positions}/>
             
             <div className={s.header}>
-            {range.images ? <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${range.images[0].path}`} alt={""} fill={true} style={{objectFit: "cover"}} className="boxShadow"/> : <Image src={Testbild} alt={"Testbild"} fill={true} style={{objectFit: "cover"}} className="boxShadow"/>}
+            {range.images && range.images.length !== 0 ? <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${range.images[0].path}`} alt={""} fill={true} style={{objectFit: "cover"}} className="boxShadow"/> : <Image src={Testbild} alt={"Testbild"} fill={true} style={{objectFit: "cover"}} className="boxShadow"/>}
             </div>
             <Collapsible.Root onOpenChange={setOpen} className="mobile">
                <Collapsible.Content >
