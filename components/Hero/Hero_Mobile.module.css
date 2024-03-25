@@ -51,4 +51,5 @@
 .sideText p{
     margin: 0;
     text-shadow: 1px 1px 1px black;
+    justify-content: flex-end!important;
 }
