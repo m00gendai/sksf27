@@ -58,7 +58,7 @@ export async function pageMetadata(pageName:string){
             description: metadata.description,
             images: [
                 {
-                    url: metadata.image ? `${process.env.NEXT_PUBLIC_STORAGE}${metadata.image.path}` : "/placeholder.jpg",
+                    url: metadata.image ? `${process.env.NEXT_PUBLIC_STORAGE}${metadata.image.path}` : "/placeholder.png",
                 }
             ],
             locale: 'de_CH',
