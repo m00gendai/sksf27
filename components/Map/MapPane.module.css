@@ -1,24 +1,26 @@
 .overlay{
-    position: relative;
-    background: white;
-    padding: 1rem;
     z-index: 100;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    box-shadow: 2px 2px 5px 0px black;
+    transform: translateX(-50%);
+    width: 20rem;
+}
+
+.cardTop{
+    background: var(--mainColor);
+    padding: 0.5rem;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .close{
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 1rem;
-    aspect-ratio: 1/1;
-    padding: 0.5rem;
+    position: relative;
+    width: 1.5rem;
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .close:hover{
@@ -34,7 +36,27 @@
     flex-wrap: wrap;
 }
 
-.range{
+.location{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.name{
+    position: relative;
+    width: 100%;
+    font-weight: bolder;
+}
+
+.place{
+    position: relative;
+    width: 100%;
+}
+
+.more{
     position: relative;
     width: 100%;
 }

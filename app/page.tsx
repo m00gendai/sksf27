@@ -16,7 +16,6 @@ export default function Home() {
      <Hero_Mobile />
      <QuickLinks />
      <MapContainer />
-     <section></section>
     </main>
   );
 }

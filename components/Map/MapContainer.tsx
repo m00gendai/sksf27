@@ -24,8 +24,13 @@ export default async function MapContainer(){
     const ranges:ShootingRange[] = await getRanges()
 
     return(
-        <div className={s.container}>
-            <MapPane ranges={ranges} />
+        <>
+        <div className={`${s.container} desktop`}>
+            <MapPane ranges={ranges} isMobile={false}/>
         </div>     
+        <div className={`${s.container} mobile`}>
+            <MapPane ranges={ranges} isMobile={true}/>
+        </div>   
+        </>
   )
 }
