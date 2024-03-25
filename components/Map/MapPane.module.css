@@ -1,25 +1,27 @@
 .overlay{
-    position: relative;
-    background: white;
-    padding: 0 1rem;
-    min-width: 50%;
-    max-width: 100%;
     z-index: 100;
-    border-radius: 15px;
-    box-shadow: 2px 2px 5px 0px black;
     transform: translateX(-50%);
+    width: 20rem;
+}
+
+.cardTop{
+    background: var(--mainColor);
+    padding: 0.5rem;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .close{
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: relative;
     width: 1.25rem;
-    aspect-ratio: 1/1;
+    height: 100%;
     padding: 0.25rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .close:hover{
@@ -35,10 +37,18 @@
     flex-wrap: wrap;
 }
 
+.location{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
 .name{
     position: relative;
     width: 100%;
-    padding: 0.5rem 0 0 0;
     font-weight: bolder;
 }
 

@@ -8,6 +8,7 @@ import IconBar from "../IconBar/IconBar"
 import { LuXCircle } from "react-icons/lu"
 import { getCenter} from "geolib"
 import Link from "next/link"
+import { Card, Inset } from "@radix-ui/themes"
 
 interface Props{
     ranges: ShootingRange[]
@@ -64,15 +65,19 @@ export default function MapPane({ranges, isMobile}:Props){
             })}
             {overlayVisible ? 
             <Overlay anchor={currentMakrer} offset={[0,0]}>
-                <div className={s.overlay}>
-                    <div className={s.close} onClick={()=>setOverlayVisible(!overlayVisible)}><LuXCircle style={{width: "100%", height: "100%"}} /></div>
+                <Card className={`${s.overlay} boxShadow`}>
+                <Inset side="top" clip="padding-box" className={s.cardTop}>
+                <div className={s.location}><div className={s.name}>{currentRange?.name}</div>
+                <div className={s.place}>{currentRange?.location}</div></div>
+                
+                <div className={s.close} onClick={()=>setOverlayVisible(!overlayVisible)}><LuXCircle style={{width: "100%", height: "100%"}} /></div>
+                </Inset>
+                    
                     <div className={s.content}>
-                        <div className={s.name}>{currentRange?.name}</div>
-                        <div className={s.place}>{currentRange?.location}</div>
                         <IconBar degrees={currentRange!.direction} category={currentRange!.category} positions={currentRange!.positions}/>
                         <Link className={s.more} href={`/schiessen/schiessanlagen#${currentRange?.name}`}>mehr...</Link>
                     </div>
-                </div>
+                </Card>
             </Overlay> 
             :
             null}
