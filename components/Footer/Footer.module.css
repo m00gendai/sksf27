@@ -6,23 +6,28 @@
     color: var(--mainColor);
 }
 
-.copyright{
-    position: relative;
-    width: 100%;
-    text-align: center;
-}
-
-.shamelessPlug{
+.copyright,
+.shamelessPlug,
+.mail{
     position: relative;
     width: 100%;
     text-align: center;
     text-decoration: none;
     color: var(--mainColor);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
-.shamelessPlug a{
+.shamelessPlug a,
+.mail a{
     text-decoration: none;
     color: var(--mainColor);
+}
+
+.mail{
+    margin: 1rem 0;
 }
 
 .links{
@@ -44,4 +49,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.mail a:hover,
+.links a:hover,
+.shamelessPlug a:hover{
+    color: yellow;
 }

@@ -1,4 +1,4 @@
-import { LuExternalLink } from "react-icons/lu"
+import { LuCopyright, LuExternalLink, LuMail, LuPalette } from "react-icons/lu"
 import s from "./Footer.module.css"
 import Link from "next/link"
 
@@ -10,12 +10,13 @@ export default async function Footer(){
 
     return(
         <footer className={s.footer}>
-            <div className={s.copyright}>{`© ${creationYear}${currentYear === creationYear ? "" : `-${currentYear}`} Schaffhauser Kantonalschützenfest 2027`}</div>
-            <div className={s.shamelessPlug} dangerouslySetInnerHTML={{__html: `Webdesign von <a href="https://mrweber.ch" target="_blank" title="Webseite von mrweber.ch Webdesign besuchen"><u>mrweber.ch</u></a>`}}></div>
+            <div className={s.copyright}><LuCopyright style={{margin:"0 0.25rem 0 0"}}/> {`${creationYear}${currentYear === creationYear ? "" : `-${currentYear}`} Schaffhauser Kantonalschützenfest 2027`}</div>
+            <div className={s.mail}><LuMail /> <a href="mailto:info@sksf27.ch">info@sksf27.ch</a></div>
             <div className={s.links}>
-                <Link href="/impressum">Impressum<LuExternalLink style={{margin: "0 0 0 0.5rem"}}/></Link>
-                <Link href="/datenschutz">Datenschutz<LuExternalLink style={{margin: "0 0 0 0.5rem"}}/></Link>
+                <Link href="/impressum"><LuExternalLink style={{margin: "0 0.25rem 0 0"}}/> Impressum</Link>
+                <Link href="/datenschutz"><LuExternalLink style={{margin: "0 0.25rem 0 0"}}/>Datenschutz</Link>
             </div>
+            <div className={s.shamelessPlug}><a href="https://mrweber.ch" target="_blank"><LuPalette style={{margin: "0 0.25rem 0 0"}} />Webdesign von <u>mrweber.ch</u></a></div>
         </footer>
     )
     }
