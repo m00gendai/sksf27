@@ -31,13 +31,15 @@ export default function MapPane({ranges, isMobile}:Props){
     const [currentMakrer, setCurrentMarker] = useState<[number, number]>([0,0])
     const [overlayVisible, setOverlayVisible] = useState<boolean>(false)
     const [currentRange, setCurrentRange] = useState<ShootingRange | null>(null)
-    const [center, setCurrentCenter] = useState([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
+    const [center, setCenter] = useState<[number, number]>([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
     const [zoom, setZoom] = useState(11)
 
     function handleMarkerClick(coordinates:[number, number], range:ShootingRange){
+        setCenter(coordinates)
         setCurrentMarker(coordinates)
         setCurrentRange(range)
         setOverlayVisible(!overlayVisible)
+        
     }
 
     
@@ -45,10 +47,12 @@ export default function MapPane({ranges, isMobile}:Props){
     return(
         <Map 
             defaultCenter={initCenter ? [initCenter.latitude, initCenter.longitude] : [0,0]} 
+            center={center}
             defaultZoom={12}
+            zoom={zoom}
             twoFingerDrag={isMobile ? true : false}
             onBoundsChanged={({ center, zoom }) => { 
-                setCurrentCenter(center) 
+                setCenter(center) 
                 setZoom(zoom) 
               }} 
 
