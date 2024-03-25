@@ -42,7 +42,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   align-content: center;
 }
 
@@ -97,7 +96,7 @@
   z-index: 3;
   transition: 0.5s;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: 'Arial';
   flex: 1;
   background: white;

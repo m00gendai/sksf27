@@ -34,16 +34,20 @@ export default function MapPane({ranges, isMobile}:Props){
     const [currentRange, setCurrentRange] = useState<ShootingRange | null>(null)
     const [center, setCenter] = useState<[number, number]>([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
     const [zoom, setZoom] = useState(11)
+    const [clicked, setClicked] = useState<boolean>(false)
 
     function handleMarkerClick(coordinates:[number, number], range:ShootingRange){
         setCenter(coordinates)
         setCurrentMarker(coordinates)
         setCurrentRange(range)
-        setOverlayVisible(!overlayVisible)
-        
+        setOverlayVisible(true)
+        setClicked(true)
     }
 
-    
+    function handleClose(){
+        setOverlayVisible(false)
+        setClicked(false)
+    }
 
     return(
         <Map 
@@ -63,6 +67,7 @@ export default function MapPane({ranges, isMobile}:Props){
                 const coordinates: [number, number] = [parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]
                 return <Marker key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
             })}
+            {clicked ? <Marker width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
             {overlayVisible ? 
             <Overlay anchor={currentMakrer} offset={[0,0]}>
                 <Card className={`${s.overlay} boxShadow`}>
@@ -70,7 +75,7 @@ export default function MapPane({ranges, isMobile}:Props){
                 <div className={s.location}><div className={s.name}>{currentRange?.name}</div>
                 <div className={s.place}>{currentRange?.location}</div></div>
                 
-                <div className={s.close} onClick={()=>setOverlayVisible(!overlayVisible)}><LuXCircle style={{width: "100%", height: "100%"}} /></div>
+                <div className={s.close} onClick={()=>handleClose()}><LuXCircle style={{width: "100%", height: "100%"}} /></div>
                 </Inset>
                     
                     <div className={s.content}>
