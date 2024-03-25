@@ -15,16 +15,7 @@ interface Props{
 }
 
 export default function MapPane({ranges, isMobile}:Props){  
-    
-    const [currentMakrer, setCurrentMarker] = useState<[number, number]>([0,0])
-    const [overlayVisible, setOverlayVisible] = useState<boolean>(false)
-    const [currentRange, setCurrentRange] = useState<ShootingRange | null>(null)
 
-    function handleMarkerClick(coordinates:[number, number], range:ShootingRange){
-        setCurrentMarker(coordinates)
-        setCurrentRange(range)
-        setOverlayVisible(!overlayVisible)
-    }
 
     const rangeCoordinates:{latitude: string, longitude: string}[] = ranges.map(range=>{
         return(
@@ -34,13 +25,32 @@ export default function MapPane({ranges, isMobile}:Props){
             }
         )
     })
-    const center: false | {latitude: number, longitude: number} = getCenter(rangeCoordinates);
+
+    const initCenter: false | {latitude: number, longitude: number} = getCenter(rangeCoordinates);
+    
+    const [currentMakrer, setCurrentMarker] = useState<[number, number]>([0,0])
+    const [overlayVisible, setOverlayVisible] = useState<boolean>(false)
+    const [currentRange, setCurrentRange] = useState<ShootingRange | null>(null)
+    const [center, setCurrentCenter] = useState([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
+    const [zoom, setZoom] = useState(11)
+
+    function handleMarkerClick(coordinates:[number, number], range:ShootingRange){
+        setCurrentMarker(coordinates)
+        setCurrentRange(range)
+        setOverlayVisible(!overlayVisible)
+    }
+
+    
 
     return(
         <Map 
-            defaultCenter={center ? [center.latitude, center.longitude] : [0,0]} 
+            defaultCenter={initCenter ? [initCenter.latitude, initCenter.longitude] : [0,0]} 
             defaultZoom={12}
             twoFingerDrag={isMobile ? true : false}
+            onBoundsChanged={({ center, zoom }) => { 
+                setCurrentCenter(center) 
+                setZoom(zoom) 
+              }} 
 
         >
              <ZoomControl />
