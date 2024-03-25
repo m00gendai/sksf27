@@ -16,9 +16,8 @@
 
 .close{
     position: relative;
-    width: 1.25rem;
+    width: 1.5rem;
     height: 100%;
-    padding: 0.25rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -55,11 +54,9 @@
 .place{
     position: relative;
     width: 100%;
-    padding: 0 0 0.5rem 0;
 }
 
 .more{
     position: relative;
     width: 100%;
-    padding: 0 0 0.5rem 0;
 }
