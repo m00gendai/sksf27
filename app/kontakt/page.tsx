@@ -1,6 +1,7 @@
 import ContactForm from "@/components/ContactForm/ContactForm";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import { PageContent } from "@/globals/globals_interface";
+import { pageMetadata } from "@/globals/utils";
 import { Content } from "@radix-ui/react-collapsible";
 import Link from "next/link";
 
@@ -21,6 +22,9 @@ async function getContent(){
     return content[0]
 }
 
+export async function generateMetadata(){
+    return pageMetadata("Kontakt")
+  }
 
 export default async function Page(){
 

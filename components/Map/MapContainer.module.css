@@ -1,6 +1,6 @@
 .container{
     position: relative;
-    width: 100vw;
+    width: 100%;
     aspect-ratio: 30/10;
     display: flex;
     justify-content: center;

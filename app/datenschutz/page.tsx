@@ -30,10 +30,10 @@ export default async function Page(){
                 <h1 className={s.heading}>{pageContent.page}</h1>
                 {pageContent.content.map(element =>{
                     return(
-                        <React.Fragment key={element.title}>
+                        <div key={element.title} className="content">
                         <h2>{element.title}</h2>
-                        <div className="content" dangerouslySetInnerHTML={{__html: element.text}}></div>
-                        </React.Fragment>
+                        <div className="content_text" dangerouslySetInnerHTML={{__html: element.text}}></div>
+                        </div>
                     )
                 })}
             </section>
