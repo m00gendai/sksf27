@@ -85,6 +85,10 @@ p{
   flex-wrap: wrap;
 }
 
+a{
+  margin: 0 0.25rem;
+}
+
 .content{
   position: relative;
   width: 100%;
@@ -94,6 +98,15 @@ p{
   flex-wrap: wrap;
   min-width: 0;
   word-wrap: break-word;
+}
+
+.content_text{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .button:hover{
