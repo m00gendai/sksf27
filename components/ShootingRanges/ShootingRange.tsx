@@ -13,7 +13,7 @@ import { getCompassDegrees } from "@/globals/utils"
 import { GiArcheryTarget, GiBullets, GiDirectionSign, GiDirectionSigns, GiMeditation } from "react-icons/gi"
 import * as Collapsible from '@radix-ui/react-collapsible';
 import { LuChevronDown, LuChevronDownCircle, LuChevronUp, LuChevronUpCircle } from "react-icons/lu"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface Props{
     range: RangeType
@@ -22,6 +22,13 @@ interface Props{
 export default function ShootingRange({range}:Props){
 
     const [isOpen, setOpen] = useState<boolean>(false)
+
+   function handleOpen(){
+        setOpen(!isOpen)
+            document.getElementById(`${range.name}`)?.scrollIntoView({behavior: "smooth", block: "start"})
+        
+
+   }
 
     return(
         <Card className={[`${s.card}, boxShadow`].join(" ")} id={range.name}>
@@ -33,7 +40,7 @@ export default function ShootingRange({range}:Props){
             <div className={s.header}>
             {range.images && range.images.length !== 0 ? <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${range.images[0].path}`} alt={""} fill={true} style={{objectFit: "cover"}} className="boxShadow"/> : <Image src={Testbild} alt={"Testbild"} fill={true} style={{objectFit: "cover"}} className="boxShadow"/>}
             </div>
-            <Collapsible.Root onOpenChange={setOpen} className="mobile">
+            <Collapsible.Root onOpenChange={handleOpen} className="mobile">
                <Collapsible.Content >
                     <Tabs.Root defaultValue="data">
                         <Tabs.List>
