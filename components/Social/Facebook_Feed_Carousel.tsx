@@ -39,7 +39,7 @@ export default function Test({content, options}:Props){
             <div className={s.container}>
             {content.feed.data.map(entry =>{
                 return(
-                    <div className={`${s.item}`}>
+                    <div className={`${s.item}`} key={entry.id}>
                             <div className={s.image}>
                                 <Image
                                     src={entry.full_picture}
@@ -66,7 +66,8 @@ export default function Test({content, options}:Props){
                 )
             })}
             </div>
-            <button className={s.prev} onClick={scrollPrev}>        Prev      </button>      <button className="embla__next" onClick={scrollNext}>        Next      </button>
+            {/*<button className={s.prev} onClick={scrollPrev}>        Prev      </button>      
+            <button className={s.next} onClick={scrollNext}>        Next      </button>*/}
         </div>
     )
 }
