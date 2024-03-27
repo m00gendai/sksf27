@@ -8,6 +8,16 @@ const nextConfig = {
             port: '',
             pathname: '/storage/uploads/**',
           },
+          {
+            protocol: "https",
+            hostname: "scontent.*.fna.fbcdn.net",
+            pathname: "/**"
+          },
+          {
+            protocol: "https",
+            hostname: "external.*.fna.fbcdn.net",
+            pathname: "/**"
+          }
         ],
       },
       i18n: {
