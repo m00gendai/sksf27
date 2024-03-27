@@ -2,9 +2,8 @@ import s from "./Facebook_Feed.module.css"
 import Image from "next/image"
 import { FacebookFeed } from "./Interface_Facebook_Feed";
 import Placeholder from "@/public/placeholder.png"
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import Test from "./Test";
+import Facebook_Feed_Carousel from "./Facebook_Feed_Carousel";
+import { Suspense } from "react";
 
 async function getContent(){
     const getContent:Response = await fetch(
@@ -35,34 +34,10 @@ export default async function Facebook_Feed(){
     }
 
     return(
-        <div className={s.container}>
-            {/*{content.feed.data.map(entry =>{
-                return(
-                    <div className={s.entry}>
-                        <div className={s.image}>
-                            <Image
-                                src={entry.full_picture}
-                                alt={"Bild zum Eintrag"}
-                                fill={true}
-                                style={{objectFit:"cover"}}
-                            />
-                        </div>
-                        <div className={s.info}>
-                            <div className={s.time}>
-                                {new Date(entry.created_time).toLocaleTimeString("de-CH", dateOptions)}
-                            </div>
-                            <div className={s.message}>
-                                {entry.message} 
-                            </div>
-                            <div className={s.reactions}>
-                                <p>{`Kommentare: ${entry.comments ? entry.comments.data.length : "0"}`}</p>
-                                <p>{`Geteilt: ${entry.shares ? entry.shares.count : "0"}`}</p>
-                            </div>
-                        </div>
-                    </div>
-                )
-            })} */}
-            <Test content={content}/>
+        <div className={s.wrapper}>
+            <Suspense fallback={<div className={s.container}></div>}>
+                <Facebook_Feed_Carousel content={content}/>
+            </Suspense>
         </div>
         
     )
