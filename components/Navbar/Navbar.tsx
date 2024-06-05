@@ -6,14 +6,17 @@ import Link from "next/link"
 import Image from "next/image"
 import { navbar } from "./navbarStructure";
 import s from "./Navbar.module.css"
-import SH from "@/public/SH.png"
+import Medal from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
 import { IoCaretDownSharp } from "react-icons/io5"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function Navbar(){
 
     const [overTrigger, setOverTrigger] = useState<boolean>(false) // checks if cursor is over trigger link
     const [visible, setVisible] = useState<boolean>(false) // checks if submenu is visible
     const [submenu, setSubmenu] = useState<string>("")
+
+    const pathname = usePathname()
 
     function handleSubMenuTrigger(e:React.MouseEvent, menu:string){
         submenu === menu ? setSubmenu("") : setSubmenu(menu)
@@ -36,14 +39,14 @@ export default function Navbar(){
 
     return(
         <nav className ={`${s.nav} desktop`}>
-            <Link href="/" className={s.logoContainer}  title={`Link zur Startseite`}>
-                <Image
-                    src={SH}
+            <Link href="/" className={pathname === "/" ? s.logoContainer : s.logoContainer2}  title={`Link zur Startseite`}>
+               {pathname !== "/" ? <div className={s.logoInner}><Image
+                    src={Medal}
                     fill={true}
-                    alt={"Schaffhauser Wappen"}
+                    alt={"Kranzabzeichen"}
                     style={{objectFit: "contain"}}
                     className={s.logo}
-                />
+                /></div> : null}
             </Link>
             <div className={s.tagline}>
                 {`Schaffhauser Kantonalschützenfest 2027`}
