@@ -10,7 +10,7 @@ export default async function Page(){
     return(
         <main>
             <section>
-                <PageHeading />
+                <PageHeading image={"schiessanlagen"}/>
                 <ShootingRanges />
             </section>
         </main>

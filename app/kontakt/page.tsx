@@ -32,7 +32,7 @@ export default async function Page(){
     return(
         <main>
             <section>
-                <PageHeading />
+                <PageHeading image={"kontakt"}/>
                 {pageContent.content.map(element=>{
                     if(element.title === "Intro"){
                         return(
