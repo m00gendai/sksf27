@@ -65,12 +65,12 @@ export async function pageMetadata(pageName:string){
             type: 'website',
         },
         icons: {
-            icon: '/SH.png',
-            shortcut: 'SH.png',
-            apple: '/SH.png',
+            icon: '/Logo SKSF27 klein cmyk positiv.jpg',
+            shortcut: '/Logo SKSF27 klein cmyk positiv.jpg',
+            apple: '/Logo SKSF27 klein cmyk positiv.jpg',
             other: {
                 rel: 'apple-touch-icon-precomposed',
-                url: '/SH.png',
+                url: '/Logo SKSF27 klein cmyk positiv.jpg',
             },
         },
     }

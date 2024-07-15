@@ -5,8 +5,20 @@
     font-size: 2rem;
 }
 
-@media screen and (max-aspect-ratio: 13/9){
+
+
+.headerImage{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 15vw;
+  }
+
+  @media screen and (max-aspect-ratio: 13/9){
     .heading{
         margin: 10vw 0 0 0;
+    }
+    .headerImage{
+        height: 10vh;
     }
 }
