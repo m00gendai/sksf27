@@ -6,7 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { navbar } from "./navbarStructure";
 import s from "./Navbar.module.css"
-import Medal from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
+import Medal from "@/public/Logo-SKSF27-klein-strich-negativ.png"
 import { IoCaretDownSharp } from "react-icons/io5"
 import { usePathname, useRouter } from "next/navigation"
 
@@ -39,14 +39,14 @@ export default function Navbar(){
 
     return(
         <nav className ={`${s.nav} desktop`}>
-            <Link href="/" className={pathname === "/" ? s.logoContainer : s.logoContainer2}  title={`Link zur Startseite`}>
-               {pathname !== "/" ? <div className={s.logoInner}><Image
+            <Link href="/" className={s.logoContainer2}  title={`Link zur Startseite`}>
+               <div className={s.logoInner}><Image
                     src={Medal}
                     fill={true}
                     alt={"Kranzabzeichen"}
                     style={{objectFit: "contain"}}
                     className={s.logo}
-                /></div> : null}
+                /></div>
             </Link>
             <div className={s.tagline}>
                 {`Schaffhauser Kantonalschützenfest 2027`}
