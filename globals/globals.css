@@ -13,7 +13,6 @@ body{
   align-items: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 main{
@@ -31,7 +30,7 @@ section{
   position: relative;
   width: 100%;
   max-width: 1200px;
-  padding: 1rem;
+  padding: 15vw 1rem 1rem 1rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -42,6 +41,9 @@ section{
 @media screen and (max-aspect-ratio: 13/9){
   .desktop{
     display: none!important;
+  }
+  section{
+    padding: 10vh 1rem 1rem 1rem;
   }
 }
 
@@ -112,6 +114,7 @@ p{
 .radix-themes{
   position: relative;
   width: 100%;
+  --default-font-family: var(--font-titillium)!important;
 }
 
 .boxShadow{

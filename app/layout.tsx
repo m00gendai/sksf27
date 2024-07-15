@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar/Navbar";
-import "@/globals/globals.css";
-import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
 import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
+import "@/globals/globals.css";
+import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
+
+
 import Footer from "@/components/Footer/Footer";
+import { Titillium_Web } from 'next/font/google'
+ 
+const titillium = Titillium_Web({
+  weight: '400',
+  style: "normal",
+  subsets: ['latin'],
+  variable: '--font-titillium',
+})
 
 
 export const metadata: Metadata = {
@@ -18,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" className={titillium.className}>
       <body>
         <Theme accentColor="grass">
         <Navbar />

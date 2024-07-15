@@ -5,14 +5,17 @@ import Image from "next/image"
 import s from "./Navbar_Mobile.module.css"
 import {useState} from "react"
 import { navbar } from "./navbarStructure";
-import SH from "@/public/SH.png"
+import Medal from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
 import React from "react"
 import { LuChevronDown, LuChevronUp, LuCornerDownRight, LuMenu, LuX } from "react-icons/lu"
+import { usePathname } from "next/navigation"
 
 export default function Navbar_Mobile(){
 
     const [visible, setVisible] = useState<boolean>(false)
     const [submenu, setSubmenu] = useState<string>("")
+
+    const pathname = usePathname()
 
     function handleSubMenuTrigger(e:React.MouseEvent, menu:string){
         submenu === menu ? setSubmenu("") : setSubmenu(menu)
@@ -25,14 +28,14 @@ export default function Navbar_Mobile(){
     }
     return(
         <nav className ={`${s.nav} mobile`}>
-            <Link href="/" className={s.logoContainer}>
-                <Image
-                    src={SH}
+            <Link href="/" className={pathname === "/" ? s.logoContainer : s.logoContainer2}  title={`Link zur Startseite`}>
+               {pathname !== "/" ? <div className={s.logoInner}><Image
+                    src={Medal}
                     fill={true}
-                    alt={"Schaffhauser Wappen"}
+                    alt={"Kranzabzeichen"}
                     style={{objectFit: "contain"}}
                     className={s.logo}
-                />
+                /></div> : null}
             </Link>
             <div className={s.tagline}>
                 <p className={s.taglineText}>{`Schaffhauser Kantonalschützenfest 2027`}</p>

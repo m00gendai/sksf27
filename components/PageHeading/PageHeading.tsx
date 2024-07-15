@@ -2,9 +2,14 @@
 
 import { usePathname } from "next/navigation"
 import { navbar } from "../Navbar/navbarStructure"
+import Image from "next/image"
 import s from "./PageHeading.module.css"
 
-export default function PageHeading(){
+interface Props{
+    image?: string
+}
+
+export default function PageHeading({image}:Props){
 
     const path:string = usePathname()
     const crumbs:string[] = path.split("/")
@@ -21,8 +26,16 @@ export default function PageHeading(){
         }
     })
 
-    return(
+    
+   
+    
 
-        <h1 className={s.heading}>{title}</h1> 
+    return(
+<>
+<div className={s.headerImage}><Image src={image === undefined ? "/placeholder.png" : `/${image}.jpg`} alt={""} fill={true} style={{objectFit: "cover"}} /></div>
+
+<h1 className={s.heading}>{title}</h1> 
+</>
+       
     )
 }

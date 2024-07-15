@@ -4,7 +4,7 @@ export default async function Page(){
     return(
         <main>
             <section>
-                <PageHeading />
+                <PageHeading image={"bilder"}/>
                 <p>Diese Seite ist noch im Aufbau...</p>
             </section>
         </main>

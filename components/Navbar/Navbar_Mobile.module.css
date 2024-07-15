@@ -13,13 +13,31 @@
 
 .logoContainer{
     position: relative;
-    height: 10vw;
-    min-height: 4rem;
+    height: 100%;
     aspect-ratio: 1.5/1;
+    margin: 0 0.5vh 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    background-color: transparent;
+}
+
+.logoContainer2{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1.5/1;
+    margin: 0 0.5vh 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondaryColor);
+}
+
+.logoInner{
+    width: 90%;
+    height: 90%;
+    position: relative;
+
 }
 
 .logo{

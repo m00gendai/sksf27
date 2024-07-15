@@ -1,6 +1,7 @@
 import { PageContent } from "@/globals/globals_interface"
 import s from "../../components/PageHeading/PageHeading.module.css"
 import React from "react"
+import PageHeading from "@/components/PageHeading/PageHeading"
 
 async function getContent(){
     const getContent:Response = await fetch(
@@ -27,7 +28,7 @@ export default async function Page(){
     return(
         <main>
             <section>
-                <h1 className={s.heading}>{pageContent.page}</h1>
+                <PageHeading image={"impressum"} />
                 {pageContent.content.map(element =>{
                     return(
                         <div key={element.title} className="content">

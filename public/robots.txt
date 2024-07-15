@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sksf27.ch
+
+# Sitemaps
+Sitemap: https://sksf27.ch/sitemap.xml
