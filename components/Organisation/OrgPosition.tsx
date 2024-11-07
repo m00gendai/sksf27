@@ -9,7 +9,7 @@ export default function OrgPosition({ data }: { data: OK }){
 
     function detail(){ 
         if (typeof window !== "undefined" && document) {
-            document.getElementById(`${data.title}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+            //document.getElementById(`${data.title}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
         }
     }
     return(
