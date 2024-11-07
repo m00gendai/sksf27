@@ -1,0 +1,42 @@
+.container{
+    border: 2px solid black;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.title{
+    margin: 0;
+    padding: 0.5rem;
+    background-color: var(--mainColor);
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.nameContainer{
+    margin: 0;
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name{
+    margin: 0 5rem 0 0;
+    padding: 0;
+    display: flex;
+    white-space: nowrap;
+    font-size: 1.25rem;
+}
+
+.imageContainer{
+    display: flex;
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 5rem; 
+    border-radius: 50px;
+    overflow: hidden;
+}
