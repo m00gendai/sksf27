@@ -8,9 +8,7 @@ import Testbild from "@/public/testbild.png"
 export default function OrgPosition({ data }: { data: OK }){
 
     function detail(){ 
-        if (typeof window !== "undefined" && document) {
-            //document.getElementById(`${data.title}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
+        console.log("click")
     }
     return(
         <div className={s.container} onClick={()=>detail()} >
