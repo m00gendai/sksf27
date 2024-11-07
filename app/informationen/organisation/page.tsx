@@ -28,7 +28,7 @@ export default async function Page(){
         <main>
             <section>
                 <PageHeading image={"organisation"} />
-                <OrgChart org={org}/>
+              {/*  <OrgChart org={org}/> */}
                 <Organisation people={org} />
             </section>
         </main>
