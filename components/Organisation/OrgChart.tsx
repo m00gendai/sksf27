@@ -5,7 +5,7 @@ import "organization-chart-react/dist/style.css";
 import { OK } from "./Interface_Organisation";
 import TestBild from "@/public/testbild.png"
 import s from "./OrgChart.module.css"
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Margin, Resolution, usePDF } from 'react-to-pdf';
 import { Tree, TreeNode } from 'react-organizational-chart';
 
@@ -31,14 +31,20 @@ export default function OrganizationalChart({org}:Props){
   orientation: 'landscape',
 }});
 
+const [isClient, setIsClient] = useState(false)
+
+useEffect(() => {
+  setIsClient(true); // After mounting on the client, set isClient to true
+}, []);
+
   return(
-     <>
+    isClient ? <>
     <h2>Organigramm</h2>
     {/* On mobile, the org chart is not displayed. But having display: none; on it interferes with the PDF generation. It is thus handled with zero width/height in the .container CSS*/}
       <div className={`${s.container}`} > 
         <Suspense fallback={<p>Laden...</p>}>
         <div ref={targetRef}>
-        {typeof window !== "undefined" && document ?<Tree label={<OrgPosition data={org[0]} />}>
+          <Tree label={<OrgPosition data={org[0]} />}>
             {
               org.map((position, psnIndex) =>{
                 if(position.parent === org[0].title){
@@ -58,13 +64,13 @@ export default function OrganizationalChart({org}:Props){
               })
             }
 
-          </Tree> : null}
+          </Tree>
           </div>
         </Suspense>
       </div>
       <Button className={`desktop button`} onClick={() => toPDF()}>{`Als PDF speichern`}</Button>
       <Button className={`mobile button`} onClick={() => toPDF()}>{`Organigramm als PDF öffnen`}</Button>
-      </>
+      </> : null
   )
 }
 
