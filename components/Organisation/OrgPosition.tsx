@@ -1,3 +1,5 @@
+"use client" 
+
 import { OK } from "./Interface_Organisation";
 import s from "./OrgPosition.module.css"
 import Image from "next/image"
@@ -5,8 +7,10 @@ import Testbild from "@/public/testbild.png"
 
 export default function OrgPosition({ data }: { data: OK }){
 
-    function detail(){
-        document.getElementById(`${data.title}`)?.scrollIntoView({behavior: "smooth", block: "center"})
+    function detail(){ 
+        if (typeof window !== "undefined" && document) {
+            document.getElementById(`${data.title}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
     }
     return(
         <div className={s.container} onClick={()=>detail()} >
