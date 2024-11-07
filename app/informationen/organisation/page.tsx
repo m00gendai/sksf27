@@ -28,7 +28,7 @@ export default async function Page(){
         <main>
             <section>
                 <PageHeading image={"organisation"} />
-                    {typeof window !== "undefined" && document ? <OrgChart org={org}/> : null}
+                <OrgChart org={org}/> 
                 <Organisation people={org} />
             </section>
         </main>
