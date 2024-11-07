@@ -32,13 +32,13 @@ export default function OrganizationalChart({org}:Props){
 }});
 
   return(
-    <>
+     <>
     <h2>Organigramm</h2>
     {/* On mobile, the org chart is not displayed. But having display: none; on it interferes with the PDF generation. It is thus handled with zero width/height in the .container CSS*/}
       <div className={`${s.container}`} > 
         <Suspense fallback={<p>Laden...</p>}>
         <div ref={targetRef}>
-          <Tree label={<OrgPosition data={org[0]} />}>
+        {typeof window !== "undefined" && document ?<Tree label={<OrgPosition data={org[0]} />}>
             {
               org.map((position, psnIndex) =>{
                 if(position.parent === org[0].title){
@@ -58,7 +58,7 @@ export default function OrganizationalChart({org}:Props){
               })
             }
 
-          </Tree>
+          </Tree> : null}
           </div>
         </Suspense>
       </div>
