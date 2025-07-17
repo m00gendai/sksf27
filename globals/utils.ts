@@ -1,4 +1,4 @@
-import { Metadata } from "./globals_interface"
+import { Metadata, SiteMetaData } from "./globals_interface"
 
 export function getCompassDegrees(direction:string){
     switch(direction){
@@ -74,4 +74,53 @@ export async function pageMetadata(pageName:string){
             },
         },
     }
+}
+
+export async function siteMetaData(data:SiteMetaData){
+
+    return {
+        title: data.metaPageName,
+        description: data.metaSiteDescription,
+        openGraph: {
+            title: data.metaPageName,
+            description: data.metaSiteDescription,
+            images: [
+                {
+                    url: data.metaImage ? `${process.env.NEXT_PUBLIC_STORAGE}${data.metaImage.path}` : "/placeholder.png",
+                }
+            ],
+            locale: 'de_CH',
+            type: 'website',
+        },
+        icons: {
+            icon: '/Logo SKSF27 klein cmyk positiv.jpg',
+            shortcut: '/Logo SKSF27 klein cmyk positiv.jpg',
+            apple: '/Logo SKSF27 klein cmyk positiv.jpg',
+            other: {
+                rel: 'apple-touch-icon-precomposed',
+                url: '/Logo SKSF27 klein cmyk positiv.jpg',
+            },
+        },
+    }
+}
+
+export function toRGB(hex: string) {
+    const r:number = parseInt(hex.slice(1, 3), 16);
+    const g:number = parseInt(hex.slice(3, 5), 16);
+    const b:number = parseInt(hex.slice(5, 7), 16);
+    const rgb:string = `${r},${g},${b}`;
+    return rgb;
+  }
+
+export function gradientPlaceholder(rgb:string[]){
+    const style:React.CSSProperties = {
+        background: `
+            linear-gradient(72deg, rgba(${rgb[0]},0.8), rgba(${rgb[0]}, 0) 70.71%), 
+            linear-gradient(144deg, rgba(${rgb[1]},0.8), rgba(${rgb[1]}, 0) 70.71%),
+            linear-gradient(216deg, rgba(${rgb[2]},0.8), rgba(${rgb[2]}, 0) 70.71%),
+            linear-gradient(288deg, rgba(${rgb[3]},0.8), rgba(${rgb[3]}, 0) 70.71%),
+            linear-gradient(360deg, rgba(${rgb[4]},0.8), rgba(${rgb[4]}, 0) 70.71%)
+            `,
+    }
+    return style
 }

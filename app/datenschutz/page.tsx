@@ -1,11 +1,13 @@
-import { PageContent } from "@/globals/globals_interface"
-import s from "../../components/PageHeading/PageHeading.module.css"
-import React from "react"
-import PageHeading from "@/components/PageHeading/PageHeading"
+import Gallery from "@/components/Gallery/Gallery";
+import PageHeading from "@/components/PageHeading/PageHeading";
+import { SiteContent } from "@/globals/globals_interface";
+import { siteMetaData } from "@/globals/utils";
 
-async function getContent(){
-    const getContent:Response = await fetch(
-        'https://cms.sksf27.ch/api/content/items/content?filter=%7Bpage%3A%22Datenschutz%22%7D&populate=100',
+const siteName = "Datenschutz"
+
+async function getSiteContent(siteName:string){
+    const getSiteContent:Response = await fetch(
+        `https://cms.sksf27.ch/api/content/items/pages?filter=%7BpageName%3A+%22${siteName}%22%7D`,
         {
             headers: {
                 'api-key': `${process.env.CMS}`,
@@ -16,27 +18,34 @@ async function getContent(){
         }
     )
 
-    const content:PageContent[] = await getContent.json()
-    return content[0]
+    const siteContent:SiteContent[] = await getSiteContent.json()
+    return siteContent
 }
 
+export async function generateMetadata(){
+    const data = await getSiteContent(siteName)
+    return siteMetaData(data[0].metadata)
+}
 
 export default async function Page(){
 
-    const pageContent:PageContent = await getContent()
-
+    const siteContent:SiteContent[] = await getSiteContent(siteName)
+console.log(siteContent[0].content[0].sectionAssets)
     return(
         <main>
             <section>
-            <PageHeading image={"datenschutz"} />
-                {pageContent.content.map(element =>{
-                    return(
-                        <div key={element.title} className="content">
-                        <h2>{element.title}</h2>
-                        <div className="content_text" dangerouslySetInnerHTML={{__html: element.text}}></div>
-                        </div>
-                    )
-                })}
+                <PageHeading image={siteContent[0].pageHeader.path} />
+                {
+                    siteContent[0].content.map((section, index) =>{
+                        return(
+                            <div key={`${index}_${section.sectionTitle}`} className="content">
+                                {section.sectionTitle !== null ? <h3>{section.sectionTitle}</h3> : ""}
+                                <div className="content_text" dangerouslySetInnerHTML={{__html: section.sectionText}}></div>
+                                {section.sectionAssets !== null ? <Gallery images={section.sectionAssets} /> : ""}
+                            </div>
+                        )
+                    })
+                }
             </section>
         </main>
     )
