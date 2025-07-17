@@ -32,7 +32,7 @@ export default function PageHeading({image}:Props){
 
     return(
 <>
-<div className={s.headerImage}><Image src={image === undefined ? "/placeholder.png" : `/${image}.jpg`} alt={""} fill={true} style={{objectFit: "cover"}} /></div>
+<div className={s.headerImage}><Image src={image === undefined ? "/placeholder.png" : image === null ? "/placeholder.png" : `${process.env.NEXT_PUBLIC_STORAGE}${image}`} alt={""} fill={true} style={{objectFit: "cover"}} /></div>
 
 <h1 className={s.heading}>{title}</h1> 
 </>
