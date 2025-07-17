@@ -40,3 +40,22 @@ export interface Metadata{
   _cby: string;
   _id: string;
 }
+
+export interface SiteContent{
+    pageName: string
+    content: {sectionTitle: string; sectionText: string; sectionAssets: Medium[]}[]
+    _modified: number;
+    _mby: string;
+    _created: number;
+    _state: number;
+    _cby: string;
+    _id: string;
+    metadata: SiteMetaData;
+    pageHeader: Medium
+}
+
+export interface SiteMetaData{
+  metaPageName: string; 
+  metaSiteDescription: string; 
+  metaImage: Medium
+}
