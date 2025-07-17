@@ -1,7 +1,12 @@
+import Gallery from "@/components/Gallery/Gallery";
 import { OK } from "@/components/Organisation/Interface_Organisation";
 import OrgChart from "@/components/Organisation/OrgChart";
 import Organisation from "@/components/Organisation/Organisation";
 import PageHeading from "@/components/PageHeading/PageHeading";
+import { SiteContent } from "@/globals/globals_interface";
+import { siteMetaData } from "@/globals/utils";
+
+const siteName = "Organisation"
 
 async function getOrg(){
     const getOrg:Response = await fetch(
@@ -20,14 +25,48 @@ async function getOrg(){
     return org
 }
 
+async function getSiteContent(siteName:string){
+    const getSiteContent:Response = await fetch(
+        `https://cms.sksf27.ch/api/content/items/pages?filter=%7BpageName%3A+%22${siteName}%22%7D`,
+        {
+            headers: {
+                'api-key': `${process.env.CMS}`,
+            },
+            next: {
+                revalidate: 10,
+            }
+        }
+    )
+
+    const siteContent:SiteContent[] = await getSiteContent.json()
+    return siteContent
+}
+
+export async function generateMetadata(){
+    const data = await getSiteContent(siteName)
+    return siteMetaData(data[0].metadata)
+}
+
 export default async function Page(){
 
     const org:OK[] = await getOrg()
+    const siteContent:SiteContent[] = await getSiteContent(siteName)
 
     return(
         <main>
             <section>
-                <PageHeading image={"organisation"} />
+                <PageHeading image={siteContent[0].pageHeader.path} />
+                    {
+                        siteContent[0].content.map((section, index) =>{
+                            return(
+                                <div key={`${index}_${section.sectionTitle}`} className="content">
+                                    {section.sectionTitle !== null ? <h3>{section.sectionTitle}</h3> : ""}
+                                    <div className="content_text" dangerouslySetInnerHTML={{__html: section.sectionText}}></div>
+                                    {section.sectionAssets !== null ? <Gallery images={section.sectionAssets} /> : ""}
+                                </div>
+                            )
+                        })
+                    }
                 {/* <OrgChart org={org}/> */}
                 <Organisation people={org} />
             </section>
