@@ -14,6 +14,7 @@ import { GiArcheryTarget, GiBullets, GiDirectionSign, GiDirectionSigns, GiMedita
 import * as Collapsible from '@radix-ui/react-collapsible';
 import { LuChevronDown, LuChevronDownCircle, LuChevronUp, LuChevronUpCircle } from "react-icons/lu"
 import { useEffect, useState } from "react"
+import GalleryRange from "../GalleryRange/GalleryRange"
 
 interface Props{
     range: RangeType
@@ -137,6 +138,7 @@ export default function ShootingRange({range}:Props){
                             <MapSingle range={range} />
                         </Tabs.Content>
                         <Tabs.Content value="img">
+                            <GalleryRange images={range.images} />
                         </Tabs.Content>
                     </Tabs.Root>
         </Card>

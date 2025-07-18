@@ -40,6 +40,10 @@
     padding: 1rem 0.5rem;
 }
 
+.tableRow td p{
+    margin: 0;
+}
+
 .key{
     font-weight: bolder;
 }
