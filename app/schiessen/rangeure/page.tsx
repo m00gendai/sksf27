@@ -1,4 +1,4 @@
-import Gallery from "@/components/Gallery/Gallery";
+import PageContent from "@/components/PageContent/PageContent";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import { SiteContent } from "@/globals/globals_interface";
 import { siteMetaData } from "@/globals/utils";
@@ -31,22 +31,12 @@ export async function generateMetadata(){
 export default async function Page(){
 
     const siteContent:SiteContent[] = await getSiteContent(siteName)
-console.log(siteContent[0])
+
     return(
         <main>
             <section>
                 <PageHeading image={siteContent[0].pageHeader.path} />
-                {
-                    siteContent[0].content.map((section, index) =>{
-                        return(
-                            <div key={`${index}_${section.sectionTitle}`} className="content">
-                                {section.sectionTitle !== null ? <h3>{section.sectionTitle}</h3> : ""}
-                                <div className="content_text" dangerouslySetInnerHTML={{__html: section.sectionText}}></div>
-                                {section.sectionAssets !== null ? <Gallery images={section.sectionAssets} /> : ""}
-                            </div>
-                        )
-                    })
-                }
+                <PageContent siteContent={siteContent} />
             </section>
         </main>
     )

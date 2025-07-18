@@ -2,15 +2,18 @@
     position: relative;
     width: 100%;
     background: black;
-    padding: 1rem 0;
+    padding: 1rem;
     color: var(--mainColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .copyright,
-.shamelessPlug,
-.mail{
+.mail,
+.link{
     position: relative;
-    width: 100%;
     text-align: center;
     text-decoration: none;
     color: var(--mainColor);
@@ -18,41 +21,16 @@
     justify-content: center;
     align-content: center;
     align-items: center;
+    margin: 0 1rem;
 }
 
-.shamelessPlug a,
-.mail a{
+.mail a,
+.link a{
     text-decoration: none;
     color: var(--mainColor);
-}
-
-.mail{
-    margin: 1rem 0;
-}
-
-.links{
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 1rem 0;
-}
-
-.links a{
-    position: relative;
-    width: 100%;
-    text-decoration: none;
-    color: var(--mainColor);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .mail a:hover,
-.links a:hover,
-.shamelessPlug a:hover{
+.link a:hover{
     color: yellow;
 }
