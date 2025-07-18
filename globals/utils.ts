@@ -1,4 +1,5 @@
 import { Metadata, SiteMetaData } from "./globals_interface"
+import he from 'he';
 
 export function getCompassDegrees(direction:string){
     switch(direction){
@@ -78,12 +79,16 @@ export async function pageMetadata(pageName:string){
 
 export async function siteMetaData(data:SiteMetaData){
 
+    const text_HTMLremoved = data.metaSiteDescription ? data.metaSiteDescription.replace(/<[^>]*>/g, '') : ""
+    const text_decoded = he.decode(text_HTMLremoved);
+    const text_trimmed = text_decoded.replace(/\s+/g, ' ').trim();
+
     return {
-        title: data.metaPageName,
-        description: data.metaSiteDescription,
+        title: data.metaPageName ? data.metaPageName : "",
+        description: text_trimmed,
         openGraph: {
-            title: data.metaPageName,
-            description: data.metaSiteDescription,
+            title: data.metaPageName ? data.metaPageName : "",
+            description: text_trimmed,
             images: [
                 {
                     url: data.metaImage ? `${process.env.NEXT_PUBLIC_STORAGE}${data.metaImage.path}` : "/placeholder.png",
