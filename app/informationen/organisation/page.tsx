@@ -1,7 +1,7 @@
-import Gallery from "@/components/Gallery/Gallery";
 import { OK } from "@/components/Organisation/Interface_Organisation";
 import OrgChart from "@/components/Organisation/OrgChart";
 import Organisation from "@/components/Organisation/Organisation";
+import PageContent from "@/components/PageContent/PageContent";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import { SiteContent } from "@/globals/globals_interface";
 import { siteMetaData } from "@/globals/utils";
@@ -56,17 +56,7 @@ export default async function Page(){
         <main>
             <section>
                 <PageHeading image={siteContent[0].pageHeader.path} />
-                    {
-                        siteContent[0].content.map((section, index) =>{
-                            return(
-                                <div key={`${index}_${section.sectionTitle}`} className="content">
-                                    {section.sectionTitle !== null ? <h3>{section.sectionTitle}</h3> : ""}
-                                    <div className="content_text" dangerouslySetInnerHTML={{__html: section.sectionText}}></div>
-                                    {section.sectionAssets !== null ? <Gallery images={section.sectionAssets} /> : ""}
-                                </div>
-                            )
-                        })
-                    }
+                 <PageContent siteContent={siteContent} />
                 {/* <OrgChart org={org}/> */}
                 <Organisation people={org} />
             </section>
