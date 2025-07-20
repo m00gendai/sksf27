@@ -88,6 +88,7 @@ export default function ShootingRange({range}:Props){
                             <MapSingle range={range} />
                         </Tabs.Content>
                         <Tabs.Content value="img">
+                            <GalleryRange images={range.images} />
                         </Tabs.Content>
                     </Tabs.Root>
                 </Collapsible.Content>
