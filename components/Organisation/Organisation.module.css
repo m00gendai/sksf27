@@ -7,7 +7,7 @@
     position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: 1rem;
 }
 
@@ -20,25 +20,10 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1/1;
-    margin: 2rem 0 0 0;
 }
 
 .imageItem{
     object-fit: cover;
-}
-
-@media screen and (max-aspect-ratio: 13/9){
-    .image{
-        width: 100%;
-        aspect-ratio: 21/10;
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0 0 0;
-    }
-    .imageItem{
-        object-fit: contain;
-    }
-    
 }
 
 .title{
@@ -50,14 +35,26 @@
     
 }
 
+.content{
+    position: relative;
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    padding: 1rem 0;
+}
+
 .info{
     position: relative;
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    align-content: flex-start;
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 0 1rem;
+}
+
+.info p{
+    margin: 0;
 }
 
 .title{

@@ -1,7 +1,6 @@
 .overlay{
     z-index: 100;
     transform: translateX(-50%);
-    width: 20rem;
     background: white;
 }
 
