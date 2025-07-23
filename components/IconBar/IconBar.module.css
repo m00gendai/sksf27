@@ -4,13 +4,13 @@
     min-height: 2rem;
     margin: 1rem 0;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(10, minmax(2rem, 1fr));
     grid-gap: 1rem;
 }
 
 @media only screen and (max-aspect-ratio: 13/9){
     .container{
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat( auto-fit, minmax(2rem, 2rem) );
     }
 }
 
