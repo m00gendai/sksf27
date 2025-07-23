@@ -6,7 +6,7 @@ import { isFeedback, isFocus, isFormValid, isFormValue } from "./interfaces_Cont
 import { FormEvent, useState } from "react";
 import s from "./contactForm.module.css"
 import { Button, Callout, Link } from "@radix-ui/themes";
-import { LuCheckCircle2, LuHourglass, LuSend, LuXCircle } from "react-icons/lu";
+import { LuCircleCheck, LuHourglass, LuSend, LuCircleX } from "react-icons/lu";
 
 export default function ContactForm(){
 
@@ -135,7 +135,7 @@ export default function ContactForm(){
       {feedbackVisible ? (
           <Callout.Root color={feedback.color === "red" ? "red" : feedback.color === "green" ? "green" : "blue"} style={{margin: "1rem 0"}}>
             <Callout.Icon>
-            {feedback.color === "red" ? <LuXCircle /> : feedback.color === "green" ? <LuCheckCircle2 /> : <LuHourglass />}
+            {feedback.color === "red" ? <LuCircleX /> : feedback.color === "green" ? <LuCircleCheck /> : <LuHourglass />}
             </Callout.Icon>
           <Callout.Text>
             {feedback.content}

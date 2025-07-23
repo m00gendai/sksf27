@@ -3,7 +3,7 @@ import s from "./Organisation.module.css"
 import TestBild from "../../public/testbild.png"
 import Image from "next/image"
 import { Card, Inset } from '@radix-ui/themes';
-import { LuMail, LuUser2 } from 'react-icons/lu';
+import { LuMail, LuUser } from 'react-icons/lu';
 
 interface Props{
     people: OK[]
@@ -38,7 +38,7 @@ export default function Organisation({people}:Props){
                                             <Image src={person.foto ? `${process.env.NEXT_PUBLIC_STORAGE}${person.foto.path}` : TestBild.src} alt="" fill={true} className={s.imageItem}/>
                                         </div>
                                         <div className={s.info}>
-                                            <p className={s.name}><LuUser2 style={{margin: "0 1rem 0 0"}}/>{person.name}</p>
+                                            <p className={s.name}><LuUser style={{margin: "0 1rem 0 0"}}/>{person.name}</p>
                                             {person.mail ? <p><LuMail style={{margin: "0 1rem 0 0"}}/><a href={`mailto:${person.mail}`}>{person.mail}</a></p> : null}
                                         </div>
                                     </div>
