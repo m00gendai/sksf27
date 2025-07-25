@@ -6,7 +6,7 @@ import { isFeedback, isFocus, isFormValid, isFormValue } from "./interfaces_Cont
 import { FormEvent, useState } from "react";
 import s from "./contactForm.module.css"
 import { Button, Callout, Link } from "@radix-ui/themes";
-import { LuCheckCircle2, LuHourglass, LuSend, LuXCircle } from "react-icons/lu";
+import { IoCheckmarkCircleOutline, IoCloseCircleOutline, IoHourglassOutline, IoPaperPlaneOutline } from "react-icons/io5";
 
 export default function ContactForm(){
 
@@ -130,12 +130,12 @@ export default function ContactForm(){
         setFocus={setFocus}
       />
       <div className={s.buttonContainer}>
-          <Button className={s.button} type="submit" value="Abschicken" size={"3"}><LuSend />Abschicken</Button>
+          <Button className={s.button} type="submit" value="Abschicken" size={"3"}><IoPaperPlaneOutline  />Abschicken</Button>
       </div>
       {feedbackVisible ? (
           <Callout.Root color={feedback.color === "red" ? "red" : feedback.color === "green" ? "green" : "blue"} style={{margin: "1rem 0"}}>
             <Callout.Icon>
-            {feedback.color === "red" ? <LuXCircle /> : feedback.color === "green" ? <LuCheckCircle2 /> : <LuHourglass />}
+            {feedback.color === "red" ? <IoCloseCircleOutline  /> : feedback.color === "green" ? <IoCheckmarkCircleOutline  /> : <IoHourglassOutline  />}
             </Callout.Icon>
           <Callout.Text>
             {feedback.content}
