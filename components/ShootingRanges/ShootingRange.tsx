@@ -12,9 +12,9 @@ import { ImCompass } from "react-icons/im"
 import { getCompassDegrees } from "@/globals/utils"
 import { GiArcheryTarget, GiBullets, GiDirectionSign, GiDirectionSigns, GiMeditation } from "react-icons/gi"
 import * as Collapsible from '@radix-ui/react-collapsible';
-import { LuChevronDown, LuChevronDownCircle, LuChevronUp, LuChevronUpCircle } from "react-icons/lu"
 import { useEffect, useState } from "react"
 import GalleryRange from "../GalleryRange/GalleryRange"
+import { IoChevronDown, IoChevronUp } from "react-icons/io5"
 
 interface Props{
     range: RangeType
@@ -92,7 +92,7 @@ export default function ShootingRange({range}:Props){
                         </Tabs.Content>
                     </Tabs.Root>
                 </Collapsible.Content>
-                <Collapsible.Trigger className={`${s.trigger} boxShadow`}>{isOpen ? <LuChevronUp style={{width: "100%", height: "100%", borderRadius: "100%"}}/> : <LuChevronDown style={{width: "100%", height: "100%", borderRadius: "100%"}}/>}</Collapsible.Trigger>
+                <Collapsible.Trigger className={`${s.trigger} boxShadow`}>{isOpen ? <IoChevronUp style={{width: "100%", height: "100%", borderRadius: "100%"}}/> : <IoChevronDown style={{width: "100%", height: "100%", borderRadius: "100%"}}/>}</Collapsible.Trigger>
             </Collapsible.Root>
             <Tabs.Root defaultValue="data" className="desktop">
                         <Tabs.List>
