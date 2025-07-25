@@ -140,21 +140,3 @@
     cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
 }
-
-.toggleMode{
-    position: relative;
-    height: 100%;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    font-size: 1.5rem;
-    color: white;
-}
-
-.toggleMode:hover{
-    cursor: pointer;
-}

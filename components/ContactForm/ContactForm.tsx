@@ -130,9 +130,7 @@ export default function ContactForm(){
         setFocus={setFocus}
       />
       <div className={s.buttonContainer}>
-
-          <Button className={s.button} type="submit" value="Abschicken" size={"3"}><LuSend />Abschicken</Button>
-
+          <Button type="submit" value="Abschicken" size={"3"}><IoPaperPlaneOutline />Abschicken</Button>
       </div>
       {feedbackVisible ? (
           <Callout.Root color={feedback.color === "red" ? "red" : feedback.color === "green" ? "green" : "blue"} style={{margin: "1rem 0"}}>
