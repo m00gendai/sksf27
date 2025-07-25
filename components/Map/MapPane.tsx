@@ -60,13 +60,14 @@ export default function MapPane({ranges, isMobile}:Props){
                 setCenter(center) 
                 setZoom(zoom) 
               }} 
+
         >
              <ZoomControl />
             {ranges.map((range, index)=>{
                 const coordinates: [number, number] = [parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]
-                return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
+                return <Marker key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
             })}
-            {clicked ? <Marker className={s.marker} width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
+            {clicked ? <Marker width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
             {overlayVisible ? 
             <Overlay anchor={currentMakrer} offset={[0,0]}>
                 <Card className={`${s.overlay} boxShadow`}>

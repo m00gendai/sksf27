@@ -37,7 +37,7 @@
 .containerInput,
 .containerTextarea {
     position: relative;
-    background: transparent;
+    background: white;
     position: relative;
   display: flex;
   justify-content: center;
@@ -81,9 +81,9 @@
   position: absolute;
   top: 1.5rem;
   left: 1rem;
-    color: var(--generalFontColor);
+    color: black;
   transition: 0.5s;
-  background: transparent;
+  background: white;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 0 0 0 0.25rem;
@@ -91,20 +91,20 @@
 
 .containerInput input,
 .containerTextarea textarea {
+  background: transparent;
+  outline: none;
   z-index: 3;
   transition: 0.5s;
   width: 100%;
   font-size: 1rem;
   font-family: 'Arial';
   flex: 1;
-  background: transparent;
+  background: white;
   padding: 2.5rem 1rem 1rem 1rem;
   margin: 0.25rem;
-  color: var(--generalFontColor);
+  color: black;
   height: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--borderColor);
+  border: none;
   outline: none;
   border-radius: 0.75rem;
 }
@@ -123,10 +123,11 @@
 }
 
 .button{
-  background-color: var(--secondaryColor);
+  background: var(--secondaryColor);
   color: white;
-  font-size: 1rem;
+  font-size: 1.25rem;
   padding: 1rem 2rem;
+  font-weight: bolder;
   margin: 1rem 0;
   border: 0;
   outline: 0;

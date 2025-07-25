@@ -5,14 +5,13 @@
 }
 
 .cardTop{
-    background: light-dark(var(--mainColor), var(--titleOnMainColor));
+    background: var(--mainColor);
     padding: 0.5rem;
     position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
-    color: light-dark(var(--titleOnMainColor), var(--mainColor));
 }
 
 .close{
@@ -60,11 +59,4 @@
 .more{
     position: relative;
     width: 100%;
-}
-
-.marker svg g path{
-    stroke: light-dark(white, black);
-}
-.marker svg g circle{
-    fill: light-dark(white, black);
 }
