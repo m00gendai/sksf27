@@ -60,6 +60,8 @@ main{
   align-content: flex-start;
   flex-wrap: wrap;
   background-color: var(--backgroundColor);
+  overflow-x: hidden;
+
 }
 
 section{
