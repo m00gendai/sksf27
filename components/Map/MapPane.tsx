@@ -5,7 +5,7 @@ import { ShootingRange } from "./Interface_Map"
 import { useState } from "react"
 import s from "./MapPane.module.css"
 import IconBar from "../IconBar/IconBar"
-import { LuXCircle } from "react-icons/lu"
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { getCenter} from "geolib"
 import Link from "next/link"
 import { Card, Inset } from "@radix-ui/themes"
@@ -75,7 +75,7 @@ export default function MapPane({ranges, isMobile}:Props){
                 <div className={s.location}><div className={s.name}>{currentRange?.name}</div>
                 <div className={s.place}>{currentRange?.location}</div></div>
                 
-                <div className={s.close} onClick={()=>handleClose()}><LuXCircle style={{width: "100%", height: "100%"}} /></div>
+                <div className={s.close} onClick={()=>handleClose()}><IoCloseCircleOutline style={{width: "100%", height: "100%"}} /></div>
                 </Inset>
                     
                     <div className={s.content}>

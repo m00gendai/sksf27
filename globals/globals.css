@@ -25,6 +25,7 @@ main{
   align-content: flex-start;
   flex-wrap: wrap;
   background-color: #fafafa;
+  overflow-x: hidden;
 }
 
 section{
