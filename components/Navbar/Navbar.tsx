@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTheme } from 'next-themes'
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -9,12 +10,16 @@ import s from "./Navbar.module.css"
 import Medal from "@/public/Logo-SKSF27-klein-strich-negativ.png"
 import { IoCaretDownSharp } from "react-icons/io5"
 import { usePathname, useRouter } from "next/navigation"
+import { RxMoon, RxSun } from "react-icons/rx"
 
 export default function Navbar(){
 
     const [overTrigger, setOverTrigger] = useState<boolean>(false) // checks if cursor is over trigger link
     const [visible, setVisible] = useState<boolean>(false) // checks if submenu is visible
     const [submenu, setSubmenu] = useState<string>("")
+
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme()
 
     const pathname = usePathname()
 
@@ -35,6 +40,18 @@ export default function Navbar(){
             setVisible(false)
         }
     },[overTrigger])
+
+    useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
+  function toggleTheme(){
+    theme === "dark" ? setTheme("light") : setTheme("dark")
+  }
 
 
     return(
@@ -81,6 +98,9 @@ export default function Navbar(){
                         )
                 })}
             </div>
+            <button title="Schaltet Hell-/Dunkelmodus um" className={s.toggleMode} onClick={toggleTheme}>
+                {theme === "light" ? <RxMoon /> : <RxSun />}
+            </button>
         </nav>
     )
 }
