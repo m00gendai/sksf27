@@ -20,7 +20,7 @@ export default function Text({
   setFocus,
 }: textareaProps) {
   return (
-    <div className={`${s.containerTextarea}`}>
+    <div className={`${s.containerTextarea} boxShadow`}>
       <label className={s.labelActive} htmlFor={`${tag}`}>
         {content}
       </label>
