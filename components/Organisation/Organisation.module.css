@@ -12,7 +12,7 @@
 }
 
 .cardTop{
-    background: var(--mainColor);
+    background: light-dark(var(--mainColor), var(--titleOnMainColor));
     padding: 0.5rem;
 }
 
@@ -32,7 +32,7 @@
     font-weight: bolder;
     font-size: 1rem;
     text-align: left;
-    
+    color: light-dark(var(--titleOnMainColor), var(--mainColor));
 }
 
 .content{
@@ -51,6 +51,7 @@
     align-content: flex-start;
     flex-wrap: wrap;
     padding: 0 1rem;
+    color: var(--generalFontColor);
 }
 
 .info p{
