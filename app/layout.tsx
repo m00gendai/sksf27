@@ -4,6 +4,7 @@ import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import "@/globals/globals.css";
 import Navbar_Mobile from "@/components/Navbar/Navbar_Mobile";
+import { ThemeProvider } from "next-themes";
 
 
 import Footer from "@/components/Footer/Footer";
@@ -28,13 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={titillium.className}>
+    <html lang="de" className={titillium.className} suppressHydrationWarning>
       <body>
-        <Theme accentColor="grass">
-        <Navbar />
-        <Navbar_Mobile />
-        {children}
-        </Theme>
+        <ThemeProvider attribute="data-theme">
+          <Theme accentColor="grass">
+          <Navbar />
+          <Navbar_Mobile />
+          {children}
+          </Theme>
+          </ThemeProvider>
         <Footer />
       </body>
     </html>

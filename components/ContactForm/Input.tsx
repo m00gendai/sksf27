@@ -28,7 +28,7 @@ export default function Input({
   setFormValid,
 }: inputProps) {
   return (
-    <div className={`${s.containerInput} boxShadow`}>
+    <div className={`${s.containerInput}`}>
       <label className={s.labelActive} htmlFor={`${tag}`}>
         {content}
       </label>

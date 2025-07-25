@@ -16,6 +16,7 @@
     "he": "^1.2.0",
     "next": "^15.0.2",
     "next-sitemap": "^4.2.3",
+    "next-themes": "^0.4.6",
     "node": "^20.19.4",
     "nodemailer": "^6.9.13",
     "organization-chart-react": "^1.0.1",
