@@ -1,20 +1,26 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTheme } from 'next-themes'
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { navbar } from "./navbarStructure";
 import s from "./Navbar.module.css"
-import Medal from "@/public/Logo-SKSF27-klein-strich-negativ.png"
+import Medal_light from "@/public/Logo-SKSF27-klein-strich-negativ.png"
+import Medal_dark from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
 import { IoCaretDownSharp } from "react-icons/io5"
 import { usePathname, useRouter } from "next/navigation"
+import { RxMoon, RxSun } from "react-icons/rx"
 
 export default function Navbar(){
 
     const [overTrigger, setOverTrigger] = useState<boolean>(false) // checks if cursor is over trigger link
     const [visible, setVisible] = useState<boolean>(false) // checks if submenu is visible
     const [submenu, setSubmenu] = useState<string>("")
+
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme()
 
     const pathname = usePathname()
 
@@ -36,12 +42,24 @@ export default function Navbar(){
         }
     },[overTrigger])
 
+    useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
+  function toggleTheme(){
+    theme === "dark" ? setTheme("light") : setTheme("dark")
+  }
+
 
     return(
         <nav className ={`${s.nav} desktop`}>
             <Link href="/" className={s.logoContainer2}  title={`Link zur Startseite`}>
                <div className={s.logoInner}><Image
-                    src={Medal}
+                    src={theme === "dark" ? Medal_dark : Medal_light}
                     fill={true}
                     alt={"Kranzabzeichen"}
                     style={{objectFit: "contain"}}
@@ -81,6 +99,9 @@ export default function Navbar(){
                         )
                 })}
             </div>
+            <button title="Schaltet Hell-/Dunkelmodus um" className={s.toggleMode} onClick={toggleTheme}>
+                {theme === "light" ? <RxMoon /> : <RxSun />}
+            </button>
         </nav>
     )
 }

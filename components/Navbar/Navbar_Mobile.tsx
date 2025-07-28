@@ -3,17 +3,22 @@
 import Link from "next/link"
 import Image from "next/image"
 import s from "./Navbar_Mobile.module.css"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import { navbar } from "./navbarStructure";
 import Medal from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
 import React from "react"
-import { LuChevronDown, LuChevronUp, LuCornerDownRight, LuMenu, LuX } from "react-icons/lu"
 import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
+import { RxMoon, RxSun } from "react-icons/rx"
+import { IoChevronDown, IoChevronUp, IoClose, IoMenu, IoRemove } from "react-icons/io5"
 
 export default function Navbar_Mobile(){
 
     const [visible, setVisible] = useState<boolean>(false)
     const [submenu, setSubmenu] = useState<string>("")
+
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme()
 
     const pathname = usePathname()
 
@@ -26,6 +31,18 @@ export default function Navbar_Mobile(){
             setVisible(!visible)
         }, 250)
     }
+ useEffect(() => {
+    setMounted(true)
+  }, [])
+      if (!mounted) {
+    return null
+  }
+
+  function toggleTheme(){
+    theme === "dark" ? setTheme("light") : setTheme("dark")
+  }
+
+
     return(
         <nav className ={`${s.nav} mobile`}>
             <Link href="/" className={pathname === "/" ? s.logoContainer : s.logoContainer2}  title={`Link zur Startseite`}>
@@ -40,11 +57,14 @@ export default function Navbar_Mobile(){
             <div className={s.tagline}>
                 <p className={s.taglineText}>{`Schaffhauser Kantonalschützenfest 2027`}</p>
             </div>
+            <button title="Schaltet Hell-/Dunkelmodus um" className={s.toggleMode} onClick={toggleTheme}>
+                {theme === "light" ? <RxMoon /> : <RxSun />}
+            </button>
             <div className={s.menu} onClick={()=>{setVisible(!visible)}} title="Menü">
             {visible ?
-                <div className={s.menuIcon}><LuX /></div>
+                <div className={s.menuIcon}><IoClose /></div>
             :
-            <div className={s.menuIcon}> <LuMenu /></div>
+            <div className={s.menuIcon}> <IoMenu /></div>
             }
             </div>
         {visible ?
@@ -53,11 +73,11 @@ export default function Navbar_Mobile(){
                     return (
                         item.sub ? 
                         <React.Fragment key={`subMain_${index}`}>
-                            <div className={s.link} onClick={(e)=>{handleSubMenuTrigger(e, item.name)}}>{`${item.name}`}{submenu === item.name ? <LuChevronUp style={{margin: "0 0.5rem"}}/> : <LuChevronDown style={{margin: "0 0.5rem"}}/>}</div>
+                            <div className={s.link} onClick={(e)=>{handleSubMenuTrigger(e, item.name)}}>{`${item.name}`}{submenu === item.name ? <IoChevronUp style={{margin: "0 0.5rem"}}/> : <IoChevronDown style={{margin: "0 0.5rem"}}/>}</div>
                             {submenu === item.name ? 
                                 <div className={s.subLinkContainer}>
                                     {item.sub?.map((sub, index)=>{
-                                        return <div key={`sub_${index}`} className={s.sublink}><LuCornerDownRight style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
+                                        return <div key={`sub_${index}`} className={s.sublink}><IoRemove style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
                                     })}
                                 </div>
                             
