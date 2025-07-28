@@ -19,12 +19,12 @@
 }
 
 [data-theme='dark']{
-  --mainColor: #FFD730;
-  --secondaryColor: #228B22;
+  --mainColor: #b29621;
+  --secondaryColor: #176117;
   --backgroundColor: rgba(31, 27, 36, 1);
   --cardBackgroundColor: rgba(0,0,0,0.75);
   --cardFontColor: #222;
-  --cardShadow: 0px 0px 0px 1px #FFD730;
+  --cardShadow: 0px 0px 0px 1px #b29621;
   --iconShadow: 0px 0px 2px 0px white;
   --imageShadow: none;
   --generalFontColor: #fafafa;
@@ -170,4 +170,9 @@ p{
 
 .rt-TabsTriggerInner{
   color: var(--generalFontColor);
+}
+
+.pigeon-zoom-in,
+.pigeon-zoom-out{
+  background: var(--backgroundColor)!important;
 }
