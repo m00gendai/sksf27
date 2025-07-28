@@ -148,11 +148,12 @@ p{
   cursor: pointer;
 }
 
-.radix-themes{
+.radix-themes {
   position: relative;
   width: 100%;
   --default-font-family: var(--font-titillium)!important;
-  color: var(--generalFontColor);
+  --color-text: var(--generalFontColor)!important;
+  --gray-12: var(--generalFontColor)!important;;
 }
 
 .boxShadow{
