@@ -1,6 +1,41 @@
 :root{
   --mainColor: #FFD730;
   --secondaryColor: #228B22;
+  --backgroundColor: rgba(250, 250, 250, 1);
+  --cardBackgroundColor: rgba(250, 250, 250, 0.8);
+  --cardFontColor: #222;
+  --cardShadow: 0px 2px 5px -2px black;
+  --iconShadow: 0px 0px 2px 0px black;
+  --imageShadow: 0px 2px 5px -2px black;
+  --generalFontColor: #222;
+  --h1color: #000;
+  --h2color: #000;
+  --h3color: #000;
+  --inputLabelFontColor: #000;
+  --inputTextColor: #000;
+  --borderColor: grey;
+  --titleOnMainColor: #000;
+  --iconFilter: none;
+}
+
+[data-theme='dark']{
+  --mainColor: #FFD730;
+  --secondaryColor: #228B22;
+  --backgroundColor: rgba(31, 27, 36, 1);
+  --cardBackgroundColor: rgba(0,0,0,0.75);
+  --cardFontColor: #222;
+  --cardShadow: 0px 0px 0px 1px #FFD730;
+  --iconShadow: 0px 0px 2px 0px white;
+  --imageShadow: none;
+  --generalFontColor: #fafafa;
+  --h1color: #fafafa;
+  --h2color: #fafafa;
+  --h3color: #fafafa;
+  --inputLabelFontColor: #fafafa;
+  --inputTextColor: #fafafa;
+  --borderColor: #fafafa;
+  --titleOnMainColor: #000;
+  --iconFilter: invert();
 }
 
 body{
@@ -24,7 +59,7 @@ main{
   align-items: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
-  background-color: #fafafa;
+  background-color: var(--backgroundColor);
   overflow-x: hidden;
 }
 
@@ -117,12 +152,22 @@ p{
   position: relative;
   width: 100%;
   --default-font-family: var(--font-titillium)!important;
+  color: var(--generalFontColor);
 }
 
 .boxShadow{
-  box-shadow: 0px 2px 5px -2px black;
+  box-shadow: var(--cardShadow);
+}
+
+.imageShadow{
+  box-shadow: var(--imageShadow);
 }
 
 .rt-CardInner{
   overflow: visible!important;
+  background: var(--cardBackgroundColor);
+}
+
+.rt-TabsTriggerInner{
+  color: var(--generalFontColor);
 }
