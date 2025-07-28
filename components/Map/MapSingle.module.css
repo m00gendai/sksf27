@@ -11,7 +11,7 @@
     width: 2.5rem;
     aspect-ratio: 1/1;
     border-radius: 100%;
-    background: white;
+    background: var(--backgroundColor);
     box-shadow: 0px 0px 5px 0px black;
     z-index: 900;
     display: flex;
@@ -27,4 +27,11 @@
 
 .mapsLink:hover{
     cursor: pointer;
+}
+
+.marker svg g path{
+    stroke: light-dark(white, black);
+}
+.marker svg g circle{
+    fill: light-dark(white, black);
 }
