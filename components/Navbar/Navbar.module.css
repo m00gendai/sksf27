@@ -51,7 +51,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: white;
+    color: light-dark(white, black);
 }
 
 .container{
@@ -117,7 +117,7 @@
 
 .link{
     margin: 0 1vw;
-    color: white;
+    color: light-dark(white, black);
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -125,7 +125,7 @@
 }
 
 .sublink {
-    color: white;
+    color: light-dark(white, black);
     width: 100%;
     border-bottom: 1px solid green;
     padding: 1rem 2rem;
@@ -139,4 +139,22 @@
 .sublink:hover{
     cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
+}
+
+.toggleMode{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 1.5rem;
+    color: light-dark(white, black);
+}
+
+.toggleMode:hover{
+    cursor: pointer;
 }

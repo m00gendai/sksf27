@@ -34,7 +34,7 @@
 }
 
 .item:hover{
-    background: yellow;
+    background: light-dark(yellow, #FFD730);
 }
 
 .icon{
