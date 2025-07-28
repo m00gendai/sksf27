@@ -60,14 +60,13 @@ export default function MapPane({ranges, isMobile}:Props){
                 setCenter(center) 
                 setZoom(zoom) 
               }} 
-
         >
              <ZoomControl />
             {ranges.map((range, index)=>{
                 const coordinates: [number, number] = [parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]
-                return <Marker key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
+                return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
             })}
-            {clicked ? <Marker width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
+            {clicked ? <Marker className={s.marker} width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
             {overlayVisible ? 
             <Overlay anchor={currentMakrer} offset={[0,0]}>
                 <Card className={`${s.overlay} boxShadow`}>
@@ -75,7 +74,7 @@ export default function MapPane({ranges, isMobile}:Props){
                 <div className={s.location}><div className={s.name}>{currentRange?.name}</div>
                 <div className={s.place}>{currentRange?.location}</div></div>
                 
-                <div className={s.close} onClick={()=>handleClose()}><IoCloseCircleOutline  style={{width: "100%", height: "100%"}} /></div>
+                <div className={s.close} onClick={()=>handleClose()}><IoCloseCircleOutline style={{width: "100%", height: "100%"}} /></div>
                 </Inset>
                     
                     <div className={s.content}>
