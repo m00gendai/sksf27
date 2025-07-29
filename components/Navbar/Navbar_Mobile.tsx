@@ -5,7 +5,7 @@ import Image from "next/image"
 import s from "./Navbar_Mobile.module.css"
 import {useEffect, useState} from "react"
 import { navbar } from "./navbarStructure";
-import Medal from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
+import Medal from "@/public/Logo-SKSF27-klein-strich-negativ.png"
 import React from "react"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
