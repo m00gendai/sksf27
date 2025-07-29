@@ -59,7 +59,7 @@ export default function Navbar(){
         <nav className ={`${s.nav} desktop`}>
             <Link href="/" className={s.logoContainer2}  title={`Link zur Startseite`}>
                <div className={s.logoInner}><Image
-                    src={theme === "dark" ? Medal_dark : Medal_light}
+                    src={theme === "dark" ? Medal_light : Medal_light}
                     fill={true}
                     alt={"Kranzabzeichen"}
                     style={{objectFit: "contain"}}

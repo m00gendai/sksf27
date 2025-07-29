@@ -15,16 +15,18 @@
 }
 
 .item{
+    box-sizing: border-box;
     position: relative;
     width: 100%;
     aspect-ratio: 21/9;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--mainColor);
+    background-color: light-dark(var(--mainColor), black);
     flex-wrap: wrap;
     text-decoration: none;
     transition: 0.1s;
+    border: 2px solid #FFD730;
 }
 
 @media screen and (max-aspect-ratio: 13/9){
@@ -34,7 +36,8 @@
 }
 
 .item:hover{
-    background: light-dark(yellow, #FFD730);
+    background: light-dark(yellow, transparent);
+    filter:brightness(150%);
 }
 
 .icon{
@@ -44,7 +47,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: light-dark(black, var(--mainColor));
 }
 
 .icon svg{
@@ -63,7 +66,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    color: black;
+    color: light-dark(black, #FFD730);
     hyphens: auto;
 }
 

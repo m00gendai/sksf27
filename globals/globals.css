@@ -16,15 +16,17 @@
   --borderColor: grey;
   --titleOnMainColor: #000;
   --iconFilter: none;
+  --mapFilter: none;
+  --navFilter: none;
 }
 
 [data-theme='dark']{
-  --mainColor: #b29621;
-  --secondaryColor: #176117;
+  --mainColor: #FFD730;
+  --secondaryColor: #228B22;
   --backgroundColor: rgba(31, 27, 36, 1);
   --cardBackgroundColor: rgba(0,0,0,0.75);
   --cardFontColor: #222;
-  --cardShadow: 0px 0px 0px 1px #b29621;
+  --cardShadow: 0px 0px 0px 1px var(--mainColor);
   --iconShadow: 0px 0px 2px 0px white;
   --imageShadow: none;
   --generalFontColor: #fafafa;
@@ -36,6 +38,8 @@
   --borderColor: #fafafa;
   --titleOnMainColor: #000;
   --iconFilter: invert();
+  --mapFilter: grayscale() brightness(50%);
+  --navFilter: brightness(75%);
 }
 
 body{

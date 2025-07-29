@@ -25,7 +25,10 @@ export default function MapSingle({range}:Props){
                     />
                 </div>
             </Link>
-        <Map defaultCenter={[parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]} defaultZoom={13}>
+        <Map 
+            defaultCenter={[parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]} defaultZoom={13}
+            boxClassname={s.mapLayer}
+        >
             <Marker className={s.marker} width={50} anchor={[parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]}/>
         </Map>
         </div>

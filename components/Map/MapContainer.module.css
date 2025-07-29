@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 @media screen and (max-aspect-ratio: 13/9){

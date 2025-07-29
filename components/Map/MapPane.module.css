@@ -63,8 +63,14 @@
 }
 
 .marker svg g path{
-    stroke: light-dark(white, black);
+    fill: light-dark(var(--secondaryColor), black);
+    stroke: light-dark(black, var(--secondaryColor));
 }
 .marker svg g circle{
-    fill: light-dark(white, black);
+    fill: light-dark(white, var(--secondaryColor));
+}
+
+.mapLayer{
+    background: black;
+    filter: var(--mapFilter);
 }
