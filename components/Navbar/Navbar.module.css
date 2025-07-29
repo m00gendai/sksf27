@@ -3,11 +3,12 @@
     top: 0;
     width: 100%;
     height: 3rem;
-    background: var(--secondaryColor);
+    background: light-dark(var(--secondaryColor), var(--backgroundColor));
     display: flex;
     justify-content: center;
     align-items: flex-start;
     z-index: 100;
+    filter: var(--navFilter);
 }
 
 .logoContainer{
@@ -29,7 +30,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondaryColor);
+    background-color: light-dark(var(--secondaryColor), var(--backgroundColor));
     border-bottom-right-radius: 25%;
 }
 
@@ -51,7 +52,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: light-dark(white, black);
+    color: light-dark(white, var(--generalFontColor));
 }
 
 .container{
@@ -88,7 +89,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
-    background: var(--secondaryColor);
+    background: light-dark(var(--secondaryColor), var(--backgroundColor));
     background-attachment: fixed;
     z-index: -1;
     
@@ -117,7 +118,7 @@
 
 .link{
     margin: 0 1vw;
-    color: light-dark(white, black);
+    color: light-dark(white, var(--generalFontColor));
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -125,9 +126,11 @@
 }
 
 .sublink {
-    color: light-dark(white, black);
+    color: light-dark(white, var(--generalFontColor));
     width: 100%;
-    border-bottom: 1px solid green;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: light-dark(green, black);
     padding: 1rem 2rem;
     text-decoration: none;
 }
@@ -152,7 +155,7 @@
     border: 0;
     outline: 0;
     font-size: 1.5rem;
-    color: light-dark(white, black);
+    color: light-dark(white, var(--generalFontColor));
 }
 
 .toggleMode:hover{

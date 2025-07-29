@@ -17,7 +17,6 @@ interface Props{
 
 export default function MapPane({ranges, isMobile}:Props){  
 
-
     const rangeCoordinates:{latitude: string, longitude: string}[] = ranges.map(range=>{
         return(
             {
@@ -35,6 +34,7 @@ export default function MapPane({ranges, isMobile}:Props){
     const [center, setCenter] = useState<[number, number]>([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
     const [zoom, setZoom] = useState(11)
     const [clicked, setClicked] = useState<boolean>(false)
+    
 
     function handleMarkerClick(coordinates:[number, number], range:ShootingRange){
         setCenter(coordinates)
@@ -60,6 +60,7 @@ export default function MapPane({ranges, isMobile}:Props){
                 setCenter(center) 
                 setZoom(zoom) 
               }} 
+            boxClassname={s.mapLayer}
         >
              <ZoomControl />
             {ranges.map((range, index)=>{
