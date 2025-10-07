@@ -11,14 +11,13 @@ import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { RxMoon, RxSun } from "react-icons/rx"
 import { IoChevronDown, IoChevronUp, IoClose, IoMenu, IoRemove } from "react-icons/io5"
+import ThemeToggler from "../ThemeToggler/ThemeToggler"
 
 export default function Navbar_Mobile(){
 
     const [visible, setVisible] = useState<boolean>(false)
     const [submenu, setSubmenu] = useState<string>("")
-
-    const [mounted, setMounted] = useState(false)
-    const { theme, setTheme } = useTheme()
+    const { theme, setTheme, resolvedTheme } = useTheme()
 
     const pathname = usePathname()
 
@@ -31,17 +30,6 @@ export default function Navbar_Mobile(){
             setVisible(!visible)
         }, 250)
     }
- useEffect(() => {
-    setMounted(true)
-  }, [])
-      if (!mounted) {
-    return null
-  }
-
-  function toggleTheme(){
-    theme === "dark" ? setTheme("light") : setTheme("dark")
-  }
-
 
     return(
         <nav className ={`${s.nav} mobile`}>
@@ -57,9 +45,7 @@ export default function Navbar_Mobile(){
             <div className={s.tagline}>
                 <p className={s.taglineText}>{`Schaffhauser Kantonalschützenfest 2027`}</p>
             </div>
-            <button title="Schaltet Hell-/Dunkelmodus um" className={s.toggleMode} onClick={toggleTheme}>
-                {theme === "light" ? <RxMoon /> : <RxSun />}
-            </button>
+            <ThemeToggler />
             <div className={s.menu} onClick={()=>{setVisible(!visible)}} title="Menü">
             {visible ?
                 <div className={s.menuIcon}><IoClose /></div>
