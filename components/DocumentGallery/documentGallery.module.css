@@ -1,0 +1,23 @@
+.container{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.document{
+    width: 100%;
+    aspect-ratio:1/1.414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: var(--cardBackgroundColor);
+}
+
+.documentTitle{
+    color: var(--generalFontColor);
+    font-size: 1.5rem;
+    text-align: center;
+}
