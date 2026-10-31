@@ -3,6 +3,7 @@ import PageHeading from "@/components/PageHeading/PageHeading";
 import { SiteContent } from "@/globals/globals_interface";
 import { siteMetaData } from "@/globals/utils";
 
+// Der bestehende Cockpit-Eintrag bleibt unverändert.
 const siteName = "Terminplan"
 
 async function getSiteContent(siteName:string){

@@ -1,9 +1,10 @@
+import ContactForm from "@/components/ContactForm/ContactForm";
 import PageContent from "@/components/PageContent/PageContent";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import { SiteContent } from "@/globals/globals_interface";
 import { siteMetaData } from "@/globals/utils";
 
-const siteName = "Festzentrum"
+const siteName = "Kontakt"
 
 async function getSiteContent(siteName:string){
     const getSiteContent:Response = await fetch(
@@ -36,6 +37,7 @@ export default async function Page(){
             <section>
                 <PageHeading image={siteContent[0].pageHeader.path} />
                 <PageContent siteContent={siteContent} />
+                <ContactForm />
             </section>
         </main>
     )
