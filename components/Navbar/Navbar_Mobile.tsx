@@ -63,7 +63,7 @@ export default function Navbar_Mobile(){
                             {submenu === item.name ? 
                                 <div className={s.subLinkContainer}>
                                     {item.sub?.map((sub, index)=>{
-                                        return <div key={`sub_${index}`} className={s.sublink}><IoRemove style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
+                                        return <div key={`sub_${index}`} className={s.sublink}><IoRemove style={{fontWeight: "bolder", margin: "0 0 0 1rem"}}/><Link className={s.sublinkItem} href={sub.url} target={sub.openInNewTab ? "_blank" : undefined} rel={sub.openInNewTab ? "noopener noreferrer" : undefined} onClick={()=>handleLinkClick()}>{`${sub.name}`}</Link></div>
                                     })}
                                 </div>
                             
@@ -72,7 +72,7 @@ export default function Navbar_Mobile(){
                             }
                         </React.Fragment>
                         :
-                        < Link className={s.link} href={item.url} key={`main_${index}`} onClick={()=>handleLinkClick()}>{`${item.name}`}</Link>
+                        < Link className={s.link} href={item.url} target={item.openInNewTab ? "_blank" : undefined} rel={item.openInNewTab ? "noopener noreferrer" : undefined} key={`main_${index}`} onClick={()=>handleLinkClick()}>{`${item.name}`}</Link>
                     )
                 })}
             </div>
