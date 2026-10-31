@@ -22,7 +22,6 @@ export default function Organisation({people}:Props){
 
     return(
         <>
-        <h2>Personen im Detail</h2>
         {categories.map(category =>{
             return(
                 <div className={s.container} key={`cat_${category}`}>
