@@ -21,3 +21,13 @@
     font-size: 1.5rem;
     text-align: center;
 }
+
+.cover{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1.414;
+}
+
+.coverImage{
+    object-fit: contain;
+}
