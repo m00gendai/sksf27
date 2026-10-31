@@ -4,8 +4,8 @@ const nextConfig = {
         return [
             { source: '/informationen/festzentrum', destination: '/schiessen/festzentrum', permanent: true },
             { source: '/informationen/termine', destination: '/schiessen/programm', permanent: true },
-            { source: '/informationen/organisation', destination: '/über-uns/organisation', permanent: true },
-            { source: '/kontakt', destination: '/über-uns/kontakt', permanent: true },
+            { source: '/informationen/organisation', destination: '/ueber-uns/organisation', permanent: true },
+            { source: '/kontakt', destination: '/ueber-uns/kontakt', permanent: true },
         ];
     },
     images: {

@@ -79,11 +79,11 @@ export const navbar:NavbarItem[] = [
         sub: [
             { 
                 name: "Organisation", 
-                url: "/über-uns/organisation" 
+                url: "/ueber-uns/organisation"
             },
             { 
                 name: "Kontakt", 
-                url: "/über-uns/kontakt" 
+                url: "/ueber-uns/kontakt"
             },
         ]
     },
