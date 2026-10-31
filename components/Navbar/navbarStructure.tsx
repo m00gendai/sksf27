@@ -1,4 +1,4 @@
-import { GiCalendar, GiLaurelCrown, GiSpellBook, GiTargetPoster } from "react-icons/gi";
+import { GiCalendar, GiLaurelCrown, GiSpellBook, GiTargetPoster, GiArchiveRegister } from "react-icons/gi";
 import { NavbarItem } from "./Interface_Navbar";
 import { LuTarget } from "react-icons/lu";
 
@@ -13,7 +13,9 @@ export const navbar:NavbarItem[] = [
         sub: [
             { 
                 name: "Anmeldung",
-                url: "/schiessen/anmeldung"
+                url: "/schiessen/anmeldung",
+                isQuickLink: true,
+                icon: <GiArchiveRegister style={{fontSize: "10rem"}}/>
             },
             {
                 name: "Schiessanlagen",
@@ -28,8 +30,6 @@ export const navbar:NavbarItem[] = [
             {
                 name: "Programm",
                 url: "/schiessen/programm",
-                isQuickLink: true,
-                icon: <GiCalendar style={{fontSize: "10rem"}}/>
             },
             {
                 name: "Schiessplan",
