@@ -3,27 +3,17 @@ import { NavbarItem } from "./Interface_Navbar";
 import { LuTarget } from "react-icons/lu";
 
 export const navbar:NavbarItem[] = [
-    {
+    { 
         name: "Home",
-        url: "/",
+        url: "/", 
     },
     {
         name: "Schiessen",
         url: "",
         sub: [
-            {
-                name: "Schiessplan",
-                url: "/schiessen/schiessplan",
-                isQuickLink: true,
-                icon: <GiSpellBook style={{fontSize: "10rem"}}/>
-            },
-            {
+            { 
                 name: "Anmeldung",
                 url: "/schiessen/anmeldung"
-            },
-            {
-                name: "Rangeurübersicht",
-                url: "/schiessen/rangeure"
             },
             {
                 name: "Schiessanlagen",
@@ -31,54 +21,84 @@ export const navbar:NavbarItem[] = [
                 isQuickLink: true,
                 icon: <GiTargetPoster style={{fontSize: "10rem"}}/>
             },
+            { 
+                name: "Festzentrum",
+                url: "/schiessen/festzentrum"
+            },
+            {
+                name: "Programm",
+                url: "/schiessen/programm",
+                isQuickLink: true,
+                icon: <GiCalendar style={{fontSize: "10rem"}}/>
+            },
+            {
+                name: "Schiessplan",
+                url: "/schiessen/schiessplan",
+                isQuickLink: true,
+                icon: <GiSpellBook style={{fontSize: "10rem"}}/>
+            },
+            { 
+                name: "Rangeurübersicht",
+                url: "/schiessen/rangeure"
+            },
             {
                 name: "Resultate",
                 url: "/schiessen/resultate",
                 isQuickLink: true,
                 icon: <GiLaurelCrown style={{fontSize: "10rem"}}/>
             },
-            {
+            { 
                 name: "Auszeichnungen & Gaben",
                 url: "/schiessen/auszeichnungen"
             },
         ]
     },
     {
-        name: "Informationen",
+        name: "Sponsoren",
+        url: "/sponsoren"
+    },
+    {
+        name: "Aufenthalt",
         url: "",
         sub: [
             {
-                name: "Festzentrum",
-                url: "/informationen/festzentrum"
+                name: "Übernachten",
+                url: "https://schaffhauserland.ch/erleben/uebernachten/hotels.html",
+                openInNewTab: true
             },
             {
-                name: "Terminplan",
-                url: "/informationen/termine",
-                isQuickLink: true,
-                icon: <GiCalendar style={{fontSize: "10rem"}}/>
-            },
-            {
-                name: "Organisation",
-                url: "/informationen/organisation"
+                name: "Erleben",
+                url: "https://www.natourpark.ch/",
+                openInNewTab: true
             },
         ]
     },
     {
-        name: "Medien",
+        name: "Über uns",
         url: "",
         sub: [
-            {
-                name: "Presse",
-                url: "/medien/presse"
+            { 
+                name: "Organisation", 
+                url: "/über-uns/organisation" 
             },
-            {
-                name: "Bilder",
-                url: "/medien/bilder"
+            { 
+                name: "Kontakt", 
+                url: "/über-uns/kontakt" 
             },
         ]
     },
     {
-        name: "Kontakt",
-        url: "/kontakt"
+        name: "Medien", 
+        url: "",
+        sub: [
+            { 
+                name: "Presse", 
+                url: "/medien/presse" 
+            },
+            { 
+                name: "Bilder", 
+                url: "/medien/bilder" 
+            },
+        ]
     },
 ]
