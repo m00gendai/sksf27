@@ -7,12 +7,22 @@ import s from "./MapPane.module.css"
 import IconBar from "../IconBar/IconBar"
 import { getCenter} from "geolib"
 import Link from "next/link"
+import Image from "next/image"
 import { Card, Inset } from "@radix-ui/themes"
 import { IoCloseCircleOutline } from "react-icons/io5"
 
 interface Props{
     ranges: ShootingRange[]
     isMobile: boolean
+}
+
+const festivalCentre = {
+    coordinates: [47.7177, 8.6603] as [number, number],
+    name: "Festzentrum",
+    location: "Schaffhausen (Herblingen)",
+    description: "Hier trifft sich die Schützenfamilie – zum Verweilen, Geniessen und Feiern.",
+    href: "/schiessen/festzentrum",
+    color: "#D32F2F",
 }
 
 export default function MapPane({ranges, isMobile}:Props){  
@@ -36,7 +46,7 @@ export default function MapPane({ranges, isMobile}:Props){
     const [clicked, setClicked] = useState<boolean>(false)
     
 
-    function handleMarkerClick(coordinates:[number, number], range:ShootingRange){
+    function handleMarkerClick(coordinates:[number, number], range:ShootingRange | null){
         setCenter(coordinates)
         setCurrentMarker(coordinates)
         setCurrentRange(range)
@@ -67,20 +77,24 @@ export default function MapPane({ranges, isMobile}:Props){
                 const coordinates: [number, number] = [parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]
                 return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
             })}
-            {clicked ? <Marker className={s.marker} width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
+            <Marker width={50} anchor={festivalCentre.coordinates} color={festivalCentre.color} onClick={()=>handleMarkerClick(festivalCentre.coordinates, null)}/>
+            {clicked && currentRange ? <Marker className={s.marker} width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
             {overlayVisible ? 
             <Overlay anchor={currentMakrer} offset={[0,0]}>
                 <Card className={`${s.overlay} boxShadow`}>
                 <Inset side="top" clip="padding-box" className={s.cardTop}>
-                <div className={s.location}><div className={s.name}>{currentRange?.name}</div>
-                <div className={s.place}>{currentRange?.location}</div></div>
+                <div className={s.location}><div className={s.name}>{currentRange ? currentRange.name : festivalCentre.name}</div>
+                <div className={s.place}>{currentRange ? currentRange.location : festivalCentre.location}</div></div>
                 
                 <div className={s.close} onClick={()=>handleClose()}><IoCloseCircleOutline style={{width: "100%", height: "100%"}} /></div>
                 </Inset>
                     
                     <div className={s.content}>
-                        <IconBar degrees={currentRange!.direction} category={currentRange!.category} positions={currentRange!.positions}/>
-                        <Link className={s.more} href={`/schiessen/schiessanlagen#${currentRange?.name}`}>mehr...</Link>
+                        {currentRange ? <IconBar degrees={currentRange.direction} category={currentRange.category} positions={currentRange.positions}/> : <p className={s.festivalDescription}>{festivalCentre.description}</p>}
+                        {!currentRange ? <div className={s.festivalLogo}>
+                            <Image src="/Logo_GVS_freigestellt_512x238.png" alt="Logo GVS" width={512} height={238} sizes="192px" className={s.festivalLogoImage}/>
+                        </div> : null}
+                        <Link className={s.more} href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}>mehr...</Link>
                     </div>
                 </Card>
             </Overlay> 

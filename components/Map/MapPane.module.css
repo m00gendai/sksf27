@@ -62,6 +62,24 @@
     width: 100%;
 }
 
+.festivalDescription{
+    width: min(18rem, 60vw);
+    margin: 0.5rem 0;
+}
+
+.festivalLogo{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.festivalLogoImage{
+    width: 100%;
+    max-width: 12rem;
+    height: auto;
+}
+
 .marker svg g path{
     fill: light-dark(var(--secondaryColor), black);
     stroke: light-dark(black, var(--secondaryColor));
