@@ -1,7 +1,7 @@
 "use client"
 
 import { Map, Marker, Overlay, ZoomControl } from "pigeon-maps"
-import { ShootingRange } from "./Interface_Map"
+import { FestivalCentre, ShootingRange } from "./Interface_Map"
 import { useState } from "react"
 import s from "./MapPane.module.css"
 import IconBar from "../IconBar/IconBar"
@@ -13,19 +13,11 @@ import { IoCloseCircleOutline } from "react-icons/io5"
 
 interface Props{
     ranges: ShootingRange[]
+    festivalCentre: FestivalCentre
     isMobile: boolean
 }
 
-const festivalCentre = {
-    coordinates: [47.7177, 8.6603] as [number, number],
-    name: "Festzentrum",
-    location: "Schaffhausen (Herblingen)",
-    description: "Hier trifft sich die Schützenfamilie – zum Verweilen, Geniessen und Feiern.",
-    href: "/schiessen/festzentrum",
-    color: "#D32F2F",
-}
-
-export default function MapPane({ranges, isMobile}:Props){  
+export default function MapPane({ranges, festivalCentre, isMobile}:Props){
 
     const rangeCoordinates:{latitude: string, longitude: string}[] = ranges.map(range=>{
         return(
@@ -92,7 +84,7 @@ export default function MapPane({ranges, isMobile}:Props){
                     <div className={s.content}>
                         {currentRange ? <IconBar degrees={currentRange.direction} category={currentRange.category} positions={currentRange.positions}/> : <p className={s.festivalDescription}>{festivalCentre.description}</p>}
                         {!currentRange ? <div className={s.festivalLogo}>
-                            <Image src="/Logo_GVS_freigestellt_512x238.png" alt="Logo GVS" width={512} height={238} sizes="192px" className={s.festivalLogoImage}/>
+                            <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="192px" className={s.festivalLogoImage}/>
                         </div> : null}
                         <Link className={s.more} href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}>mehr...</Link>
                     </div>
