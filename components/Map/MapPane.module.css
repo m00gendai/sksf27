@@ -1,9 +1,12 @@
 .overlay{
     box-sizing: border-box;
-    width: min(18rem, calc(100vw - 2rem));
     z-index: 100;
     transform: translateX(-50%);
     background: white;
+}
+
+.festivalOverlay{
+    width: min(18rem, calc(100vw - 2rem));
 }
 
 .cardTop{

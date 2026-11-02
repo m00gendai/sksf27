@@ -30,7 +30,7 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
 
     const initCenter: false | {latitude: number, longitude: number} = getCenter(rangeCoordinates);
     
-    const [currentMakrer, setCurrentMarker] = useState<[number, number]>([0,0])
+    const [currentMarker, setCurrentMarker] = useState<[number, number]>([0,0])
     const [overlayVisible, setOverlayVisible] = useState<boolean>(false)
     const [currentRange, setCurrentRange] = useState<ShootingRange | null>(null)
     const [center, setCenter] = useState<[number, number]>([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
@@ -70,10 +70,10 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
                 return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
             })}
             <Marker width={50} anchor={festivalCentre.coordinates} color={festivalCentre.color} onClick={()=>handleMarkerClick(festivalCentre.coordinates, null)}/>
-            {clicked && currentRange ? <Marker className={s.marker} width={50} anchor={currentMakrer} color={"#FFD730"} /> : null}
+            {clicked && currentRange ? <Marker className={s.marker} width={50} anchor={currentMarker} color={"#FFD730"} /> : null}
             {overlayVisible ? 
-            <Overlay anchor={currentMakrer} offset={[0,0]}>
-                <Card className={`${s.overlay} boxShadow`}>
+            <Overlay anchor={currentMarker} offset={[0,0]}>
+                <Card className={`${s.overlay} ${!currentRange ? s.festivalOverlay : ""} boxShadow`}>
                 <Inset side="top" clip="padding-box" className={s.cardTop}>
                 <div className={s.location}><div className={s.name}>{currentRange ? currentRange.name : festivalCentre.name}</div>
                 <div className={s.place}>{currentRange ? currentRange.location : festivalCentre.location}</div></div>
