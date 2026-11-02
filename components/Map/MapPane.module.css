@@ -1,4 +1,6 @@
 .overlay{
+    box-sizing: border-box;
+    width: min(18rem, calc(100vw - 2rem));
     z-index: 100;
     transform: translateX(-50%);
     background: white;
@@ -30,8 +32,9 @@
 
 .content{
     position: relative;
-    width: calc(100% - 1rem);
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -63,12 +66,12 @@
 }
 
 .festivalDescription{
-    width: min(18rem, 60vw);
+    width: 100%;
     margin: 0.5rem 0;
 }
 
 .festivalLogo{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
     margin: 0.5rem 0;
@@ -76,7 +79,7 @@
 
 .festivalLogoImage{
     width: 100%;
-    max-width: 12rem;
+    max-width: 10rem;
     height: auto;
 }
 
