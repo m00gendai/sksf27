@@ -33,10 +33,16 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
         )
     })
 
-    const initCenter: false | {latitude: number, longitude: number} = getCenter(rangeCoordinates);
-    
+    const initCenter = getCenter([
+        ...rangeCoordinates,
+        {latitude: festivalCentre.coordinates[0], longitude: festivalCentre.coordinates[1]},
+    ])
+    const initialCoordinates: [number, number] = initCenter
+        ? [initCenter.latitude, initCenter.longitude]
+        : festivalCentre.coordinates
+
     const [selectedLocation, setSelectedLocation] = useState<SelectedLocation>(null)
-    const [center, setCenter] = useState<[number, number]>([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
+    const [center, setCenter] = useState<[number, number]>(initialCoordinates)
     const [zoom, setZoom] = useState(11)
 
     const currentRange = selectedLocation?.kind === "shootingRange" ? selectedLocation.range : null
@@ -59,7 +65,7 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
 
     return(
         <Map 
-            defaultCenter={initCenter ? [initCenter.latitude, initCenter.longitude] : [0,0]} 
+            defaultCenter={initialCoordinates}
             center={center}
             defaultZoom={12}
             zoom={zoom}
