@@ -17,6 +17,11 @@ interface Props{
     isMobile: boolean
 }
 
+type SelectedLocation =
+    | { kind: "shootingRange"; range: ShootingRange }
+    | { kind: "festivalCentre" }
+    | null
+
 export default function MapPane({ranges, festivalCentre, isMobile}:Props){
 
     const rangeCoordinates:{latitude: string, longitude: string}[] = ranges.map(range=>{
@@ -30,25 +35,26 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
 
     const initCenter: false | {latitude: number, longitude: number} = getCenter(rangeCoordinates);
     
-    const [currentMarker, setCurrentMarker] = useState<[number, number]>([0,0])
-    const [overlayVisible, setOverlayVisible] = useState<boolean>(false)
-    const [currentRange, setCurrentRange] = useState<ShootingRange | null>(null)
+    const [selectedLocation, setSelectedLocation] = useState<SelectedLocation>(null)
     const [center, setCenter] = useState<[number, number]>([initCenter ? initCenter.latitude : 0, initCenter ? initCenter.longitude : 0])
     const [zoom, setZoom] = useState(11)
-    const [clicked, setClicked] = useState<boolean>(false)
-    
 
-    function handleMarkerClick(coordinates:[number, number], range:ShootingRange | null){
-        setCenter(coordinates)
-        setCurrentMarker(coordinates)
-        setCurrentRange(range)
-        setOverlayVisible(true)
-        setClicked(true)
+    const currentRange = selectedLocation?.kind === "shootingRange" ? selectedLocation.range : null
+    const currentMarker = selectedLocation ? getMarkerCoordinates(selectedLocation) : null
+
+    function getMarkerCoordinates(location: NonNullable<SelectedLocation>): [number, number]{
+        return location.kind === "shootingRange"
+            ? [parseFloat(location.range.coordinates.lat), parseFloat(location.range.coordinates.lon)]
+            : festivalCentre.coordinates
+    }
+
+    function handleMarkerClick(location: NonNullable<SelectedLocation>){
+        setSelectedLocation(location)
+        setCenter(getMarkerCoordinates(location))
     }
 
     function handleClose(){
-        setOverlayVisible(false)
-        setClicked(false)
+        setSelectedLocation(null)
     }
 
     return(
@@ -67,13 +73,13 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
              <ZoomControl />
             {ranges.map((range, index)=>{
                 const coordinates: [number, number] = [parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]
-                return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick(coordinates, range)}/>
+                return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick({kind: "shootingRange", range})}/>
             })}
-            <Marker width={50} anchor={festivalCentre.coordinates} color={festivalCentre.color} onClick={()=>handleMarkerClick(festivalCentre.coordinates, null)}/>
-            {clicked && currentRange ? <Marker className={s.marker} width={50} anchor={currentMarker} color={"#FFD730"} /> : null}
-            {overlayVisible ? 
+            <Marker width={50} anchor={festivalCentre.coordinates} color={festivalCentre.color} onClick={()=>handleMarkerClick({kind: "festivalCentre"})}/>
+            {currentRange && currentMarker ? <Marker className={s.marker} width={50} anchor={currentMarker} color={"#FFD730"} /> : null}
+            {currentMarker ?
             <Overlay anchor={currentMarker} offset={[0,0]}>
-                <Card className={`${s.overlay} ${!currentRange ? s.festivalOverlay : ""} boxShadow`}>
+                <Card className={`${s.overlay} ${selectedLocation?.kind === "festivalCentre" ? s.festivalOverlay : ""} boxShadow`}>
                 <Inset side="top" clip="padding-box" className={s.cardTop}>
                 <div className={s.location}><div className={s.name}>{currentRange ? currentRange.name : festivalCentre.name}</div>
                 <div className={s.place}>{currentRange ? currentRange.location : festivalCentre.location}</div></div>
@@ -83,7 +89,7 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
                     
                     <div className={s.content}>
                         {currentRange ? <IconBar degrees={currentRange.direction} category={currentRange.category} positions={currentRange.positions}/> : <p className={s.festivalDescription}>{festivalCentre.description}</p>}
-                        {!currentRange ? <div className={s.festivalLogo}>
+                        {selectedLocation?.kind === "festivalCentre" ? <div className={s.festivalLogo}>
                             <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="192px" className={s.festivalLogoImage}/>
                         </div> : null}
                         <Link className={s.more} href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}>mehr...</Link>
