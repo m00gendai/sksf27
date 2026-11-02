@@ -69,7 +69,7 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
             center={center}
             defaultZoom={12}
             zoom={zoom}
-            twoFingerDrag={isMobile ? true : false}
+            twoFingerDrag={isMobile}
             onBoundsChanged={({ center, zoom }) => { 
                 setCenter(center) 
                 setZoom(zoom) 
@@ -96,7 +96,7 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
                     <div className={s.content}>
                         {currentRange ? <IconBar degrees={currentRange.direction} category={currentRange.category} positions={currentRange.positions}/> : <p className={s.festivalDescription}>{festivalCentre.description}</p>}
                         {selectedLocation?.kind === "festivalCentre" ? <div className={s.festivalLogo}>
-                            <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="192px" className={s.festivalLogoImage}/>
+                            <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="160px" className={s.festivalLogoImage}/>
                         </div> : null}
                         <Link className={s.more} href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}>mehr...</Link>
                     </div>
