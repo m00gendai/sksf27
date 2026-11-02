@@ -1,24 +1,72 @@
-.heading{
-    position: relative;
-    width: 100%;
-    margin: 5vh 0 0 0;
-    font-size: 2rem;
+/* The header now reserves its own height instead of the section's old image padding. */
+:global(section):has(> .header){
+    padding-top: 0;
 }
 
+.header{
+    position: relative;
+    isolation: isolate;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
 
+.heading{
+    position: relative;
+    isolation: isolate;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 2rem 0;
+    font-size: 60px;
+    line-height: 1.15;
+    color: #FFFFFF;
+    overflow-wrap: anywhere;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.headerImage::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.45) 35%,
+        transparent 100%
+    );
+}
 
 .headerImage{
     position: absolute;
     top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100vw;
-    height: 15vw;
-  }
+    z-index: -1;
+}
 
-  @media screen and (max-aspect-ratio: 13/9){
-    .heading{
-        margin: 10vw 0 0 0;
+@media screen and (max-width: 1024px){
+    .header{
+        min-height: 320px;
     }
-    .headerImage{
-        height: 10vh;
+
+    .heading{
+        font-size: 48px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .header{
+        min-height: 240px;
+    }
+
+    .heading{
+        font-size: clamp(30px, 8vw, 36px);
     }
 }
