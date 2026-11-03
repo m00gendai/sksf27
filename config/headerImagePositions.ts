@@ -9,11 +9,20 @@ export interface HeaderImagePosition {
 export const headerImagePositions: Record<string, HeaderImagePosition | undefined> = {
     "/datenschutz": {},
     "/impressum": {},
-    "/medien/bilder": {},
+    "/medien/bilder": {
+        desktop: "50% 40%",
+        mobile: "50% 50%",
+    },
     "/medien/presse": {},
-    "/schiessen/anmeldung": {},
+    "/schiessen/anmeldung": {
+        desktop: "50% 60%",
+        mobile: "50% 50%",
+    },
     "/schiessen/auszeichnungen": {},
-    "/schiessen/festzentrum": {},
+    "/schiessen/festzentrum": {
+        desktop: "50% 65%",
+        mobile: "50% 50%",
+    },
     "/schiessen/programm": {},
     "/schiessen/rangeure": {},
     "/schiessen/resultate": {},
@@ -23,6 +32,6 @@ export const headerImagePositions: Record<string, HeaderImagePosition | undefine
     "/ueber-uns/kontakt": {},
     "/ueber-uns/organisation": {
         desktop: "50% 35%",
-        mobile: "55% 40%",
+        mobile: "50% 50%",
     },
 }
