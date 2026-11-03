@@ -21,5 +21,8 @@ export const headerImagePositions: Record<string, HeaderImagePosition | undefine
     "/schiessen/schiessplan": {},
     "/sponsoren": {},
     "/ueber-uns/kontakt": {},
-    "/ueber-uns/organisation": {},
+    "/ueber-uns/organisation": {
+        desktop: "50% 35%",
+        mobile: "55% 40%",
+    },
 }
