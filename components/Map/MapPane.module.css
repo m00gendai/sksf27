@@ -1,7 +1,12 @@
 .overlay{
+    box-sizing: border-box;
     z-index: 100;
     transform: translateX(-50%);
     background: white;
+}
+
+.festivalOverlay{
+    width: min(18rem, calc(100vw - 2rem));
 }
 
 .cardTop{
@@ -30,8 +35,9 @@
 
 .content{
     position: relative;
-    width: calc(100% - 1rem);
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -62,12 +68,38 @@
     width: 100%;
 }
 
+.festivalDescription{
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.festivalLogo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.festivalLogoImage{
+    width: 100%;
+    max-width: 10rem;
+    height: auto;
+}
+
 .marker svg g path{
     fill: light-dark(var(--secondaryColor), black);
     stroke: light-dark(black, var(--secondaryColor));
 }
 .marker svg g circle{
     fill: light-dark(white, var(--secondaryColor));
+}
+
+.festivalMarker svg g path{
+    fill: light-dark(var(--red), black);
+    stroke: light-dark(black, var(--red));
+}
+.festivalMarker svg g circle{
+    fill: light-dark(white, var(--red));
 }
 
 .mapLayer{

@@ -18,6 +18,7 @@
   --iconFilter: none;
   --mapFilter: none;
   --navFilter: none;
+  --red: #D32F2F;
 }
 
 [data-theme='dark']{
@@ -40,6 +41,7 @@
   --iconFilter: invert();
   --mapFilter: grayscale() brightness(50%);
   --navFilter: brightness(75%);
+  --red: #D32F2F;
 }
 
 body{
