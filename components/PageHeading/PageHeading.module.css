@@ -8,7 +8,7 @@
     isolation: isolate;
     box-sizing: border-box;
     width: 100%;
-    min-height: 400px;
+    min-height: clamp(400px, 22vw, 480px);
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
@@ -18,7 +18,8 @@
     position: relative;
     isolation: isolate;
     width: fit-content;
-    max-width: 100%;
+    /* Keep even wrapped titles within the darker 80% of the full-width image. */
+    max-width: min(100%, 60vw);
     margin: 0;
     padding: 2rem 0;
     font-size: 60px;
@@ -35,9 +36,9 @@
     pointer-events: none;
     background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.45) 0%,
-        rgba(0, 0, 0, 0.45) 35%,
-        transparent 100%
+        rgba(0, 0, 0, 0.58) 0%,
+        rgba(0, 0, 0, 0.46) 80%,
+        rgba(0, 0, 0, 0.08) 100%
     );
 }
 
@@ -51,9 +52,14 @@
     z-index: -1;
 }
 
+.image{
+    object-fit: cover;
+    object-position: var(--header-position, 50% 50%);
+}
+
 @media screen and (max-width: 1024px){
     .header{
-        min-height: 320px;
+        min-height: clamp(320px, 40vw, 400px);
     }
 
     .heading{
@@ -63,10 +69,20 @@
 
 @media screen and (max-width: 600px){
     .header{
-        min-height: 240px;
+        min-height: clamp(240px, 62vw, 320px);
     }
 
     .heading{
         font-size: clamp(30px, 8vw, 36px);
+        max-width: 100%;
+    }
+
+    .image{
+        object-position: var(--header-position-mobile, var(--header-position, 50% 50%));
+    }
+
+    .headerImage::after{
+        /* Mobile titles can span the full image, so retain contrast to the right. */
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.46));
     }
 }
