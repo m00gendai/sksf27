@@ -81,7 +81,7 @@ export default function MapPane({ranges, festivalCentre, isMobile}:Props){
                 const coordinates: [number, number] = [parseFloat(range.coordinates.lat), parseFloat(range.coordinates.lon)]
                 return <Marker className={s.marker} key={`range_${index}`} width={50} anchor={coordinates} onClick={()=>handleMarkerClick({kind: "shootingRange", range})}/>
             })}
-            <Marker width={50} anchor={festivalCentre.coordinates} color={festivalCentre.color} onClick={()=>handleMarkerClick({kind: "festivalCentre"})}/>
+            <Marker width={50} className={s.festivalMarker} anchor={festivalCentre.coordinates} color={festivalCentre.color} onClick={()=>handleMarkerClick({kind: "festivalCentre"})}/>
             {currentRange && currentMarker ? <Marker className={s.marker} width={50} anchor={currentMarker} color={"#FFD730"} /> : null}
             {currentMarker ?
             <Overlay anchor={currentMarker} offset={[0,0]}>

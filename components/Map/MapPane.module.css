@@ -94,6 +94,14 @@
     fill: light-dark(white, var(--secondaryColor));
 }
 
+.festivalMarker svg g path{
+    fill: light-dark(var(--red), black);
+    stroke: light-dark(black, var(--red));
+}
+.festivalMarker svg g circle{
+    fill: light-dark(white, var(--red));
+}
+
 .mapLayer{
     background: black;
     filter: var(--mapFilter);
