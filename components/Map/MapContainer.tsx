@@ -1,6 +1,16 @@
-import { ShootingRange } from "./Interface_Map"
+import { FestivalCentre, ShootingRange } from "./Interface_Map"
 import MapPane from "./MapPane"
 import s from "./MapContainer.module.css"
+
+const festivalCentre: FestivalCentre = {
+    coordinates: [47.7177, 8.6603],
+    name: "Festzentrum",
+    location: "Schaffhausen (Herblingen)",
+    description: "Hier trifft sich die Schützenfamilie – zum Verweilen, Geniessen und Feiern.",
+    href: "/schiessen/festzentrum",
+    color: "#D32F2F",
+    logo: "/Logo_GVS_freigestellt_512x238.png",
+}
 
 async function getRanges(){
     const getRanges:Response = await fetch(
@@ -26,10 +36,10 @@ export default async function MapContainer(){
     return(
         <>
         <div className={`${s.container} desktop`}>
-            <MapPane ranges={ranges} isMobile={false}/>
+            <MapPane ranges={ranges} festivalCentre={festivalCentre} isMobile={false}/>
         </div>     
         <div className={`${s.container} mobile`}>
-            <MapPane ranges={ranges} isMobile={true}/>
+            <MapPane ranges={ranges} festivalCentre={festivalCentre} isMobile={true}/>
         </div>   
         </>
   )

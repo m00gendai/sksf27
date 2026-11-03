@@ -68,7 +68,7 @@ export default function Navbar(){
                                         <div className={s.items}>
                                             {item.sub?.map((sub, index)=>{
                                                 return(
-                                                    <Link className={s.sublink} href={sub.url} key={`sub_${index}`}  title={`Link zur Seite: ${sub.name}`}>{`${sub.name}`}</Link>
+                                                    <Link className={s.sublink} href={sub.url} target={sub.openInNewTab ? "_blank" : undefined} rel={sub.openInNewTab ? "noopener noreferrer" : undefined} key={`sub_${index}`}  title={`Link zur Seite: ${sub.name}`}>{`${sub.name}`}</Link>
                                                 )
                                             })}
                                         </div>
@@ -80,7 +80,7 @@ export default function Navbar(){
                         </div>
                         :
 
-                            <Link className={s.link} href={item.url} key={`main_${index}`}  title={`Link zur Seite: ${item.name}`}>{`${item.name}`}</Link>
+                            <Link className={s.link} href={item.url} target={item.openInNewTab ? "_blank" : undefined} rel={item.openInNewTab ? "noopener noreferrer" : undefined} key={`main_${index}`}  title={`Link zur Seite: ${item.name}`}>{`${item.name}`}</Link>
 
                         )
                 })}
