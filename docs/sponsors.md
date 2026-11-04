@@ -1,8 +1,14 @@
 # Sponsors page
 
-The existing route is `/sponsoren`. Its shared page header receives the local static
+The sponsor list is at `/sponsoring/unsere-sponsoren`. Its shared page header receives the local static
 photograph `public/P2050071_2560x1280.jpg` and the title `Unsere Sponsoren`.
 No sponsor or header content is fetched from Cockpit by this page.
+
+`/sponsoring/sponsor-werden` uses the same header photograph and shared layout styles,
+with static invitation text and the email link `mailto:pb@sksf27.ch`.
+The shared navigation configuration lists these two pages under `Sponsoring` in that
+order for desktop and mobile. The previous `/sponsoren` route permanently redirects
+(HTTP 308) to `/sponsoring/unsere-sponsoren` via `next.config.mjs`.
 
 ## Maintaining sponsors
 
