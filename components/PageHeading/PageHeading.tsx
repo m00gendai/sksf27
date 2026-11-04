@@ -2,14 +2,15 @@
 
 import { usePathname } from "next/navigation"
 import { navbar } from "../Navbar/navbarStructure"
-import Image from "next/image"
+import Image, { type StaticImageData } from "next/image"
 import s from "./PageHeading.module.css"
 
 interface Props{
-    image?: string
+    image?: string | StaticImageData
+    title?: string
 }
 
-export default function PageHeading({image}:Props){
+export default function PageHeading({image, title: customTitle}:Props){
 
     const path:string = usePathname()
     const crumbs:string[] = path.split("/")
@@ -32,9 +33,9 @@ export default function PageHeading({image}:Props){
 
     return(
 <>
-<div className={s.headerImage}><Image src={image === undefined ? "/placeholder.png" : image === null ? "/placeholder.png" : `${process.env.NEXT_PUBLIC_STORAGE}${image}`} alt={""} fill={true} style={{objectFit: "cover"}} /></div>
+<div className={s.headerImage}><Image src={typeof image === "object" && image !== null ? image : image === undefined || image === null ? "/placeholder.png" : `${process.env.NEXT_PUBLIC_STORAGE}${image}`} alt={""} fill={true} sizes="100vw" priority={typeof image === "object" && image !== null} style={{objectFit: "cover"}} /></div>
 
-<h1 className={s.heading}>{title}</h1> 
+<h1 className={s.heading}>{customTitle ?? title}</h1>
 </>
        
     )
