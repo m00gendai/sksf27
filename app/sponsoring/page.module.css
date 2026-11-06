@@ -1,0 +1,46 @@
+.page{
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.intro{
+    width: 100%;
+    min-width: 0;
+    margin: 1.25rem 0 clamp(2rem, 4vw, 3rem);
+}
+
+.intro p,
+.invitation p{
+    display: block;
+    max-width: 68ch;
+    margin: 0;
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--generalFontColor);
+}
+
+.invitation{
+    display: grid;
+    gap: 1.25rem;
+    width: 100%;
+    min-width: 0;
+    margin-top: 1.25rem;
+}
+
+.emailLink{
+    justify-self: start;
+    padding: 0.25rem 0;
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--generalFontColor);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.emailLink:hover{
+    text-decoration-thickness: 2px;
+}
+
+.emailLink:focus-visible{
+    outline: 3px solid var(--secondaryColor);
+    outline-offset: 4px;
+}

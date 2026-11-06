@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import { navbar } from "../Navbar/navbarStructure"
-import Image from "next/image"
+import Image, { type StaticImageData } from "next/image"
 import s from "./PageHeading.module.css"
 import type { CSSProperties } from "react"
 import { headerImagePositions } from "@/config/headerImagePositions"
@@ -45,3 +45,4 @@ export default function PageHeading({image, title: customTitle}:Props){
         </header>
     )
 }
+

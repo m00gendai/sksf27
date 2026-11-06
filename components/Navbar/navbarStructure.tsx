@@ -54,8 +54,18 @@ export const navbar:NavbarItem[] = [
         ]
     },
     {
-        name: "Sponsoren",
-        url: "/sponsoren"
+        name: "Sponsoring",
+        url: "",
+        sub: [
+            {
+                name: "Unsere Sponsoren",
+                url: "/sponsoring/unsere-sponsoren"
+            },
+            {
+                name: "Sponsor werden",
+                url: "/sponsoring/sponsor-werden"
+            },
+        ]
     },
     {
         name: "Aufenthalt",
