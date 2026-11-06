@@ -8,24 +8,27 @@
     isolation: isolate;
     box-sizing: border-box;
     width: 100%;
-    min-height: clamp(320px, 20vw, 400px);
+    min-height: clamp(11.25rem, calc(6.25rem + 18vw), 25rem);
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    padding-block: clamp(2rem, 4vw, 4rem);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 .heading{
     position: relative;
-    isolation: isolate;
+    min-width: 0;
     width: fit-content;
-    /* Keep even wrapped titles within the darker 80% of the full-width image. */
-    max-width: min(100%, 60vw);
+    /* Coordinate this width with the gradient stops below and the page gutters. */
+    max-width: min(100%, max(50vw, 37.5rem));
     margin: 0;
-    padding: 2rem 0;
-    font-size: 48px;
+    padding: 0;
+    font-size: clamp(1.75rem, calc(1.25rem + 2vw), 3.75rem);
+    font-weight: 700;
     line-height: 1.15;
     color: #FFFFFF;
     overflow-wrap: anywhere;
+    text-wrap: balance;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 
@@ -37,8 +40,9 @@
     background: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.58) 0%,
-        rgba(0, 0, 0, 0.46) 80%,
-        rgba(0, 0, 0, 0.08) 100%
+        /* Minimum distances keep narrow headers shaded without a breakpoint jump. */
+        rgba(0, 0, 0, 0.46) max(75%, 38.5rem),
+        rgba(0, 0, 0, 0.08) max(100%, 50rem)
     );
 }
 
@@ -57,32 +61,8 @@
     object-position: var(--header-position, 50% 50%);
 }
 
-@media screen and (max-width: 1024px){
-    .header{
-        min-height: clamp(280px, 33vw, 340px);
-    }
-
-    .heading{
-        font-size: 40px;
-    }
-}
-
 @media screen and (max-width: 600px){
-    .header{
-        min-height: clamp(200px, 52vw, 260px);
-    }
-
-    .heading{
-        font-size: clamp(28px, 7vw, 32px);
-        max-width: 100%;
-    }
-
     .image{
         object-position: var(--header-position-mobile, var(--header-position, 50% 50%));
-    }
-
-    .headerImage::after{
-        /* Mobile titles can span the full image, so retain contrast to the right. */
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.46));
     }
 }
