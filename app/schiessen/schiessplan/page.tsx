@@ -35,7 +35,10 @@ export default async function Page(){
         <main>
             <section>
                 <PageHeading image={siteContent[0].pageHeader.path} />
-                <PageContent siteContent={siteContent} documentCovers={{"SKSF27 Kurzschiessplan": "/SKSF27_Kurzschiessplan_Cover.png"}} />
+                <PageContent siteContent={siteContent} documentCovers={{
+                    "SKSF27 Kurzschiessplan": "/SKSF27_Kurzschiessplan_Cover.png",
+                    "SKSF27 Schiessplan": "/SKSF27_Schiessplan_Cover.png"
+                }} />
             </section>
         </main>
     )
