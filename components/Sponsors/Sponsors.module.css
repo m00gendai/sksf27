@@ -5,11 +5,11 @@
 
 .categories{
     display: grid;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
+    gap: clamp(2.5rem, 4vw, 4rem);
 }
 
 .category{
-    --columns: 3;
+    --columns: 1;
     --logo-height: 7rem;
     --card-padding: 2rem;
     display: block;
@@ -21,15 +21,13 @@
 }
 
 .category[data-category="1"]{
-    --columns: 2;
-    --logo-height: 10rem;
-    --card-padding: 2.5rem;
+    --logo-height: clamp(7rem, 10vw, 10rem);
+    --card-padding: clamp(1.25rem, 2.5vw, 2.5rem);
 }
 
 .category[data-category="2"],
 .category[data-category="3"]{
-    --columns: 3;
-    --card-padding: 1.25rem;
+    --card-padding: 0.5rem 0.25rem;
 }
 
 .categoryTitle{
@@ -42,10 +40,15 @@
 .grid{
     display: grid;
     grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
-    gap: 1.5rem;
+    column-gap: clamp(1rem, 2.5vw, 2rem);
+    row-gap: 0.75rem;
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.category[data-category="1"] .grid{
+    gap: clamp(1.5rem, 4vw, 3rem);
 }
 
 .gridItem{
@@ -69,7 +72,15 @@
 }
 
 .cardLink:hover{
-    background: transparent;
+    background: rgba(34, 139, 34, 0.06);
+}
+
+:global([data-theme="dark"]) .category[data-category="1"] .card{
+    background: #FFFFFF;
+}
+
+:global([data-theme="dark"]) .category[data-category="1"] .cardLink:hover{
+    background: #F1F5F1;
 }
 
 .cardLink:focus-visible,
@@ -91,33 +102,37 @@
     display: block;
     width: auto;
     height: auto;
-    max-width: 100%;
+    max-width: min(100%, 30rem);
     max-height: 100%;
     object-fit: contain;
 }
 
 .stichCard{
+    align-items: stretch;
     justify-content: flex-start;
-    text-align: center;
+    text-align: left;
     color: var(--generalFontColor);
     overflow-wrap: anywhere;
 }
 
 .stichTitle{
-    margin: 0 0 0.75rem;
-    font-size: 1.125rem;
-    line-height: 1.4;
-    text-align: center;
+    margin: 0 0 0.375rem;
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    text-align: left;
 }
 
 .sponsorName{
     display: block;
     margin: 0;
+    font-size: 1.125rem;
+    font-weight: 400;
     line-height: 1.5;
 }
 
 .sponsorLink{
     color: inherit;
+    font-weight: inherit;
     text-decoration: underline;
     text-underline-offset: 0.2em;
 }
@@ -137,44 +152,20 @@
     line-height: 1.6;
 }
 
-@media (max-width: 1024px){
+@media (min-width: 720px){
     .category{
-        --columns: 2;
-        --card-padding: 1.5rem;
-    }
-
-    .category[data-category="1"]{
-        --logo-height: 8rem;
-        --card-padding: 2rem;
-    }
-
-    .category[data-category="2"],
-    .category[data-category="3"]{
         --columns: 2;
     }
 }
 
-@media (max-width: 600px){
-    .grid{
-        gap: 0.875rem;
-    }
-
-    .category{
-        --logo-height: 5.5rem;
-        --card-padding: 1rem;
-    }
-
-    .category[data-category="1"]{
-        --columns: 1;
-        --card-padding: 1.5rem;
-    }
-
+@media (min-width: 1100px){
     .category[data-category="2"],
     .category[data-category="3"]{
-        --columns: 1;
-        --card-padding: 1rem;
+        --columns: 3;
     }
+}
 
+@media (max-width: 600px){
     .empty{
         padding: 1.25rem;
     }
