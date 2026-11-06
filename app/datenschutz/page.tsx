@@ -34,7 +34,7 @@ export default async function Page(){
     return(
         <main>
             <section>
-                <PageHeading image={siteContent[0].pageHeader.path} />
+                <PageHeading image={siteContent[0].pageHeader.path} title={siteName} />
                 <PageContent siteContent={siteContent} />
             </section>
         </main>
