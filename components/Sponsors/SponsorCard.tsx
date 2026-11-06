@@ -7,7 +7,7 @@ interface Props {
 }
 
 const logoSizes: Record<LogoSponsor["category"], string> = {
-    1: "(max-width: 600px) 80vw, (max-width: 1200px) 40vw, 480px",
+    1: "(max-width: 719px) 85vw, (max-width: 1099px) 40vw, 480px",
 }
 
 export default function SponsorCard({ sponsor }: Props) {
