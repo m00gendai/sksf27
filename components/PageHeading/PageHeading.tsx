@@ -9,6 +9,7 @@ import { headerImagePositions } from "@/config/headerImagePositions"
 
 interface Props{
     image?: string
+    title?: string
 }
 
 type HeaderStyle = CSSProperties & {
@@ -16,47 +17,31 @@ type HeaderStyle = CSSProperties & {
     "--header-position-mobile"?: string
 }
 
-export default function PageHeading({image}:Props){
-
-    const path:string = usePathname()
-    const position = headerImagePositions[path.replace(/\/+$/, "") || "/"]
+export default function PageHeading({image, title: customTitle}:Props){
+    const path = usePathname().replace(/\/+$/, "") || "/"
+    const position = headerImagePositions[path]
     const headerStyle: HeaderStyle = {
         "--header-position": position?.desktop,
         "--header-position-mobile": position?.mobile,
     }
-    const crumbs:string[] = path.split("/")
-    const title:(string | (string | undefined)[] | undefined)[] = navbar.map(item =>{
-        if(item.url.split("/")[item.url.split("/").length-1] === crumbs[crumbs.length-1]){
-            return item.name
-        }
-        if(item.sub){
-            return item.sub.map(sub =>{
-                if(sub.url.split("/")[sub.url.split("/").length-1] === crumbs[crumbs.length-1]){
-                    return sub.name
-                }
-            })
-        }
-    })
+    const title = customTitle ?? navbar
+        .flatMap(item => [item, ...(item.sub ?? [])])
+        .find(item => item.url === path)?.name
+    const imageSrc = image == null ? "/placeholder.png" : `${process.env.NEXT_PUBLIC_STORAGE}${image}`
 
-    
-   
-    
-
-    return(
-<header className={s.header} style={headerStyle}>
-<div className={s.headerImage}>
-    <Image
-        src={image === undefined ? "/placeholder.png" : image === null ? "/placeholder.png" : `${process.env.NEXT_PUBLIC_STORAGE}${image}`}
-        alt=""
-        fill
-        sizes="100vw"
-        priority
-        className={s.image}
-    />
-</div>
-
-<h1 className={s.heading}>{title}</h1> 
-</header>
-       
+    return (
+        <header className={s.header} style={headerStyle}>
+            <div className={s.headerImage}>
+                <Image
+                    src={imageSrc}
+                    alt=""
+                    fill
+                    sizes="100vw"
+                    priority
+                    className={s.image}
+                />
+            </div>
+            <h1 className={s.heading}>{title}</h1>
+        </header>
     )
 }
