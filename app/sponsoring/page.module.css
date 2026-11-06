@@ -5,7 +5,7 @@
 .intro{
     width: 100%;
     min-width: 0;
-    margin: 1.25rem 0 3.5rem;
+    margin: 1.25rem 0 clamp(2rem, 4vw, 3rem);
 }
 
 .intro p,
@@ -29,7 +29,7 @@
 .emailLink{
     justify-self: start;
     padding: 0.25rem 0;
-    font-size: 1.25rem;
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
     line-height: 1.5;
     color: var(--generalFontColor);
     text-decoration: underline;
@@ -43,10 +43,4 @@
 .emailLink:focus-visible{
     outline: 3px solid var(--secondaryColor);
     outline-offset: 4px;
-}
-
-@media (max-width: 600px){
-    .intro{
-        margin-bottom: 2.5rem;
-    }
 }
