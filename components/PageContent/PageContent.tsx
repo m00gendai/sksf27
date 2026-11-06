@@ -4,9 +4,10 @@ import DocumentGallery from "../DocumentGallery/DocumentGallery"
 
 interface Props{
     siteContent:SiteContent[]
+    documentCovers?: Record<string, string>
 }
 
-export default function PageHeading({siteContent}:Props){
+export default function PageHeading({siteContent, documentCovers}:Props){
     console.log(siteContent[0])
     return(
         <>
@@ -19,7 +20,7 @@ export default function PageHeading({siteContent}:Props){
                         {section.sectionTitle ? <h3>{section.sectionTitle}</h3> : null}
                         <div className="content_text" dangerouslySetInnerHTML={{__html: section.sectionText}}></div>
                         {sectionImages?.length > 0 ? <Gallery images={sectionImages} /> : null}  
-                        {sectionDocuments?.length > 0 ? <DocumentGallery documents={sectionDocuments} /> : null}
+                        {sectionDocuments?.length > 0 ? <DocumentGallery documents={sectionDocuments} covers={documentCovers} /> : null}
                     </div>
                 
                 )
