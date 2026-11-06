@@ -18,6 +18,7 @@ export default function Page() {
                 <div className={s.intro}>
                     <p>Ein herzliches Dankeschön an unsere Sponsoren und Partner. Mit ihrer Unterstützung
                         tragen sie wesentlich zum Gelingen des Schaffhauser Kantonalschützenfests 2027 bei.</p>
+                    <p>Die Sponsoren folgen in Kürze...</p>
                 </div>
                 <Sponsors sponsors={sponsors} />
             </section>

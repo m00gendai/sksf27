@@ -14,9 +14,8 @@ export default function Page() {
             <section className={s.page}>
                 <PageHeading image={headerImage} title="Sponsor werden" />
                 <div className={s.invitation}>
-                    <p>Möchten Sie das Schaffhauser Kantonalschützenfest 2027 unterstützen?</p>
-                    <p>Ihr Sponsoring wird ein sicherer Treffer!</p>
-                    <a className={s.emailLink} href="mailto:pb@sksf27.ch">pb@sksf27.ch</a>
+                    <p>Werden Sie Teil des Schaffhauser Kantonalschützenfests 2027! Mit Ihrem Sponsoring treffen Sie mitten ins Schwarze.</p>
+                    <p>Wir freuen uns auf Ihre Kontaktaufnahme unter folgender E-Mail-Adresse: <a className={s.emailLink} href="mailto:pb@sksf27.ch">pb@sksf27.ch</a></p>
                 </div>
             </section>
         </main>
