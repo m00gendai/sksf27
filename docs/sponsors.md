@@ -68,11 +68,27 @@ Categories without entries display their configured empty-state message.
 
 ## Layout
 
-Desktop grids have 2 / 3 / 3 columns, tablet grids 2 / 2 / 2, and mobile grids 1 / 1 / 1.
-The main tier has larger logo areas and more padding. Cards use transparent surfaces
-and the existing site font. Category 1 uses `object-fit: contain`; logos are
-not recoloured or cropped. Categories 2 and 3 give text more room, wrap long names, and
-underlines company links. All links have a visible keyboard focus outline.
+Grids use one column below 720px and two columns from 720px. From 1100px,
+categories 2 and 3 use three columns; category 1 keeps two.
+
+The main tier has a fluid 112–160px logo area and 20–40px card padding (at a 16px
+root font size). Images preserve their proportions with `object-fit: contain`,
+stay within the logo area and are capped at 480px wide without enlarging small
+originals. Responsive Next.js `sizes` estimates follow the 720px and 1100px layout
+thresholds. Logos retain their original colours and are not cropped or inverted.
+
+Logo cards are transparent in light mode and have a white backing in dark mode
+so dark artwork stays visible. Clickable logo cards have a subtle green hover
+surface. Text cards use theme-aware colours and remain transparent.
+
+Categories 2 and 3 are compact and left-aligned. Both use 18px sponsor names at
+font weight 400, with 17px Stich headings and a 6px gap. Long names
+wrap within the grid. Text rows have a 12px gap, while logo cards have a more
+generous fluid gap. All links retain a visible keyboard focus outline.
+
+The introduction keeps its existing readable typography, with a fluid 32–48px
+bottom margin. Category spacing scales from 40px to 64px. These changes do not
+alter sponsor names, category membership, display order or website URLs.
 
 ## Future Cockpit model
 
