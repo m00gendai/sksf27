@@ -57,9 +57,31 @@ Horizontal padding continues to come from the surrounding page section.
 
 ## Page titles and CMS data
 
-Pages fetch their Cockpit content as before and pass `pageHeader.path` to the header.
-The header combines that path with `NEXT_PUBLIC_STORAGE`; missing paths use the
-local placeholder. There is no CMS request inside `PageHeading`.
+`PageHeading` accepts two image sources through the same `image` prop:
+
+- **Cockpit:** pass `pageHeader.path` as a string. The header combines it with
+  `NEXT_PUBLIC_STORAGE`, preserving the existing CMS integration.
+- **Local image:** statically import a file from `public` (including its subfolders)
+  and pass the imported image object. It goes directly to Next.js `Image` without
+  a CMS prefix. Both sponsor pages already use this approach.
+
+```tsx
+// CMS image
+<PageHeading image={siteContent[0].pageHeader.path} />
+
+// Local image: public/P2050071_2560x1280.jpg
+import headerImage from "@/public/P2050071_2560x1280.jpg"
+
+<PageHeading image={headerImage} title="Unsere Sponsoren" />
+```
+
+Import local files rather than passing their public URL as a string: strings are
+reserved for CMS paths. For example, a file at `public/headers/photo.jpg` can be
+imported from `@/public/headers/photo.jpg`.
+
+If `image` is omitted, the header uses `/placeholder.png`. There is no CMS request
+inside `PageHeading`. Both sources share the same responsive styling, image
+positioning, priority loading and Next.js image optimisation.
 
 The title defaults to a navigation item matched against the complete pathname,
 with trailing slashes removed. It is a single string, not an array of partial URL

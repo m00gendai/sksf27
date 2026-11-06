@@ -8,7 +8,8 @@ import type { CSSProperties } from "react"
 import { headerImagePositions } from "@/config/headerImagePositions"
 
 interface Props{
-    image?: string
+    // Strings are Cockpit paths; static imports are local images (for example from public).
+    image?: string | StaticImageData
     title?: string
 }
 
@@ -27,7 +28,11 @@ export default function PageHeading({image, title: customTitle}:Props){
     const title = customTitle ?? navbar
         .flatMap(item => [item, ...(item.sub ?? [])])
         .find(item => item.url === path)?.name
-    const imageSrc = image == null ? "/placeholder.png" : `${process.env.NEXT_PUBLIC_STORAGE}${image}`
+    const imageSrc = image == null
+        ? "/placeholder.png"
+        : typeof image === "string"
+            ? `${process.env.NEXT_PUBLIC_STORAGE}${image}`
+            : image
 
     return (
         <header className={s.header} style={headerStyle}>

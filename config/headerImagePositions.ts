@@ -28,7 +28,8 @@ export const headerImagePositions: Record<string, HeaderImagePosition | undefine
     "/schiessen/resultate": {},
     "/schiessen/schiessanlagen": {},
     "/schiessen/schiessplan": {},
-    "/sponsoren": {},
+    "/sponsoring/unsere-sponsoren": {},
+    "/sponsoring/sponsor-werden": {},
     "/ueber-uns/kontakt": {},
     "/ueber-uns/organisation": {
         desktop: "50% 35%",
