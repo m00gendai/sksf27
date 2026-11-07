@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import Sponsors from "@/components/Sponsors/Sponsors";
 import { sponsors } from "@/data/sponsors";
-import headerImage from "@/public/P2050071_2560x1280.jpg";
+import headerImage from "@/public/pageHeaderImages/DSC03643_2560x1280.jpg";
 import s from "../page.module.css";
 
 export const metadata: Metadata = {

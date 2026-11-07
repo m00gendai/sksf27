@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading/PageHeading";
-import headerImage from "@/public/P2050071_2560x1280.jpg";
+import headerImage from "@/public/pageHeaderImages/IMG_9898_2560x1280.jpg";
 import s from "../page.module.css";
 
 export const metadata: Metadata = {
