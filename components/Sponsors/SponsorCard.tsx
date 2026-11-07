@@ -1,5 +1,6 @@
 import Image from "next/image"
 import type { LogoSponsor, Sponsor } from "./Interface_Sponsors"
+import { getSponsorLink } from "./sponsorLinks"
 import s from "./Sponsors.module.css"
 
 interface Props {
@@ -11,15 +12,16 @@ const logoSizes: Record<LogoSponsor["category"], string> = {
 }
 
 export default function SponsorCard({ sponsor }: Props) {
+    const link = getSponsorLink(sponsor.website)
+
     if (sponsor.category !== 1) {
         return (
             <div className={`${s.card} ${s.stichCard}`}>
-                {sponsor.stichName ? <h3 className={s.stichTitle}>{sponsor.stichName}</h3> : null}
                 <p className={s.sponsorName}>
-                    {sponsor.sponsorType === "company" ? (
+                    {link.sponsorType === "withUrl" ? (
                         <a
                             className={s.sponsorLink}
-                            href={sponsor.website}
+                            href={link.website}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`${sponsor.name} – Website öffnen (neuer Tab)`}
@@ -45,11 +47,11 @@ export default function SponsorCard({ sponsor }: Props) {
         </div>
     )
 
-    if (sponsor.website) {
+    if (link.sponsorType === "withUrl") {
         return (
             <a
                 className={`${s.card} ${s.cardLink}`}
-                href={sponsor.website}
+                href={link.website}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${sponsor.name} – Website öffnen (neuer Tab)`}

@@ -1,107 +1,98 @@
 # Sponsors page
 
-The sponsor list is at `/sponsoring/unsere-sponsoren`. Its shared page header receives the local static
-photograph `public/P2050071_2560x1280.jpg` and the title `Unsere Sponsoren`.
-No sponsor or header content is fetched from Cockpit by this page.
+The sponsor list is at `/sponsoring/unsere-sponsoren`. It uses the shared
+`PageHeading` with the title `Unsere Sponsoren` and a local static photograph.
+Sponsor data is maintained in `data/sponsors.ts`; this page has no Cockpit sponsor
+integration. Existing routes, navigation and the sponsor invitation page are unchanged.
 
-`/sponsoring/sponsor-werden` uses the same header photograph and shared layout styles,
-with static invitation text and the email link `mailto:pb@sksf27.ch`.
-The shared navigation configuration lists these two pages under `Sponsoring` in that
-order for desktop and mobile. The previous `/sponsoren` route permanently redirects
-(HTTP 308) to `/sponsoring/unsere-sponsoren` via `next.config.mjs`.
+## Categories
+
+The five main sections always appear in this order:
+
+| Category | Heading | Presentation |
+| --- | --- | --- |
+| 1 | Hauptsponsoren | Existing logos, with a website link when available |
+| 2 | Co-Sponsoren | Sponsor names only |
+| 3 | Stichsponsoren | Sponsor names under Gewehr 300m, then Gewehr 50m |
+| 4 | Natural-, Dienstleistungs- und Bargabenspender | Sponsor names only |
+| 5 | Scheibensponsor | Sponsor names only; heading stays singular |
+
+All 63 existing records are retained: 2 Hauptsponsoren, 50 Co-Sponsoren and
+11 Stichsponsoren. Existing category 2 records keep their numeric category; its
+heading is now `Co-Sponsoren`. Categories 4 and 5 have no assigned records and show
+their empty-state messages. No sponsors have been invented or moved into them.
 
 ## Maintaining sponsors
 
-Edit `data/sponsors.ts`. Add only confirmed sponsors to the `sponsors` array.
 Each entry follows `Sponsor` in `components/Sponsors/Interface_Sponsors.ts`:
 
 | Field | Purpose |
 | --- | --- |
-| `id` | Unique stable identifier; keep it when editing the sponsor |
-| `name` | Official sponsor name; also the logo alternative text in category 1 |
-| `category` | `1` Hauptsponsoren, `2` Sponsoren, `3` Stichsponsoren |
-| `logo` | Category 1 only: local path such as `/sponsors/company-logo.webp` |
-| `logoWidth`, `logoHeight` | Category 1 only: original image dimensions in pixels |
-| `stichName` | Name of the sponsored Stich, displayed as a heading; optional in category 2, required in category 3 |
-| `sponsorType` | Categories 2 and 3: `person` or `company` |
-| `website` | Complete HTTPS website URL; required for companies in categories 2 and 3, omitted for people, optional in category 1 |
+| `id` | Unique stable identifier; keep it when editing a sponsor |
+| `name` | Official display name; also logo alternative text in category 1 |
+| `category` | One of the five numeric categories above |
+| `website` | Optional absolute HTTP(S) website URL for any sponsor |
+| `logo` | Category 1 only: approved local logo path without the `public` prefix |
+| `logoWidth`, `logoHeight` | Category 1 only: original pixel dimensions |
+| `discipline` | Required for category 3: `300m` or `50m`, both Gewehr |
+| `stichName` | Optional source information for text sponsors; never displayed |
 
-Put an approved logo in `public/sponsors/`, then enter its path without the `public`
-prefix. Transparent PNG, SVG, or WebP logos work; keep the original brand colours.
-The frontend preserves the logo proportions and does not enlarge small originals.
-Website links open a new tab and use `noopener noreferrer`; without a URL the card
-is not interactive. Do not enter invented sponsor names or website URLs.
+Order within each category or discipline follows array order. Add only confirmed
+sponsors. Put approved logos in `public/sponsors/`, keeping their original brand
+colours and dimensions. Do not guess a sponsor category, discipline or website.
 
-Order within a category follows array order. Reorder entries to change it, delete an
-entry to remove a sponsor. When changing its category, supply the fields required
-by the new category.
-Category headings and empty-state text are also maintained in this data file.
+### Stich disciplines
 
-### Text sponsors (categories 2 and 3)
+Assignments are explicit in the data rather than inferred during rendering:
 
-Categories 2 and 3 display the Stich name above the sponsor name, without a logo.
-Category 2 may omit `stichName` when no Stich is specified; only the sponsor name
-then appears. A person is plain text; a company name is a website link opening in a
-new tab. Example entries below are illustrative only and are not included in the
-published sponsor data. Use `category: 2` for a sponsor in the second category:
+- Gewehr 300m has nine records. Seven existing Stich names explicitly mentioned
+  300m; Philippe Brühlmann and dlz Elektro GmbH were confirmed as 300m by the organiser.
+- Gewehr 50m has Sportschützen Munot (existing `Reiatstich G50m`) and Georg Fischer AG
+  (confirmed as 50m by the organiser).
 
-```ts
-{
-    id: "example-person",
-    name: "Erika Muster",
-    category: 3,
-    stichName: "Beispielstich A",
-    sponsorType: "person",
-},
-{
-    id: "example-company",
-    name: "Musterfirma AG",
-    category: 3,
-    stichName: "Beispielstich B",
-    sponsorType: "company",
-    website: "https://example.com",
-},
-```
+There are no unresolved discipline assignments. Existing `stichName` values remain
+unchanged for reference, but individual Stich labels are not rendered. TypeScript
+requires a supported discipline for every new category 3 entry.
 
-The page always renders the entries in `sponsors`, both locally and in production.
-Categories without entries display their configured empty-state message.
+## Website links and sponsorType
 
-## Layout
+Companies and people use identical markup. `website` is the only source of truth
+for whether a sponsor name is a link. The former manually stored `person`/`company`
+display flags have been removed from the static data.
 
-Grids use one column below 720px and two columns from 720px. From 1100px,
-categories 2 and 3 use three columns; category 1 keeps two.
+`getSponsorLink()` in `components/Sponsors/sponsorLinks.ts` derives a discriminated
+result: `sponsorType: "withUrl"` with a validated URL, or `sponsorType: "withoutUrl"`.
+Do not add or maintain `sponsorType` in data entries. Empty, malformed, relative,
+non-HTTP(S) and reserved placeholder URLs render plain text. Valid URLs retain
+their existing value apart from trimming surrounding whitespace.
 
-The main tier has a fluid 112–160px logo area and 20–40px card padding (at a 16px
-root font size). Images preserve their proportions with `object-fit: contain`,
-stay within the logo area and are capped at 480px wide without enlarging small
-originals. Responsive Next.js `sizes` estimates follow the 720px and 1100px layout
-thresholds. Logos retain their original colours and are not cropped or inverted.
+Name links preserve the existing underline, hover styling, accessible name,
+`target="_blank"`, `rel="noopener noreferrer"` and visible keyboard focus outline.
+No external-link icon is added. Hauptsponsoren retain their existing logo markup
+and sizing; optional website links use the same URL validation.
 
-Logo cards are transparent in light mode and have a white backing in dark mode
-so dark artwork stays visible. Clickable logo cards have a subtle green hover
-surface. Text cards use theme-aware colours and remain transparent.
+## Presentation
 
-Categories 2 and 3 are compact and left-aligned. Both use 18px sponsor names at
-font weight 400, with 17px Stich headings and a 6px gap. Long names
-wrap within the grid. Text rows have a 12px gap, while logo cards have a more
-generous fluid gap. All links retain a visible keyboard focus outline.
+Categories 2–5 share `SponsorCard` and the same list/grid markup. Category 3 uses
+that list inside its two named discipline groups. Only discipline subtitles reuse
+the previous `.stichTitle` heading style; individual cards no longer have a heading.
 
-The introduction keeps its existing readable typography, with a fluid 32–48px
-bottom margin. Category spacing scales from 40px to 64px. These changes do not
-alter sponsor names, category membership, display order or website URLs.
+Existing responsive behaviour is preserved: one column below 720px, two from 720px,
+and three from 1100px for text categories. Hauptsponsoren keep two desktop columns.
+Categories 4 and 5 reuse the existing text-category padding and desktop column
+rules. Fonts, weights, line heights, logo dimensions, card dimensions, link styling
+and existing spacing values are unchanged. A new group wrapper adds a 1.5rem gap
+between the two discipline lists; no global styles or page headers are changed.
 
-## Future Cockpit model
+## Future Cockpit integration
 
-A future `sponsors` collection could contain `name` (text), `category` (required select
-with values 1, 2, 3), `logo` (asset for category 1), `stichName` (optional for category 2,
-required for category 3), `sponsorType` (required for categories 2 and 3),
-`website` (required for companies in categories 2 and 3,
-optional for logo sponsors), and `displayOrder` (optional number). Use Cockpit's `_id`
-as the frontend `id`, and read logo asset dimensions into `logoWidth` / `logoHeight`.
+No production CMS data or models are changed. A future loader can map records to
+`Sponsor[]` using `name`, numeric `category`, optional `website`, optional source
+`stichName`, category 3 `discipline`, category 1 logo and dimensions, and an optional
+display order. Keep the CMS `_id` as the stable frontend `id`.
 
-Fetch published records in the server page or a server-only loader. Validate required
-fields, category values and HTTP(S) website URLs, sort by `displayOrder` with a stable
-fallback, and map them to the existing `Sponsor[]` contract. Pass that array to
-`Sponsors`; the presentation components do not need redesigning. If logo assets move
-to CMS storage, resolve their paths there and use the existing remote image allowlist.
-No CMS models or production data have been modified in this implementation.
+If an external source still stores legacy `sponsorType: "person" | "company"`, its
+adapter should ignore that display flag and use the website field. The derived
+`getSponsorLink()` result needs no CMS migration. Validate category and discipline
+assignments before rendering; do not infer disciplines from ambiguous Stich names
+or silently discard records that lack an assignment.

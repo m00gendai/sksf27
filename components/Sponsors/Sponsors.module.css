@@ -26,7 +26,9 @@
 }
 
 .category[data-category="2"],
-.category[data-category="3"]{
+.category[data-category="3"],
+.category[data-category="4"],
+.category[data-category="5"]{
     --card-padding: 0.5rem 0.25rem;
 }
 
@@ -122,6 +124,11 @@
     text-align: left;
 }
 
+.disciplineGroups{
+    display: grid;
+    gap: 1.5rem;
+}
+
 .sponsorName{
     display: block;
     margin: 0;
@@ -160,7 +167,9 @@
 
 @media (min-width: 1100px){
     .category[data-category="2"],
-    .category[data-category="3"]{
+    .category[data-category="3"],
+    .category[data-category="4"],
+    .category[data-category="5"]{
         --columns: 3;
     }
 }
