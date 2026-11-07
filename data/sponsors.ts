@@ -424,12 +424,10 @@ export const sponsors: readonly Sponsor[] = [
         stichName: "Stichsponsor",
     },
     {
-        id: "vetter_ag",
-        name: "Vetter AG",
+        id: "vetter_consulting_ag",
+        name: "Vetter Consulting AG",
         category: 3,
         discipline: "300m",
-        stichName: "Vereinsstich 300m",
-        website: "https://www.vetterag.ch/de/",
     },
     {
         id: "LASERHAUS GmbH",
