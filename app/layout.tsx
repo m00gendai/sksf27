@@ -11,7 +11,7 @@ import Footer from "@/components/Footer/Footer";
 import { Titillium_Web } from 'next/font/google'
  
 const titillium = Titillium_Web({
-  weight: ['400', '700'],
+  weight: ['400', '600', '700'],
   style: "normal",
   subsets: ['latin'],
   variable: '--font-titillium',
