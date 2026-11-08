@@ -12,7 +12,7 @@ export default function ClubGallery({ clubs }: Props) {
         <ul className={s.gallery} aria-label="Trägervereine">
             {clubs.map(club => (
                 <li className={s.card} key={club.id}>
-                    <div className={s.logoArea}>
+                    <div className={`${s.logoArea} ${club.logo ? s.withLogo : s.withPlaceholder}`}>
                         {club.logo ? (
                             <Image
                                 src={club.logo}

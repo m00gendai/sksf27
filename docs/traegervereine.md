@@ -20,10 +20,15 @@ Put a real club logo in `public/logo_vereine/`, then add its public path:
 }
 ```
 
-The filename above is an example; no club logo is included yet. Removing `logo`
-restores the shared neutral image icon. `ClubGallery` uses a fixed 10rem-high logo
-area and Next.js Image with `object-fit: contain`, so wide and tall logos keep
-their proportions. Only the name links to the website; the logo area is never a link.
+The filename above is an example; use the actual filename of the supplied image.
+Removing `logo` restores the shared neutral image icon. `ClubGallery` uses a fixed
+10rem-high logo area and Next.js Image with `object-fit: contain`, so wide and tall
+logos keep their proportions. Vertical image padding leaves up to 8rem (128px)
+of visible crest height; narrow horizontal padding accommodates double crests.
+Real logos have a transparent display area in light mode and a light surface in
+dark mode; missing-logo placeholders retain their grey background. Cards use
+16px padding on mobile and 20–24px from 600px. Names are 18px, weight 600.
+Only the name links to the website; the logo area is never a link.
 The page reuses the existing local `Reiat_2560x1280.jpg` header photograph through
 the shared PageHeading component without changing its styling.
 
