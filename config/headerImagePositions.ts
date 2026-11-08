@@ -59,4 +59,8 @@ export const headerImagePositions: Record<string, HeaderImagePosition | undefine
         desktop: "50% 35%",
         mobile: "50% 50%",
     },
+    "/ueber-uns/traegervereine": {
+        desktop: "50% 38%",
+        mobile: "50% 50%",
+    },
 }
