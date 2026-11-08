@@ -91,6 +91,10 @@ export const navbar:NavbarItem[] = [
                 name: "Organisation", 
                 url: "/ueber-uns/organisation"
             },
+            {
+                name: "Trägervereine",
+                url: "/ueber-uns/traegervereine"
+            },
             { 
                 name: "Kontakt", 
                 url: "/ueber-uns/kontakt"
