@@ -5,8 +5,6 @@
 }
 .inner {
     width: 100%;
-    max-width: 1440px;
-    margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     /* Account for the navigation, leaving room for the QuickLinks on short laptops. */
@@ -14,22 +12,27 @@
 }
 .image {
     position: relative;
-    grid-column: 1 / span 8;
+    grid-column: 1 / -1;
     grid-row: 1;
     min-width: 0;
     overflow: hidden;
 }
 .photograph {
     object-fit: cover;
-    object-position: 50% 15%;
+    object-position: 50% 65%;
 }
 .image::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, transparent 35%, rgba(0, 0, 0, 0.15) 55%, rgba(0, 0, 0, 0.8) 75%, black);
+    background:
+        linear-gradient(to bottom, transparent 65%, black),
+        linear-gradient(to right, transparent 20%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.8));
 }
 .text {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 720px;
     grid-column: 7 / -1;
     grid-row: 1;
     z-index: 1;
@@ -84,13 +87,6 @@
         font-size: clamp(26px, calc(16px + 2vw), 34px);
     }
 }
-/* Reveal the whole ram in wide, shallow frames instead of cropping its horns. */
-@media (min-width: 600px) and (max-width: 899px), (max-width: 899px) and (max-height: 500px) {
-    .photograph {
-        object-fit: contain;
-    }
-}
-
 /* A compact split layout keeps actions within reach in mobile landscape. */
 @media (min-width: 600px) and (max-width: 899px) and (max-height: 500px) {
     .inner {
@@ -99,14 +95,13 @@
         min-height: 200px;
     }
     .image {
-        grid-column: 1;
+        grid-column: 1 / -1;
         height: auto;
     }
-    .photograph {
-        object-position: center;
-    }
     .image::after {
-        background: none;
+        background:
+            linear-gradient(to bottom, transparent 65%, black),
+            linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8) 42%);
     }
     .text {
         grid-column: 2;
