@@ -1,0 +1,26 @@
+.actionLink{
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid transparent;
+    border-radius: 0.375rem;
+    background: var(--mainColor);
+    color: var(--titleOnMainColor);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    overflow-wrap: anywhere;
+}
+
+.actionLink:hover{
+    border-color: currentColor;
+    text-decoration-thickness: 2px;
+}
+
+.actionLink:focus-visible{
+    outline: 3px solid var(--generalFontColor);
+    outline-offset: 4px;
+}

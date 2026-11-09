@@ -2,6 +2,7 @@
 const nextConfig = {
     async redirects() {
         return [
+            { source: '/sponsoren', destination: '/sponsoring/unsere-sponsoren', permanent: true },
             { source: '/informationen/festzentrum', destination: '/schiessen/festzentrum', permanent: true },
             { source: '/informationen/termine', destination: '/schiessen/programm', permanent: true },
             { source: '/informationen/organisation', destination: '/ueber-uns/organisation', permanent: true },
