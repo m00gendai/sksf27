@@ -1,32 +1,20 @@
-import { navbar } from "../Navbar/navbarStructure"
-import s from "./QuickLinks.module.css"
-import Link from "next/link"
+import Link from "next/link";
+import { navbar } from "../Navbar/navbarStructure";
+import s from "./QuickLinks.module.css";
 
-export default function QuickLinks(){
-    return(
-        <div className={s.container}>
-            {navbar.map(item=>{
-                if(item.isQuickLink){
-                    return(
-                        <Link key={`quicklink_${item.name}`} href={item.url} className={s.item} title={`Link zur Seite: ${item.name}`}>
-                            {item.name}
-                        </Link>
-                    )
-                }
-                if(item.sub !== undefined){
-                    return item.sub.map(sub=>{
-                        if(sub.isQuickLink){
-                            return(
-                                <Link key={`quicklink_${sub.name}`} href={sub.url} className={s.item}  title={`Link zur Seite: ${sub.name}`}>
-                                    <div className={s.icon}>{sub.icon}</div>
-                                    <div className={s.name}>{sub.name}</div>
-                                </Link>
-                            )
-                        }
-                    })
-                }
-            })
-            }
-        </div>
-    )
+export default function QuickLinks() {
+    const links = navbar.flatMap(item => [item, ...(item.sub ?? [])])
+        .filter(item => item.isQuickLink);
+    return (
+        <nav className={s.container} aria-label="Schnellzugriff">
+            {links.map(item => (
+                <Link key={item.url} href={item.url} className={s.item}
+                    target={item.openInNewTab ? "_blank" : undefined}
+                    rel={item.openInNewTab ? "noopener noreferrer" : undefined}>
+                    <span className={s.icon} aria-hidden="true">{item.icon}</span>
+                    <span className={s.name}>{item.name}</span>
+                </Link>
+            ))}
+        </nav>
+    );
 }

@@ -1,4 +1,5 @@
 :root{
+  --navigation-height: 4rem;
   --mainColor: #FFD730;
   --secondaryColor: #228B22;
   --backgroundColor: rgba(250, 250, 250, 1);
