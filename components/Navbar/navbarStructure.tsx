@@ -54,8 +54,18 @@ export const navbar:NavbarItem[] = [
         ]
     },
     {
-        name: "Sponsoren",
-        url: "/sponsoren"
+        name: "Sponsoring",
+        url: "",
+        sub: [
+            {
+                name: "Unsere Sponsoren",
+                url: "/sponsoring/unsere-sponsoren"
+            },
+            {
+                name: "Sponsor werden",
+                url: "/sponsoring/sponsor-werden"
+            },
+        ]
     },
     {
         name: "Aufenthalt",
@@ -80,6 +90,10 @@ export const navbar:NavbarItem[] = [
             { 
                 name: "Organisation", 
                 url: "/ueber-uns/organisation"
+            },
+            {
+                name: "Trägervereine",
+                url: "/ueber-uns/traegervereine"
             },
             { 
                 name: "Kontakt", 
