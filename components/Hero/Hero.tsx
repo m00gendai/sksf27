@@ -1,6 +1,13 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
+import { headerImagePositions } from "@/config/headerImagePositions";
 import { HeroItem } from "./Interface_Hero";
 import s from "./Hero.module.css";
+
+type HeroStyle = CSSProperties & {
+    "--header-position"?: string;
+    "--header-position-mobile"?: string;
+};
 
 async function getHero(): Promise<HeroItem[]> {
     const response = await fetch(
@@ -16,8 +23,13 @@ async function getHero(): Promise<HeroItem[]> {
 
 export default async function Hero() {
     const [hero] = await getHero();
+    const position = headerImagePositions["/"];
+    const heroStyle: HeroStyle = {
+        "--header-position": position?.desktop,
+        "--header-position-mobile": position?.mobile,
+    };
     return (
-        <header className={s.container}>
+        <header className={s.container} style={heroStyle}>
             <div className={s.inner}>
                 <div className={s.image}>
                     <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${hero.image.path}`}
