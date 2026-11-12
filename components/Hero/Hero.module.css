@@ -63,6 +63,28 @@
     margin: 0;
     text-shadow: 0 1px 3px black;
 }
+@media (min-width: 900px) {
+    .image {
+        width: 100%;
+        max-width: 1920px;
+        justify-self: center;
+        /* Gradually blend into black once the viewport exceeds the image cap. */
+        --hero-edge-fade: clamp(0px, calc(100vw - 1920px), 154px);
+        mask-image: linear-gradient(to right, transparent, black var(--hero-edge-fade), black calc(100% - var(--hero-edge-fade)), transparent);
+    }
+    .photograph {
+        /* The zoom leaves enough overhang to shift right without exposing an edge. */
+        transform: translateX(5%) scale(1.1);
+        transform-origin: center;
+    }
+    .text {
+        grid-column: 1 / -1;
+        width: 50%;
+        /* Align with the 1440px navigation area as space grows. The 16px
+           adjustment accounts for the Hero's 48px and navigation's 32px padding. */
+        margin-inline-start: max(0px, calc((100% - 1440px) / 2 - 16px));
+    }
+}
 @media (max-width: 899px) {
     .inner {
         display: flex;

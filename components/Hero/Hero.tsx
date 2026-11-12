@@ -34,7 +34,7 @@ export default async function Hero() {
                 <div className={s.image}>
                     <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${hero.image.path}`}
                         alt="" fill priority className={s.photograph}
-                        sizes="100vw" />
+                        sizes="(min-width: 1920px) 1920px, 100vw" />
                 </div>
                 <div className={s.text}>
                     {/* Let the CMS title wrap naturally instead of keeping desktop line breaks. */}
