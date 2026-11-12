@@ -11,6 +11,7 @@ export const headerImagePositions: Record<string, HeaderImagePosition | undefine
         desktop: "50% 65%",
         mobile: "50% 50%",
     },
+    "/aufenthalt": {},
     "/datenschutz": {
         desktop: "50% 35%",
         mobile: "50% 50%",
