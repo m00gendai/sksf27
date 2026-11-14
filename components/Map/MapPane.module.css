@@ -129,7 +129,36 @@
 
 .more{
     position: relative;
-    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: light-dark(#222, var(--mainColor));
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
+}
+
+.more:hover,
+.more:focus-visible{
+    background: light-dark(rgba(255, 215, 48, 0.2), rgba(255, 215, 48, 0.12));
+    text-decoration: none;
+}
+
+.more:focus-visible{
+    outline: 3px solid currentColor;
+    /* Keep the focus ring inside the link when the popup scrolls. */
+    outline-offset: -3px;
+}
+
+.more svg{
+    width: 1rem;
+    height: 1rem;
+    flex: none;
 }
 
 .festivalDescription{

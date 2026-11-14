@@ -12,7 +12,7 @@ import IconBar from "../IconBar/IconBar"
 import Link from "next/link"
 import Image from "next/image"
 import { Card, Inset } from "@radix-ui/themes"
-import { IoCloseCircleOutline } from "react-icons/io5"
+import { IoArrowForward, IoCloseCircleOutline } from "react-icons/io5"
 
 interface Props {
     ranges: ShootingRange[]
@@ -198,7 +198,11 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
                                 {selectedLocation?.kind === "festivalCentre" ? <div className={s.festivalLogo}>
                                     <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="160px" className={s.festivalLogoImage} />
                                 </div> : null}
-                                <Link className={s.more} href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}>mehr...</Link>
+                                <Link className={s.more}
+                                    href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}
+                                    aria-label={`Mehr erfahren: ${currentRange ? currentRange.name : festivalCentre.name}`}>
+                                    Mehr erfahren <IoArrowForward aria-hidden="true" />
+                                </Link>
                             </div>
                         </Card>
                     </Overlay> : null}
