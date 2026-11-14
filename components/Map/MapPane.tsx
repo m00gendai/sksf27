@@ -163,7 +163,7 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
                     }}
                     boxClassname={s.mapLayer}
                 >
-                    <ZoomControl buttonStyle={{ width: 44, height: 44, lineHeight: "42px" }} />
+                    <ZoomControl buttonStyle={{ width: 44, height: 44, lineHeight: "42px", color: "var(--generalFontColor)" }} />
                     {ranges.map(range => <Marker
                         className={s.marker}
                         key={range._id}

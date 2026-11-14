@@ -31,7 +31,7 @@
 .link svg { width: 14px; height: 14px; }
 .link:hover,
 .sublink:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--navigation-hover-background);
     text-decoration: none;
 }
 .dropdown {
@@ -44,7 +44,7 @@
     margin: 0;
     padding: 8px 0;
     list-style: none;
-    background: light-dark(var(--secondaryColor), var(--backgroundColor));
+    background: var(--navigation-background);
     max-height: calc(100dvh - var(--navigation-height));
     box-sizing: border-box;
     overflow-y: auto;
