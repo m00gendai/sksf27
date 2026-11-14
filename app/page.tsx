@@ -3,6 +3,7 @@ import MapContainer from "@/components/Map/MapContainer";
 import QuickLinks from "@/components/QuickLinks/QuickLinks";
 import "@/globals/globals.css";
 import { pageMetadata } from "@/globals/utils";
+import s from "./page.module.css";
 
 export async function generateMetadata(){
   return pageMetadata("Home")
@@ -10,7 +11,7 @@ export async function generateMetadata(){
 
 export default function Home() {
   return (
-    <main>
+    <main className={s.home}>
      <Hero />
      <QuickLinks />
      <MapContainer />

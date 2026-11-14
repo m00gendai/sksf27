@@ -1,3 +1,12 @@
+.home {
+  min-height: 0;
+}
+
+/* Keep unused viewport space below the footer consistent with the homepage. */
+:global(body):has(.home) {
+  background-color: #000;
+}
+
 .main {
   display: flex;
   flex-direction: column;
