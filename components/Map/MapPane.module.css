@@ -43,10 +43,17 @@
     z-index: 100;
     transform: translateX(-50%);
     background: white;
-    width: min(34rem, var(--map-popup-max-width));
+    width: min(24rem, var(--map-popup-max-width));
     max-height: var(--map-popup-max-height);
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+/* Radix's border-bleed wrapper otherwise creates a 1px scroll overflow. */
+.overlay > :global(.rt-CardInner){
+    width: 100%;
+    height: auto;
+    margin: 0;
 }
 
 .festivalOverlay{
@@ -55,7 +62,7 @@
 
 .cardTop{
     background: light-dark(var(--mainColor), var(--titleOnMainColor));
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     position: relative;
     display: flex;
     justify-content: flex-start;
@@ -114,6 +121,8 @@
 
 .rangeDetails > div{
     grid-template-columns: repeat(auto-fit, minmax(2rem, 2rem));
+    gap: 0.75rem;
+    margin: 0.5rem 0;
 }
 
 .name{
@@ -175,7 +184,7 @@
 
 .festivalLogoImage{
     width: 100%;
-    max-width: 10rem;
+    max-width: 8rem;
     height: auto;
 }
 

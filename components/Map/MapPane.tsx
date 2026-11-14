@@ -196,7 +196,7 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
                                     <IconBar degrees={currentRange.direction} category={currentRange.category} positions={currentRange.positions} />
                                 </div> : <p className={s.festivalDescription}>{festivalCentre.description}</p>}
                                 {selectedLocation?.kind === "festivalCentre" ? <div className={s.festivalLogo}>
-                                    <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="160px" className={s.festivalLogoImage} />
+                                    <Image src={festivalCentre.logo} alt="Logo GVS" width={512} height={238} sizes="128px" className={s.festivalLogoImage} />
                                 </div> : null}
                                 <Link className={s.more}
                                     href={currentRange ? `/schiessen/schiessanlagen#${currentRange.name}` : festivalCentre.href}
