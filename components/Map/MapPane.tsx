@@ -139,7 +139,9 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
             tabIndex={-1}
             aria-label="Karte der Schiessanlagen und des Festzentrums"
             onPointerDownCapture={() => { overviewMode.current = false }}
-            onWheelCapture={() => { overviewMode.current = false }}
+            onWheelCapture={event => {
+                if (event.ctrlKey || event.metaKey) overviewMode.current = false
+            }}
             onClickCapture={event => {
                 if ((event.target as Element).closest(".pigeon-zoom-buttons")) overviewMode.current = false
             }}
@@ -154,6 +156,9 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
                     center={camera.center}
                     zoom={camera.zoom}
                     twoFingerDrag={twoFingerDrag}
+                    twoFingerDragWarning="Die Karte mit zwei Fingern verschieben."
+                    metaWheelZoom
+                    metaWheelZoomWarning="Zum Zoomen META gedrückt halten und scrollen."
                     onBoundsChanged={({ center, zoom }) => {
                         setCamera(previous => previous
                             && Math.abs(previous.center[0] - center[0]) < 0.0000001
