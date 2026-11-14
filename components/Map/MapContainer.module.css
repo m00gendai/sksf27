@@ -13,3 +13,9 @@
         aspect-ratio: 3/4;
     }
 }
+
+@media screen and (min-aspect-ratio: 13/9){
+    .container{
+        max-height: 560px;
+    }
+}

@@ -1,91 +1,89 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { useTheme } from 'next-themes'
-import React from "react"
-import Link from "next/link"
-import Image from "next/image"
+"use client";
+import { useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { IoChevronDown } from "react-icons/io5";
 import { navbar } from "./navbarStructure";
-import s from "./Navbar.module.css"
-import Medal_light from "@/public/Logo-SKSF27-klein-strich-negativ.png"
-import Medal_dark from "@/public/Logo-SKSF27-klein-rgb-positiv.png"
-import { IoCaretDownSharp } from "react-icons/io5"
-import { usePathname, useRouter } from "next/navigation"
-import { RxMoon, RxSun } from "react-icons/rx"
-import ThemeToggler from "../ThemeToggler/ThemeToggler"
+import ThemeToggler from "../ThemeToggler/ThemeToggler";
+import Medal from "@/public/Logo-SKSF27-klein-strich-negativ.png";
+import layout from "./NavbarLayout.module.css";
+import s from "./Navbar.module.css";
 
-export default function Navbar(){
-
-    const [overTrigger, setOverTrigger] = useState<boolean>(false) // checks if cursor is over trigger link
-    const [visible, setVisible] = useState<boolean>(false) // checks if submenu is visible
-    const [submenu, setSubmenu] = useState<string>("")
-    const {theme, setTheme, resolvedTheme} = useTheme()
-
-    const pathname = usePathname()
-
-    function handleSubMenuTrigger(e:React.MouseEvent, menu:string){
-        submenu === menu ? setSubmenu("") : setSubmenu(menu)
-        if(e.type == "mouseenter"){
-            setOverTrigger(true)
-        } else if(e.type == "mouseleave"){
-            setOverTrigger(false)
-        }
-    }
-
-    useEffect(()=>{
-        if(overTrigger){
-            setVisible(true)
-        }
-        if(!overTrigger){
-            setVisible(false)
-        }
-    },[overTrigger])
-
-    return(
-        <nav className ={`${s.nav} desktop`}>
-            <Link href="/" className={s.logoContainer2}  title={`Link zur Startseite`}>
-               <div className={s.logoInner}><Image
-                    src={theme === "dark" || resolvedTheme === "dark" ? Medal_light : Medal_light}
-                    fill={true}
-                    alt={"Kranzabzeichen"}
-                    style={{objectFit: "contain"}}
-                    className={s.logo}
-                /></div>
-            </Link>
-            <div className={s.tagline}>
-                {`Schaffhauser Kantonalschützenfest 2027`}
+export default function Navbar() {
+    const [submenu, setSubmenu] = useState<string | null>(null);
+    const triggers = useRef<(HTMLButtonElement | null)[]>([]);
+    const pointerType = useRef("");
+    return (
+        <nav className={`${layout.bar} ${layout.desktop}`} aria-label="Hauptnavigation"
+            onKeyDown={event => {
+                if (event.key === "Escape") {
+                    const index = navbar.findIndex(item => item.name === submenu);
+                    setSubmenu(null);
+                    triggers.current[index]?.focus();
+                }
+            }}>
+            <div className={layout.inner}>
+                <Link href="/" className={layout.brand} aria-label="SKSF27 – Startseite">
+                    <Image src={Medal} fill sizes="64px" alt="" />
+                </Link>
+                <div className={layout.tagline}>Schaffhauser Kantonalschützenfest 2027</div>
+                <ul className={s.items}>
+                    {navbar.map((item, index) => (
+                        <li className={s.item} key={item.name}
+                            onPointerEnter={event => {
+                                if (event.pointerType === "mouse") setSubmenu(item.sub ? item.name : null);
+                            }}
+                            onPointerLeave={event => {
+                                // Do not dismiss a dropdown while a link inside it has keyboard focus.
+                                if (event.pointerType === "mouse" && !event.currentTarget.querySelector("ul")?.contains(document.activeElement)) setSubmenu(null);
+                            }}
+                            onBlur={event => {
+                                if (!event.currentTarget.contains(event.relatedTarget)) setSubmenu(null);
+                            }}>
+                            {item.sub ? <>
+                                <button type="button" className={s.link}
+                                    ref={element => { triggers.current[index] = element; }}
+                                    aria-expanded={submenu === item.name}
+                                    aria-controls={`desktop-submenu-${index}`}
+                                    onPointerDown={event => { pointerType.current = event.pointerType; }}
+                                    onClick={event => {
+                                        // Clicking a trigger already opened by hover should keep it open.
+                                        const toggle = event.detail === 0 || pointerType.current !== "mouse";
+                                        setSubmenu(toggle && submenu === item.name ? null : item.name);
+                                    }}
+                                    onKeyDown={event => {
+                                        if (event.key === "ArrowDown") {
+                                            event.preventDefault();
+                                            setSubmenu(item.name);
+                                            requestAnimationFrame(() => {
+                                                document.getElementById(`desktop-submenu-${index}`)?.querySelector("a")?.focus();
+                                            });
+                                        }
+                                    }}>
+                                    {item.name}<IoChevronDown aria-hidden="true" />
+                                </button>
+                                <ul className={s.dropdown} id={`desktop-submenu-${index}`} hidden={submenu !== item.name}>
+                                    {item.sub.map(sub => (
+                                        <li key={sub.name}>
+                                            <Link href={sub.url} className={s.sublink}
+                                                target={sub.openInNewTab ? "_blank" : undefined}
+                                                rel={sub.openInNewTab ? "noopener noreferrer" : undefined}
+                                                onClick={() => setSubmenu(null)}>
+                                                {sub.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </> : <Link href={item.url} className={s.link}
+                                target={item.openInNewTab ? "_blank" : undefined}
+                                rel={item.openInNewTab ? "noopener noreferrer" : undefined}>
+                                {item.name}
+                            </Link>}
+                        </li>
+                    ))}
+                </ul>
+                <div className={layout.theme}><ThemeToggler /></div>
             </div>
-            <div className={s.container}>
-                {navbar.map((item, index)=>{
-                    return(
-                        item.sub ?
-                        <div className={s.surLinkContainer} onMouseEnter={(e)=>handleSubMenuTrigger(e, item.name)} onMouseLeave={(e)=>handleSubMenuTrigger(e, item.name)} key={`subMain_${index}`}>
-                            <div className={s.link} >{`${item.name}`} <IoCaretDownSharp style={{margin: "0 0.5rem"}}/></div>
-                            {visible && submenu === item.name ?
-                                <div className={s.subLinkContainer}>
-                                    <div className={s.buffer}></div>
-                                    <div className={s.content}>
-                                        <div className={s.items}>
-                                            {item.sub?.map((sub, index)=>{
-                                                return(
-                                                    <Link className={s.sublink} href={sub.url} target={sub.openInNewTab ? "_blank" : undefined} rel={sub.openInNewTab ? "noopener noreferrer" : undefined} key={`sub_${index}`}  title={`Link zur Seite: ${sub.name}`}>{`${sub.name}`}</Link>
-                                                )
-                                            })}
-                                        </div>
-                                    </div>
-                                </div>
-                            :
-                                null
-                            }
-                        </div>
-                        :
-
-                            <Link className={s.link} href={item.url} target={item.openInNewTab ? "_blank" : undefined} rel={item.openInNewTab ? "noopener noreferrer" : undefined} key={`main_${index}`}  title={`Link zur Seite: ${item.name}`}>{`${item.name}`}</Link>
-
-                        )
-                })}
-            </div>
-           <ThemeToggler />
         </nav>
-    )
+    );
 }

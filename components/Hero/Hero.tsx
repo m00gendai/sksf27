@@ -1,42 +1,48 @@
-import { HeroItem } from "./Interface_Hero"
-import s from "./Hero.module.css"
-import Image from "next/image"
+import Image from "next/image";
+import type { CSSProperties } from "react";
+import { headerImagePositions } from "@/config/headerImagePositions";
+import { HeroItem } from "./Interface_Hero";
+import s from "./Hero.module.css";
 
-async function getHero(){
-    const getHero:Response = await fetch(
-        'https://cms.sksf27.ch/api/content/items/hero?populate=100',
+type HeroStyle = CSSProperties & {
+    "--header-position"?: string;
+    "--header-position-mobile"?: string;
+};
+
+async function getHero(): Promise<HeroItem[]> {
+    const response = await fetch(
+        "https://cms.sksf27.ch/api/content/items/hero?populate=100",
         {
-            headers: {
-                'api-key': `${process.env.CMS}`,
-            },
-            next: {
-                revalidate: 10,
-            }
+            headers: { "api-key": `${process.env.CMS}` },
+            next: { revalidate: 10 },
         }
-    )
-
-    const hero:HeroItem[] = await getHero.json()
-    return hero
+    );
+    if (!response.ok) throw new Error("Could not load the homepage Hero.");
+    return response.json();
 }
 
-export default async function Hero(){
-    
-    const hero:HeroItem[] = await getHero()
-
+export default async function Hero() {
+    const [hero] = await getHero();
+    const position = headerImagePositions["/"];
+    const heroStyle: HeroStyle = {
+        "--header-position": position?.desktop,
+        "--header-position-mobile": position?.mobile,
+    };
     return (
-        <div className={`${s.container} desktop`}>
-            <div className={s.image}>
-                <Image
-                    src={`${process.env.NEXT_PUBLIC_STORAGE}${hero[0].image.path}`}
-                    alt={"Goat Who Stares At Men"}
-                    fill={true}
-                    style={{objectFit: "cover"}}
-                />
+        <header className={s.container} style={heroStyle}>
+            <div className={s.inner}>
+                <div className={s.image}>
+                    <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${hero.image.path}`}
+                        alt="" fill priority className={s.photograph}
+                        sizes="(min-width: 1920px) 1920px, 100vw" />
+                </div>
+                <div className={s.text}>
+                    {/* Let the CMS title wrap naturally instead of keeping desktop line breaks. */}
+                    <div className={s.mainText}
+                        dangerouslySetInnerHTML={{ __html: hero.mainText.replace(/<br\s*\/?\s*>/gi, " ") }} />
+                    <div className={s.sideText} dangerouslySetInnerHTML={{ __html: hero.sideText }} />
+                </div>
             </div>
-            <div className={s.text}>
-                <div className={s.mainText} dangerouslySetInnerHTML={{__html: hero[0].mainText}}></div>
-                <div className={s.sideText} dangerouslySetInnerHTML={{__html: hero[0].sideText}}></div>
-            </div>
-        </div>
-    )
+        </header>
+    );
 }

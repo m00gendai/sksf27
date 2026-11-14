@@ -1,55 +1,140 @@
-.container{
-    position: relative;
-    width: 100vw;
-    aspect-ratio: 21/6;
+.container {
+    width: 100%;
     background: black;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    color: var(--mainColor);
 }
-
-.image{
+.inner {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    /* Account for the navigation, leaving room for the QuickLinks on short laptops. */
+    min-height: clamp(320px, calc(52svh - var(--navigation-height)), 480px);
+}
+.image {
     position: relative;
-    height: 100%;
-    aspect-ratio: 21/9;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-width: 0;
+    overflow: hidden;
 }
-
-.text{
+.photograph {
+    object-fit: cover;
+    object-position: var(--header-position, 50% 50%);
+}
+.image::after {
+    content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, transparent 65%, black),
+        linear-gradient(to left, transparent 20%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.8));
 }
-
-.mainText{
-    position: relative;
+.text {
+    box-sizing: border-box;
     width: 100%;
-    color: var(--mainColor);
-    padding: 0 2vw 0 0;
-    text-align: right;
-    font-size: 2vw;
+    max-width: 720px;
+    grid-column: 1 / 7;
+    grid-row: 1;
+    z-index: 1;
+    min-width: 0;
+    align-self: center;
+    padding: clamp(24px, 3vw, 48px);
+    display: grid;
+    gap: 16px;
+    text-align: left;
 }
-
-.mainText h1{
+.mainText h1 {
     margin: 0;
-    text-shadow: 1px 1px 1px black;
+    color: inherit;
+    font-size: clamp(26px, calc(16px + 2vw), 52px);
+    line-height: 1.13;
+    font-weight: 700;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    text-shadow: 0 1px 3px black;
 }
-
-.sideText{
-    position: relative;
-    width: 100%;
-    color: var(--mainColor);
-    padding: 0 2vw 0 0;
-    text-align: right;
-    font-size: 1.5vw;
+.sideText {
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
 }
-
-.sideText p{
+.sideText p {
+    display: block;
     margin: 0;
-    text-shadow: 1px 1px 1px black;
-    justify-content: flex-end!important;
+    text-shadow: 0 1px 3px black;
+}
+@media (min-width: 900px) {
+    .image {
+        width: 100%;
+        max-width: 1920px;
+        justify-self: center;
+        /* Gradually blend into black once the viewport exceeds the image cap. */
+        --hero-edge-fade: clamp(0px, calc(100vw - 1920px), 154px);
+        mask-image: linear-gradient(to right, transparent, black var(--hero-edge-fade), black calc(100% - var(--hero-edge-fade)), transparent);
+    }
+    .photograph {
+        /* The zoom leaves enough overhang to shift right without exposing an edge. */
+        transform: translateX(5%) scale(1.1);
+        transform-origin: center;
+    }
+    .text {
+        grid-column: 1 / -1;
+        width: 50%;
+        /* Align with the 1440px navigation area as space grows. The 16px
+           adjustment accounts for the Hero's 48px and navigation's 32px padding. */
+        margin-inline-start: max(0px, calc((100% - 1440px) / 2 - 16px));
+    }
+}
+@media (max-width: 899px) {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    .image {
+        width: 100%;
+        height: min(clamp(160px, 52vw, 240px), max(120px, calc((100svh - var(--navigation-height)) * 0.45)));
+        flex: none;
+    }
+    .image::after {
+        background: linear-gradient(to bottom, transparent 80%, black);
+    }
+    .photograph {
+        object-position: var(--header-position-mobile, var(--header-position, 50% 50%));
+    }
+    .text {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 672px;
+        padding: 20px 24px 24px;
+        gap: 12px;
+    }
+    .mainText h1 {
+        font-size: clamp(26px, calc(16px + 2vw), 34px);
+    }
+}
+/* A compact split layout keeps actions within reach in mobile landscape. */
+@media (min-width: 600px) and (max-width: 899px) and (max-height: 500px) {
+    .inner {
+        display: grid;
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        min-height: 200px;
+    }
+    .image {
+        grid-column: 1 / -1;
+        height: auto;
+    }
+    .image::after {
+        background:
+            linear-gradient(to bottom, transparent 65%, black),
+            linear-gradient(to left, transparent, rgba(0, 0, 0, 0.8) 42%);
+    }
+    .text {
+        grid-column: 1;
+        max-width: none;
+        padding: 20px;
+    }
+    .mainText h1 {
+        font-size: 28px;
+    }
 }

@@ -15,7 +15,7 @@ export default function ThemeToggler(){
     }, [])
 
     if (!mounted) {
-        return <button className={s.button}><RxShadow/></button>
+        return <button type="button" className={s.button} aria-label="Farbschema wechseln" disabled><RxShadow aria-hidden="true"/></button>
     }
 
     function toggleTheme(){
@@ -23,6 +23,6 @@ export default function ThemeToggler(){
     }
 
     return(
-        <button className={s.button} onClick={toggleTheme}>{theme === "dark" || resolvedTheme === "dark" ? <RxMoon/> : <RxSun/>}</button>
+        <button type="button" className={s.button} onClick={toggleTheme} aria-label={theme === "dark" || resolvedTheme === "dark" ? "Helles Farbschema aktivieren" : "Dunkles Farbschema aktivieren"}>{theme === "dark" || resolvedTheme === "dark" ? <RxMoon aria-hidden="true"/> : <RxSun aria-hidden="true"/>}</button>
     )
 }

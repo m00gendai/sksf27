@@ -69,19 +69,7 @@ export const navbar:NavbarItem[] = [
     },
     {
         name: "Aufenthalt",
-        url: "",
-        sub: [
-            {
-                name: "Übernachten",
-                url: "https://schaffhauserland.ch/erleben/uebernachten/hotels.html",
-                openInNewTab: true
-            },
-            {
-                name: "Erleben",
-                url: "https://www.natourpark.ch/",
-                openInNewTab: true
-            },
-        ]
+        url: "/aufenthalt",
     },
     {
         name: "Über uns",
