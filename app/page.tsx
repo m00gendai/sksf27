@@ -14,7 +14,7 @@ export default function Home() {
     <main className={s.home}>
      <Hero />
      <QuickLinks />
-     <MapContainer />
+     <MapContainer fillAvailableSpace />
     </main>
   );
 }

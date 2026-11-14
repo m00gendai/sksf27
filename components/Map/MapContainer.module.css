@@ -1,9 +1,24 @@
 .container{
+    --map-min-height: min(clamp(360px, 40vw, 560px), 75svh);
     position: relative;
     width: 100%;
-    height: min(clamp(360px, 40vw, 560px), 75svh);
+    height: var(--map-min-height);
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
+}
+
+.fillAvailableSpace{
+    flex: 1 0 auto;
+    height: auto;
+    min-height: var(--map-min-height);
+    align-items: stretch;
+}
+
+/* The map canvas must not determine the flexible container's intrinsic height. */
+.fillAvailableSpace > div{
+    position: absolute;
+    inset: 0;
+    height: auto;
 }

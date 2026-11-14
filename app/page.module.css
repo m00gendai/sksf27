@@ -1,10 +1,34 @@
 .home {
   min-height: 0;
+  flex: 1 0 auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
 
-/* Keep unused viewport space below the footer consistent with the homepage. */
+/* Size the whole homepage, including navigation and footer, to the viewport. */
 :global(body):has(.home) {
   background-color: #000;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+:global(body):has(.home) > :global(.radix-themes) {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+:global(.radix-themes):has(> .home) > :global(nav),
+.home > :global(header),
+.home > :global(nav) {
+  flex: none;
+}
+
+:global(body):has(.home) > :global(footer) {
+  box-sizing: border-box;
+  flex: none;
 }
 
 .main {

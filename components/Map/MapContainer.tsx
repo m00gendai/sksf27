@@ -29,12 +29,16 @@ async function getRanges(){
     return ranges
 }
 
-export default async function MapContainer(){
+interface Props {
+    fillAvailableSpace?: boolean
+}
+
+export default async function MapContainer({ fillAvailableSpace = false }: Props){
 
     const ranges:ShootingRange[] = await getRanges()
 
     return(
-        <div className={s.container}>
+        <div className={`${s.container} ${fillAvailableSpace ? s.fillAvailableSpace : ""}`}>
             <MapPane ranges={ranges} festivalCentre={festivalCentre}/>
         </div>
   )
