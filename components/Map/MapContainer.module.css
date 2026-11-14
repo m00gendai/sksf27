@@ -1,21 +1,9 @@
 .container{
     position: relative;
     width: 100%;
-    aspect-ratio: 30/10;
+    height: min(clamp(360px, 40vw, 560px), 75svh);
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-}
-
-@media screen and (max-aspect-ratio: 13/9){
-    .container{
-        aspect-ratio: 3/4;
-    }
-}
-
-@media screen and (min-aspect-ratio: 13/9){
-    .container{
-        max-height: 560px;
-    }
 }
