@@ -93,7 +93,8 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
         const observer = new ResizeObserver(measure)
         observer.observe(element)
         measure()
-        element.querySelector<HTMLButtonElement>("button")?.focus({ preventScroll: true })
+        // Focus the popup without highlighting the close button on opening.
+        element.focus({ preventScroll: true })
         return () => observer.disconnect()
     }, [selectedLocation])
 
@@ -180,7 +181,7 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
                         color={festivalCentre.color} onClick={() => handleMarkerClick({ kind: "festivalCentre" })} />
                     {currentRange && currentMarker ? <Marker className={s.marker} width={50} anchor={currentMarker} color="#FFD730" /> : null}
                     {currentMarker ? <Overlay anchor={currentMarker} offset={[0, 0]}>
-                        <Card ref={popupRef} className={`${s.overlay} ${selectedLocation?.kind === "festivalCentre" ? s.festivalOverlay : ""} boxShadow pigeon-drag-block`}
+                        <Card ref={popupRef} tabIndex={-1} className={`${s.overlay} ${selectedLocation?.kind === "festivalCentre" ? s.festivalOverlay : ""} boxShadow pigeon-drag-block`}
                             onWheelCapture={event => event.stopPropagation()}>
                             <Inset side="top" clip="padding-box" className={s.cardTop}>
                                 <div className={s.location}>

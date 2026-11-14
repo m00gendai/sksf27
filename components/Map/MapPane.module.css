@@ -26,8 +26,7 @@
     box-shadow: inset 0 0 0 1px currentColor;
 }
 
-.overview:focus-visible,
-.close:focus-visible{
+.overview:focus-visible{
     outline: 3px solid var(--secondaryColor);
     outline-offset: 3px;
 }
@@ -47,6 +46,11 @@
     max-height: var(--map-popup-max-height);
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+/* Opening focuses this container; keyboard focus remains visible on its controls. */
+.overlay:focus{
+    outline: none;
 }
 
 /* Radix's border-bleed wrapper otherwise creates a 1px scroll overflow. */
@@ -78,6 +82,7 @@
     flex: none;
     padding: 6px;
     border: 0;
+    border-radius: 50%;
     background: transparent;
     color: inherit;
     display: flex;
@@ -87,6 +92,11 @@
 
 .close:hover{
     cursor: pointer;
+}
+
+.close:focus-visible{
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
 }
 
 .close svg{
