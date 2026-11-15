@@ -5,9 +5,12 @@ import { LuExternalLink, LuFile, LuFileArchive, LuFileSpreadsheet, LuFileText, L
 import { formatFileSize, getDocumentType, type DocumentType } from "./documentMetadata"
 import s from "./documentGallery.module.css"
 
+type DocumentAsset = Pick<Medium, "path" | "title"> & Partial<Pick<Medium, "mime" | "size">>
+
 interface Props{
-    documents: Medium[]
+    documents: DocumentAsset[]
     covers?: Record<string, string>
+    baseUrl?: string
 }
 
 const fileIcons: Record<DocumentType["icon"], IconType> = {
@@ -18,7 +21,7 @@ const fileIcons: Record<DocumentType["icon"], IconType> = {
     archive: LuFileArchive,
 }
 
-export default function DocumentGallery({documents, covers}:Props){
+export default function DocumentGallery({documents, covers, baseUrl = process.env.NEXT_PUBLIC_STORAGE ?? ""}:Props){
     const hasCovers = documents.some(document => Boolean(covers?.[document.title]))
     const coversOnly = hasCovers && documents.every(document => Boolean(covers?.[document.title]))
 
@@ -32,7 +35,7 @@ export default function DocumentGallery({documents, covers}:Props){
                         <a
                             key={`${index}_${document.title}`}
                             className={`${s.coverDocument} boxShadow`}
-                            href={`${process.env.NEXT_PUBLIC_STORAGE}${document.path}`}
+                            href={`${baseUrl}${document.path}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`${document.title} (öffnet in einem neuen Tab)`}
@@ -55,7 +58,7 @@ export default function DocumentGallery({documents, covers}:Props){
                 const FileIcon = fileIcons[fileType.icon]
 
                 return(
-                        <a key={`${index}_${document.title}`} className={s.document} href={`${process.env.NEXT_PUBLIC_STORAGE}${document.path}`} target="_blank" rel="noopener noreferrer">
+                        <a key={`${index}_${document.title}`} className={s.document} href={`${baseUrl}${document.path}`} target="_blank" rel="noopener noreferrer">
                             <FileIcon className={s.fileIcon} aria-hidden="true" focusable="false" />
                             <span className={s.documentContent}>
                                 <span className={s.documentTitle}>{document.title}</span>

@@ -16,7 +16,7 @@ export default function Page() {
             <section className={s.page}>
                 <PageHeading image={headerImage} title="Trägervereine" />
                 <p className={s.intro}>
-                    Das Schaffhauser Kantonalschützenfest 2027 wird von elf Schützenvereinen getragen.
+                    Das Schaffhauser Kantonalschützenfest 2027 wird von zwölf Schützenvereinen getragen.
                     Gemeinsam setzen sie sich mit grossem Engagement für die Organisation und Durchführung unseres Schützenfests ein.
                 </p>
                 <ClubGallery clubs={traegervereine} />
