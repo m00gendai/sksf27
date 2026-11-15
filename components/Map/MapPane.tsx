@@ -157,7 +157,7 @@ export default function MapPane({ ranges, festivalCentre }: Props) {
                     center={camera.center}
                     zoom={camera.zoom}
                     twoFingerDrag={twoFingerDrag}
-                    twoFingerDragWarning="Die Karte mit zwei Fingern verschieben."
+                    twoFingerDragWarning="Die Karte mit zwei Fingern verschieben und zoomen."
                     metaWheelZoom
                     metaWheelZoomWarning="Zum Zoomen META gedrückt halten und scrollen."
                     onBoundsChanged={({ center, zoom }) => {
