@@ -25,9 +25,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(to bottom, transparent 65%, black),
-        linear-gradient(to left, transparent 20%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.8));
+    background: linear-gradient(to bottom, black, transparent 14%, transparent 78%, black);
 }
 .text {
     box-sizing: border-box;
@@ -64,25 +62,44 @@
     text-shadow: 0 1px 3px black;
 }
 @media (min-width: 900px) {
-    .image {
-        width: 100%;
+    .inner {
+        --hero-title-width: clamp(340px, 38vw, 520px);
+        --hero-image-width: clamp(720px, 75vw, 1280px);
+        --hero-inline-padding: clamp(24px, 3vw, 48px);
+        /* Shade only the image beneath the title, allowing a little extra room
+           for the browser scrollbar and the end of the text. */
+        --hero-overlap: max(0px, calc(var(--hero-title-width) + var(--hero-image-width) + var(--hero-inline-padding) + var(--hero-inline-padding) - min(100vw, 1920px) + 24px));
+        box-sizing: border-box;
         max-width: 1920px;
-        justify-self: center;
-        /* Gradually blend into black once the viewport exceeds the image cap. */
-        --hero-edge-fade: clamp(0px, calc(100vw - 1920px), 154px);
+        margin-inline: auto;
+        padding-inline: var(--hero-inline-padding);
+        /* Keep the title wide enough as its font grows, without an oversized
+           text column on desktop or a layout switch at 1200px. */
+        grid-template-columns: minmax(0, var(--hero-title-width)) minmax(0, 1fr);
+    }
+    .image {
+        /* Share the row with the title rather than shrinking into a spare column. */
+        grid-column: 1 / -1;
+        width: min(100%, var(--hero-image-width));
+        max-width: 1280px;
+        justify-self: end;
+        align-self: center;
+        /* Avoid a narrow, heavily cropped photo beside the title on laptops. */
+        aspect-ratio: 2 / 1;
+        max-height: 480px;
+        --hero-edge-fade: clamp(32px, 4vw, 64px);
         mask-image: linear-gradient(to right, transparent, black var(--hero-edge-fade), black calc(100% - var(--hero-edge-fade)), transparent);
     }
-    .photograph {
-        /* The zoom leaves enough overhang to shift right without exposing an edge. */
-        transform: translateX(5%) scale(1.1);
-        transform-origin: center;
+    .image::after {
+        background:
+            linear-gradient(to bottom, black, transparent 14%, transparent 78%, black),
+            linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.64) var(--hero-overlap), transparent calc(var(--hero-overlap) + 96px));
     }
     .text {
-        grid-column: 1 / -1;
-        width: 50%;
-        /* Align with the 1440px navigation area as space grows. The 16px
-           adjustment accounts for the Hero's 48px and navigation's 32px padding. */
-        margin-inline-start: max(0px, calc((100% - 1440px) / 2 - 16px));
+        grid-column: 1;
+        width: 100%;
+        max-width: none;
+        padding: 32px 0;
     }
 }
 @media (max-width: 899px) {
