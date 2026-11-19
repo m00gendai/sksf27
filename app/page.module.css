@@ -11,7 +11,10 @@
    as a body sibling. Keep this structure in sync with the selectors below.
    :has(.home) limits the viewport-filling layout to the homepage. */
 :global(body):has(.home) {
-  background-color: #000;
+  /* Shared by the hero, quick links and image fades (#080A0C). */
+  --hero-background-rgb: 8, 10, 12;
+  --hero-background: rgb(var(--hero-background-rgb));
+  background-color: var(--hero-background);
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: stretch;

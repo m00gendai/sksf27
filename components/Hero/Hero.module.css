@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    background: black;
+    background: var(--hero-background, #000);
     color: var(--mainColor);
 }
 .inner {
@@ -30,7 +30,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, black, transparent 14%, transparent 78%, black);
+    background: linear-gradient(to bottom, var(--hero-background, #000), transparent 14%, transparent 78%, var(--hero-background, #000));
 }
 .text {
     box-sizing: border-box;
@@ -49,7 +49,7 @@
 .mainText h1 {
     margin: 0;
     color: inherit;
-    font-size: clamp(26px, calc(16px + 2vw), 52px);
+    font-size: clamp(26px, calc(16px + 2vw), 56px);
     line-height: 1.13;
     font-weight: 700;
     text-wrap: balance;
@@ -70,14 +70,15 @@
     .inner {
         /* Follow the photograph's height, allowing longer titles to expand the row. */
         min-height: 0;
-        --hero-title-width: clamp(340px, 38vw, 520px);
+        --hero-max-width: 1760px;
+        --hero-title-width: clamp(340px, 38vw, 560px);
         --hero-image-width: clamp(720px, 75vw, 1280px);
         --hero-inline-padding: clamp(24px, 3vw, 48px);
         /* Shade only the image beneath the title, allowing a little extra room
            for the browser scrollbar and the end of the text. */
-        --hero-overlap: max(0px, calc(var(--hero-title-width) + var(--hero-image-width) + var(--hero-inline-padding) + var(--hero-inline-padding) - min(100vw, 1920px) + 24px));
+        --hero-overlap: max(0px, calc(var(--hero-title-width) + var(--hero-image-width) + var(--hero-inline-padding) + var(--hero-inline-padding) - min(100vw, var(--hero-max-width)) + 24px));
         box-sizing: border-box;
-        max-width: 1920px;
+        max-width: var(--hero-max-width);
         margin-inline: auto;
         padding-inline: var(--hero-inline-padding);
         /* Keep the title wide enough as its font grows, without an oversized
@@ -110,14 +111,14 @@
         position: absolute;
         inset: 0;
         /* Blend the cropped lower fur while leaving the transparent top untouched. */
-        background: linear-gradient(to bottom, transparent 93%, black);
+        background: linear-gradient(to bottom, transparent 93%, var(--hero-background, #000));
     }
     .photograph {
         /* Preserve the complete transparent artwork on desktop. */
         object-fit: contain;
     }
     .image::after {
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.64) var(--hero-overlap), transparent calc(var(--hero-overlap) + 96px));
+        background: linear-gradient(to right, rgba(var(--hero-background-rgb, 0, 0, 0), 0.72), rgba(var(--hero-background-rgb, 0, 0, 0), 0.64) var(--hero-overlap), transparent calc(var(--hero-overlap) + 96px));
     }
     .text {
         grid-column: 1;
@@ -138,7 +139,7 @@
         flex: none;
     }
     .image::after {
-        background: linear-gradient(to bottom, transparent 80%, black);
+        background: linear-gradient(to bottom, transparent 80%, var(--hero-background, #000));
     }
     .photograph {
         object-position: var(--header-position-mobile, var(--header-position, 50% 50%));
@@ -167,8 +168,8 @@
     }
     .image::after {
         background:
-            linear-gradient(to bottom, transparent 65%, black),
-            linear-gradient(to left, transparent, rgba(0, 0, 0, 0.8) 42%);
+            linear-gradient(to bottom, transparent 65%, var(--hero-background, #000)),
+            linear-gradient(to left, transparent, rgba(var(--hero-background-rgb, 0, 0, 0), 0.8) 42%);
     }
     .text {
         grid-column: 1;

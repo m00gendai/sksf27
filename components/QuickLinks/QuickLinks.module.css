@@ -6,7 +6,7 @@
     gap: 12px;
     padding-block: clamp(16px, 2vw, 24px) clamp(16px, 2vw, 24px);
     padding-inline: max(16px, calc((100% - 1200px) / 2));
-    background: black;
+    background: var(--hero-background, #000);
 }
 .item {
     box-sizing: border-box;
