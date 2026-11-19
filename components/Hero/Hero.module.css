@@ -102,16 +102,18 @@
         height: auto;
         aspect-ratio: var(--hero-image-ratio, 2);
         place-self: center;
-        mask-image: linear-gradient(to right, transparent, black var(--hero-edge-fade), black calc(100% - var(--hero-edge-fade)), transparent);
+        /* Only the cropped fur on the left needs a fade; the right edge is transparent. */
+        mask-image: linear-gradient(to right, transparent, black var(--hero-edge-fade));
     }
     .imageSurface::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, black, transparent 7%, transparent 93%, black);
+        /* Blend the cropped lower fur while leaving the transparent top untouched. */
+        background: linear-gradient(to bottom, transparent 93%, black);
     }
     .photograph {
-        /* Show the full photograph without cropping it to the taller hero. */
+        /* Preserve the complete transparent artwork on desktop. */
         object-fit: contain;
     }
     .image::after {

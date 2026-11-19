@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { headerImagePositions } from "@/config/headerImagePositions";
 import { HeroItem } from "./Interface_Hero";
+import heroImage from "@/public/hero_transparent_v2.png";
 import s from "./Hero.module.css";
 
 type HeroStyle = CSSProperties & {
@@ -28,15 +29,14 @@ export default async function Hero() {
     const heroStyle: HeroStyle = {
         "--header-position": position?.desktop,
         "--header-position-mobile": position?.mobile,
-        "--hero-image-ratio": hero.image.width > 0 && hero.image.height > 0
-            ? hero.image.width / hero.image.height : undefined,
+        "--hero-image-ratio": heroImage.width / heroImage.height,
     };
     return (
         <header className={s.container} style={heroStyle}>
             <div className={s.inner}>
                 <div className={s.image}>
                     <div className={s.imageSurface}>
-                        <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${hero.image.path}`}
+                        <Image src={heroImage}
                             alt="" fill priority className={s.photograph}
                             sizes="(min-width: 1707px) 1280px, (min-width: 960px) 75vw, (min-width: 900px) 720px, 100vw" />
                     </div>
