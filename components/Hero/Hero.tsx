@@ -7,6 +7,7 @@ import s from "./Hero.module.css";
 type HeroStyle = CSSProperties & {
     "--header-position"?: string;
     "--header-position-mobile"?: string;
+    "--hero-image-ratio"?: number;
 };
 
 async function getHero(): Promise<HeroItem[]> {
@@ -27,14 +28,18 @@ export default async function Hero() {
     const heroStyle: HeroStyle = {
         "--header-position": position?.desktop,
         "--header-position-mobile": position?.mobile,
+        "--hero-image-ratio": hero.image.width > 0 && hero.image.height > 0
+            ? hero.image.width / hero.image.height : undefined,
     };
     return (
         <header className={s.container} style={heroStyle}>
             <div className={s.inner}>
                 <div className={s.image}>
-                    <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${hero.image.path}`}
-                        alt="" fill priority className={s.photograph}
-                        sizes="(min-width: 1707px) 1280px, (min-width: 960px) 75vw, (min-width: 900px) 720px, 100vw" />
+                    <div className={s.imageSurface}>
+                        <Image src={`${process.env.NEXT_PUBLIC_STORAGE}${hero.image.path}`}
+                            alt="" fill priority className={s.photograph}
+                            sizes="(min-width: 1707px) 1280px, (min-width: 960px) 75vw, (min-width: 900px) 720px, 100vw" />
+                    </div>
                 </div>
                 <div className={s.text}>
                     {/* Let the CMS title wrap naturally instead of keeping desktop line breaks. */}

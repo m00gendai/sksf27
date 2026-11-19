@@ -21,6 +21,11 @@
     object-fit: cover;
     object-position: var(--header-position, 50% 50%);
 }
+.imageSurface {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 .image::after {
     content: "";
     position: absolute;
@@ -63,6 +68,8 @@
 }
 @media (min-width: 900px) {
     .inner {
+        /* Follow the photograph's height, allowing longer titles to expand the row. */
+        min-height: 0;
         --hero-title-width: clamp(340px, 38vw, 520px);
         --hero-image-width: clamp(720px, 75vw, 1280px);
         --hero-inline-padding: clamp(24px, 3vw, 48px);
@@ -83,17 +90,32 @@
         width: min(100%, var(--hero-image-width));
         max-width: 1280px;
         justify-self: end;
-        align-self: center;
-        /* Avoid a narrow, heavily cropped photo beside the title on laptops. */
-        aspect-ratio: 2 / 1;
-        max-height: 480px;
+        align-self: stretch;
+        aspect-ratio: auto;
+        max-height: none;
+        display: grid;
         --hero-edge-fade: clamp(32px, 4vw, 64px);
+    }
+    .imageSurface {
+        /* The full-width photograph and its natural ratio determine the height. */
+        width: 100%;
+        height: auto;
+        aspect-ratio: var(--hero-image-ratio, 2);
+        place-self: center;
         mask-image: linear-gradient(to right, transparent, black var(--hero-edge-fade), black calc(100% - var(--hero-edge-fade)), transparent);
     }
+    .imageSurface::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, black, transparent 7%, transparent 93%, black);
+    }
+    .photograph {
+        /* Show the full photograph without cropping it to the taller hero. */
+        object-fit: contain;
+    }
     .image::after {
-        background:
-            linear-gradient(to bottom, black, transparent 14%, transparent 78%, black),
-            linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.64) var(--hero-overlap), transparent calc(var(--hero-overlap) + 96px));
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.64) var(--hero-overlap), transparent calc(var(--hero-overlap) + 96px));
     }
     .text {
         grid-column: 1;
