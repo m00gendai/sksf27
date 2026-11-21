@@ -22,3 +22,19 @@
     inset: 0;
     height: auto;
 }
+
+@media (min-width: 900px) and (max-width: 1899px) {
+    .fillAvailableSpace {
+        /* Keep the responsive minimum while allowing the map to fill spare height. */
+        --map-min-height: min(clamp(360px, calc(40vw - 200px), 560px), 75svh);
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1279px) {
+    .fillAvailableSpace {
+        /* In the stacked layout, let the map absorb space instead of the hero. */
+        --map-min-height: min(clamp(400px, 40vw, 480px), 75svh);
+        flex: 1 0 auto;
+        height: auto;
+    }
+}

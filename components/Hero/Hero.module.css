@@ -72,7 +72,7 @@
         min-height: 0;
         --hero-max-width: 1760px;
         --hero-title-width: clamp(340px, 38vw, 560px);
-        --hero-image-width: clamp(720px, 75vw, 1280px);
+        --hero-image-width: clamp(720px, calc(50vw + 480px), 1280px);
         --hero-inline-padding: clamp(24px, 3vw, 48px);
         /* Shade only the image beneath the title, allowing a little extra room
            for the browser scrollbar and the end of the text. */
@@ -81,8 +81,7 @@
         max-width: var(--hero-max-width);
         margin-inline: auto;
         padding-inline: var(--hero-inline-padding);
-        /* Keep the title wide enough as its font grows, without an oversized
-           text column on desktop or a layout switch at 1200px. */
+        /* Keep the title wide enough as its font grows on the overlapping layout. */
         grid-template-columns: minmax(0, var(--hero-title-width)) minmax(0, 1fr);
     }
     .image {
@@ -127,6 +126,27 @@
         padding: 32px 0;
     }
 }
+@media (min-width: 900px) and (max-width: 1279px) {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 0;
+    }
+    .image {
+        width: 100%;
+        max-width: none;
+        align-self: center;
+    }
+    .image::after {
+        /* The title has its own row, so the artwork needs no text shading. */
+        background: none;
+    }
+    .text {
+        max-width: calc(960px + var(--hero-inline-padding) + var(--hero-inline-padding));
+        align-self: flex-start;
+        padding: 24px var(--hero-inline-padding) 12px;
+    }
+}
 @media (max-width: 899px) {
     .inner {
         display: flex;
@@ -135,13 +155,19 @@
     }
     .image {
         width: 100%;
-        height: min(clamp(160px, 52vw, 240px), max(120px, calc((100svh - var(--navigation-height)) * 0.45)));
+        height: auto;
         flex: none;
+    }
+    .imageSurface {
+        /* Let the full artwork determine the height instead of cropping to a frame. */
+        height: auto;
+        aspect-ratio: var(--hero-image-ratio, 2);
     }
     .image::after {
         background: linear-gradient(to bottom, transparent 80%, var(--hero-background, #000));
     }
     .photograph {
+        object-fit: contain;
         object-position: var(--header-position-mobile, var(--header-position, 50% 50%));
     }
     .text {
@@ -155,7 +181,7 @@
         font-size: clamp(26px, calc(16px + 2vw), 34px);
     }
 }
-/* A compact split layout keeps actions within reach in mobile landscape. */
+/* Keep the title over the artwork on short landscape screens. */
 @media (min-width: 600px) and (max-width: 899px) and (max-height: 500px) {
     .inner {
         display: grid;
@@ -165,6 +191,8 @@
     .image {
         grid-column: 1 / -1;
         height: auto;
+        display: grid;
+        align-items: center;
     }
     .image::after {
         background:

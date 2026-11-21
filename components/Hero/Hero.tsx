@@ -38,7 +38,7 @@ export default async function Hero() {
                     <div className={s.imageSurface}>
                         <Image src={heroImage}
                             alt="" fill priority className={s.photograph}
-                            sizes="(min-width: 1707px) 1280px, (min-width: 960px) 75vw, (min-width: 900px) 720px, 100vw" />
+                            sizes="(min-width: 1600px) 1280px, (min-width: 1280px) calc(50vw + 480px), 100vw" />
                     </div>
                 </div>
                 <div className={s.text}>
