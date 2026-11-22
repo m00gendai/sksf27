@@ -24,11 +24,11 @@ function load(file, dependencies = {}, env = {}) {
 
 const orderModule = load("components/SchiessplanOrderForm/order.ts");
 const valid = {
-    name: "Test Bestellung", email: "test@example.invalid", street: "Teststrasse 1",
+    firstName: "Erika", name: "Muster", email: "test@example.invalid", street: "Teststrasse 1",
     postalCode: "8200", city: "Schaffhausen", quantity: 2, remarks: "Test\nBemerkung", website: "",
 };
 
-function handler({ send = async () => ({ accepted: ["rl@sksf27.ch"] }), password = "mock-only" } = {}) {
+function handler({ send = async message => ({ accepted: [message.to] }), password = "mock-only" } = {}) {
     const messages = [], transports = [];
     const route = load("app/api/schiessplan-bestellung/route.ts", {
         "@/components/SchiessplanOrderForm/order": orderModule,
@@ -48,7 +48,7 @@ const request = (data = valid, headers = {}) => new Request("http://localhost/ap
 test("validates and normalizes orders; rejects invalid input and the spam trap", () => {
     assert.equal(orderModule.parseOrder({ ...valid, name: "  Test  " }).name, "Test");
     for (const change of [
-        { name: " " }, { email: "invalid" }, { email: "a,b@example.com" },
+        { firstName: "" }, { firstName: "x\nInjected" }, { name: " " }, { email: "invalid" }, { email: "a,b@example.com" },
         { email: "x@example.com\r\nBcc: y@example.com" }, { street: "" },
         { postalCode: "" }, { city: "" }, { quantity: 0 }, { quantity: 1.5 },
         { quantity: 101 }, { quantity: "2" }, { remarks: "a".repeat(2001) },
@@ -58,21 +58,37 @@ test("validates and normalizes orders; rejects invalid input and the spam trap",
 });
 
 test("sends a fixed-recipient plain-text order with the visitor as Reply-To", async () => {
+    const baseline = handler();
+    await baseline.post(request());
     const h = handler();
     const response = await h.post(request({ ...valid, to: "other@example.invalid", from: "other@example.invalid" }));
     assert.equal(response.status, 200);
     assert.deepEqual(await response.json(), { success: true });
     const message = h.messages[0];
     assert.equal(message.from, "info@sksf27.ch");
-    assert.equal(message.to, "rl@sksf27.ch");
+    assert.equal(message.to, baseline.messages[0].to);
+    assert.notEqual(message.to, "other@example.invalid");
     assert.equal(message.replyTo, valid.email);
     assert.equal(message.cc, undefined);
     assert.equal(message.html, undefined);
-    for (const text of [valid.name, valid.street, "8200 Schaffhausen", "Anzahl Exemplare: 2", valid.remarks]) {
+    assert.ok(message.subject.includes(`${valid.firstName} ${valid.name}`));
+    for (const text of [`${valid.firstName} ${valid.name}`, valid.street, "8200 Schaffhausen", "Anzahl Exemplare: 2", valid.remarks]) {
         assert.ok(message.text.includes(text));
     }
     assert.equal(h.transports[0].secure, true);
     assert.equal(h.transports[0].auth.user, "info@sksf27.ch");
+});
+
+test("returns field-specific errors including the required first name", async () => {
+    const errors = orderModule.validateOrder({ ...valid, firstName: " ", email: "invalid", quantity: 0 }).errors;
+    assert.ok(errors.firstName && errors.email && errors.quantity);
+    assert.equal(errors.street, undefined);
+    assert.equal(orderModule.parseOrder({ ...valid, firstName: undefined }), null);
+    const h = handler();
+    const response = await h.post(request({ ...valid, firstName: "" }));
+    assert.equal(response.status, 400);
+    assert.ok((await response.json()).fieldErrors.firstName);
+    assert.equal(h.messages.length, 0);
 });
 
 test("invalid, oversized and malformed requests never reach SMTP", async () => {

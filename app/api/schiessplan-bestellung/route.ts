@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { parseOrder } from "@/components/SchiessplanOrderForm/order";
+import { validateOrder } from "@/components/SchiessplanOrderForm/order";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -28,8 +28,11 @@ export async function POST(request: NextRequest) {
     } catch {
         return failure("Die Anfrage konnte nicht gelesen werden.", 400);
     }
-    const order = parseOrder(data);
-    if (!order) return failure("Bitte überprüfen Sie Ihre Angaben und füllen Sie alle Pflichtfelder korrekt aus.", 400);
+    const { order, errors } = validateOrder(data);
+    if (!order) return NextResponse.json({
+        error: "Bitte überprüfen Sie Ihre Angaben und füllen Sie alle Pflichtfelder korrekt aus.",
+        fieldErrors: errors,
+    }, { status: 400 });
 
     const password = process.env.SMTP;
     if (!password) return failure("Der Versand ist derzeit nicht verfügbar. Bitte schreiben Sie an rl@sksf27.ch.", 503);
@@ -59,16 +62,16 @@ export async function POST(request: NextRequest) {
         });
         const result = await transporter.sendMail({
             from: "info@sksf27.ch",
-            to: "rl@sksf27.ch",
+            to: "raffael.risch@shinternet.ch",
             replyTo: order.email,
-            subject: `SKSF27: Schiessplan-Bestellung von ${order.name}`,
+            subject: `SKSF27: Schiessplan-Bestellung von ${order.firstName} ${order.name}`,
             text: [
                 "Schiessplan-Bestellung",
                 "",
                 `Anzahl Exemplare: ${order.quantity}`,
                 "",
                 "Lieferadresse:",
-                order.name,
+                `${order.firstName} ${order.name}`,
                 order.street,
                 `${order.postalCode} ${order.city}`,
                 "",
