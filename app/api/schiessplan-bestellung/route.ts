@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
         });
         const result = await transporter.sendMail({
             from: "info@sksf27.ch",
-            to: "raffael.risch@shinternet.ch",
+            to: "rl@sksf27.ch",
             replyTo: order.email,
             subject: `SKSF27: Schiessplan-Bestellung von ${order.firstName} ${order.name}`,
             text: [
