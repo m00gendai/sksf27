@@ -2,6 +2,7 @@ import PageContent from "@/components/PageContent/PageContent";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import { SiteContent } from "@/globals/globals_interface";
 import { siteMetaData } from "@/globals/utils";
+import SchiessplanOrderForm from "@/components/SchiessplanOrderForm/SchiessplanOrderForm";
 
 const siteName = "Schiessplan"
 
@@ -39,6 +40,7 @@ export default async function Page(){
                     "SKSF27 Kurzschiessplan": "/SKSF27_Kurzschiessplan_Cover.png",
                     "SKSF27 Schiessplan": "/SKSF27_Schiessplan_Cover.png"
                 }} />
+                <SchiessplanOrderForm />
             </section>
         </main>
     )
