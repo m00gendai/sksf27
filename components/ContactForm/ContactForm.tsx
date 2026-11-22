@@ -65,6 +65,7 @@ export default function ContactForm(){
         },
         body: JSON.stringify(formValue)
       }).then(async (res) => {
+        console.log(res)
           if (res.status === 200) {
               setFeedback({color: "green", content: "Nachricht erfolgreich übermittelt. Sie haben auch eine Kopie erhalten."})
               setCooldown(true)
