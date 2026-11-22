@@ -7,6 +7,10 @@
     display: block;
 }
 
+.container > h2 {
+    margin-top: 0;
+}
+
 .form {
     display: block;
     padding: 0;
@@ -50,6 +54,7 @@
     outline-offset: 3px;
 }
 
+.addressLine,
 .remarks {
     grid-column: 1 / -1;
 }

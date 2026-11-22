@@ -77,7 +77,7 @@ export default function SchiessplanOrderForm() {
                 <fieldset className={s.fields} disabled={status === "sending"}>
                     <legend className={s.visuallyHidden}>Angaben zur Bestellung</legend>
                     {fields.map(field => (
-                        <div key={field.name} className={`${formStyles.containerInput} ${s.field}`}>
+                        <div key={field.name} className={`${formStyles.containerInput} ${s.field}${field.name === "street" ? ` ${s.addressLine}` : ""}`}>
                             <label htmlFor={`${id}-${field.name}`}>{field.label} *</label>
                             <input id={`${id}-${field.name}`} name={field.name} required
                                 type={field.name === "email" ? "email" : field.name === "quantity" ? "number" : "text"}
