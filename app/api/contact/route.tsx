@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
 import he from "he"
 import { isFormValue } from "@/components/ContactForm/interfaces_ContactForm"
 
 export async function POST(req: NextRequest) {
+
+  let nodemailer:any = require('nodemailer')
+  
   const data: isFormValue = await req.json()
 
   if (!process.env.SMTP) {
