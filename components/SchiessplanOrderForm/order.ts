@@ -6,7 +6,7 @@ export const orderLimits = {
     postalCode: 20,
     city: 120,
     remarks: 2000,
-    quantity: 100,
+    quantity: 3,
 } as const;
 
 export interface SchiessplanOrder {

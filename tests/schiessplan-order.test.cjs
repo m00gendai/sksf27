@@ -51,10 +51,21 @@ test("validates and normalizes orders; rejects invalid input and the spam trap",
         { firstName: "" }, { firstName: "x\nInjected" }, { name: " " }, { email: "invalid" }, { email: "a,b@example.com" },
         { email: "x@example.com\r\nBcc: y@example.com" }, { street: "" },
         { postalCode: "" }, { city: "" }, { quantity: 0 }, { quantity: 1.5 },
-        { quantity: 101 }, { quantity: "2" }, { remarks: "a".repeat(2001) },
+        { quantity: 4 }, { quantity: "2" }, { remarks: "a".repeat(2001) },
         { name: "x\nInjected" }, { website: "https://spam.invalid" },
     ]) assert.equal(orderModule.parseOrder({ ...valid, ...change }), null);
     for (const value of [null, [], "text", {}]) assert.equal(orderModule.parseOrder(value), null);
+});
+
+test("accepts three booklets and rejects four before reaching SMTP", async () => {
+    assert.equal(orderModule.parseOrder({ ...valid, quantity: 3 }).quantity, 3);
+    const h = handler();
+    const rejected = await h.post(request({ ...valid, quantity: 4 }));
+    assert.equal(rejected.status, 400);
+    assert.equal((await rejected.json()).fieldErrors.quantity, "Bitte geben Sie eine ganze Zahl zwischen 1 und 3 ein.");
+    assert.equal(h.messages.length, 0);
+    assert.equal((await h.post(request({ ...valid, quantity: 3 }))).status, 200);
+    assert.ok(h.messages[0].text.includes("Anzahl Exemplare: 3"));
 });
 
 test("sends a fixed-recipient plain-text order with the visitor as Reply-To", async () => {

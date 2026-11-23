@@ -15,7 +15,7 @@ const fields = [
     { name: "street", label: "Strasse und Hausnummer", autoComplete: "address-line1" },
     { name: "postalCode", label: "Postleitzahl", autoComplete: "postal-code" },
     { name: "city", label: "Ort", autoComplete: "address-level2" },
-    { name: "quantity", label: "Anzahl Exemplare (1–100)", autoComplete: "off" },
+    { name: "quantity", label: `Anzahl Exemplare (1–${orderLimits.quantity})`, autoComplete: "off" },
 ] as const;
 
 function readForm(form: HTMLFormElement): Record<string, unknown> & { quantity: number } {
@@ -139,7 +139,7 @@ export default function SchiessplanOrderForm() {
     return (
         <div className={s.container}>
             <h2 id={`${id}-heading`}>Schiessplan bestellen</h2>
-            <p>Bestellen Sie das gedruckte Schiessplan-Heft über dieses Formular.</p>
+            <p>Bestellen Sie das gedruckte Schiessplan-Heft gratis über dieses Formular.</p>
             {status === "success" ? (
                 <div className={s.confirmation} ref={confirmationRef} tabIndex={-1}
                     role="region" aria-label="Bestellung übermittelt">
