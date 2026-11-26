@@ -7,6 +7,11 @@ export interface HeaderImagePosition {
 // Empty entries use 50% 50%. Mobile inherits desktop unless overridden.
 // Example: { desktop: "50% 35%", mobile: "55% 40%" }
 export const headerImagePositions: Record<string, HeaderImagePosition | undefined> = {
+    "/": {
+        desktop: "50% 65%",
+        mobile: "50% 50%",
+    },
+    "/aufenthalt": {},
     "/datenschutz": {
         desktop: "50% 35%",
         mobile: "50% 50%",

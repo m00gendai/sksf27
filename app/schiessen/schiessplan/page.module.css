@@ -1,0 +1,42 @@
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(2rem, 4vw, 3rem);
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 2rem;
+}
+
+.downloads {
+    min-width: 0;
+}
+
+.downloads > h2 {
+    margin-top: 0;
+}
+
+.downloadSections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+    align-items: start;
+    gap: 1.5rem 1rem;
+    width: 100%;
+    max-width: 28.5rem;
+}
+
+/* PageContent emits one .content block per CMS section. Keep this gallery local. */
+.downloadSections > :global(.content) {
+    min-width: 0;
+    max-width: 13.75rem;
+}
+
+.downloadSections > :global(.content) > h3 {
+    margin-top: 0;
+}
+
+@media (min-width: 1100px) {
+    .layout {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    }
+}

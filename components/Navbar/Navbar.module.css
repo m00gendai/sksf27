@@ -1,163 +1,62 @@
-.nav{
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 3rem;
-    background: light-dark(var(--secondaryColor), var(--backgroundColor));
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    z-index: 100;
-    filter: var(--navFilter);
-}
-
-.logoContainer{
-    position: relative;
-    height: 10vh;
-    aspect-ratio: 1.5/1;
-    margin: 0 0.5vh 0 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-}
-
-.logoContainer2{
-    position: relative;
-    height: 10vh;
-    aspect-ratio: 1.5/1;
-    margin: 0 0.5vh 0 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: light-dark(var(--secondaryColor), var(--backgroundColor));
-    border-bottom-right-radius: 25%;
-}
-
-.logoInner{
-    width: 90%;
-    height: 90%;
-    position: relative;
-
-}
-
-.logo{
-    position: relative;
-}
-
-.tagline{
-    position: relative;
-    flex-grow: 1;
+.items {
     height: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: light-dark(white, var(--generalFontColor));
+    align-items: stretch;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: clamp(0px, 0.4vw, 8px);
 }
-
-.container{
+.item {
     position: relative;
-    flex-grow: 1;
-    height: 100%;
     display: flex;
-    justify-content: flex-end;
-    align-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
+    align-items: stretch;
 }
-
-.surLinkContainer{
-    position: relative;
-    height: 100%;
-    width: auto;
+.link {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-}
-
-.surLinkContainer:hover{
-    cursor: pointer;
-}
-
-.subLinkContainer{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background: light-dark(var(--secondaryColor), var(--backgroundColor));
-    background-attachment: fixed;
-    z-index: -1;
-    
-}
-
-.buffer{
-    position: relative;
-    width: 100%;
-    height: 3rem;
-    
-}
-
-.content{
-   position: relative;
-    width: 100%;
-  z-index: -1;
-}
-
-.items{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.link{
-    margin: 0 1vw;
-    color: light-dark(white, var(--generalFontColor));
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sublink {
-    color: light-dark(white, var(--generalFontColor));
-    width: 100%;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: light-dark(green, black);
-    padding: 1rem 2rem;
-    text-decoration: none;
-}
-
-.sublink:last-child{
-    border:none;
-}
-
-.sublink:hover{
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.toggleMode{
-    position: relative;
-    height: 100%;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
+    gap: 6px;
+    padding: 0 10px;
     border: 0;
-    outline: 0;
-    font-size: 1.5rem;
-    color: light-dark(white, var(--generalFontColor));
-}
-
-.toggleMode:hover{
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
     cursor: pointer;
+}
+.link svg { width: 14px; height: 14px; }
+.link:hover,
+.sublink:hover {
+    background: var(--navigation-hover-background);
+    text-decoration: none;
+}
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: max-content;
+    min-width: 14rem;
+    max-width: 20rem;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    background: var(--navigation-background);
+    max-height: calc(100dvh - var(--navigation-height));
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.dropdown[hidden] { display: none; }
+.sublink {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    color: inherit;
+    line-height: 1.4;
+    text-decoration: none;
 }

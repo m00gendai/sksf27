@@ -2,6 +2,8 @@ import PageContent from "@/components/PageContent/PageContent";
 import PageHeading from "@/components/PageHeading/PageHeading";
 import { SiteContent } from "@/globals/globals_interface";
 import { siteMetaData } from "@/globals/utils";
+import SchiessplanOrderForm from "@/components/SchiessplanOrderForm/SchiessplanOrderForm";
+import s from "./page.module.css";
 
 const siteName = "Schiessplan"
 
@@ -35,10 +37,18 @@ export default async function Page(){
         <main>
             <section>
                 <PageHeading image={siteContent[0].pageHeader.path} />
-                <PageContent siteContent={siteContent} documentCovers={{
-                    "SKSF27 Kurzschiessplan": "/SKSF27_Kurzschiessplan_Cover.png",
-                    "SKSF27 Schiessplan": "/SKSF27_Schiessplan_Cover.png"
-                }} />
+                <div className={s.layout}>
+                    <div className={s.downloads} role="region" aria-labelledby="schiessplan-downloads">
+                        <h2 id="schiessplan-downloads">Digital herunterladen</h2>
+                        <div className={s.downloadSections}>
+                            <PageContent siteContent={siteContent} documentCovers={{
+                                "SKSF27 Kurzschiessplan": "/SKSF27_Kurzschiessplan_Cover.png",
+                                "SKSF27 Schiessplan": "/SKSF27_Schiessplan_Cover.png"
+                            }} />
+                        </div>
+                    </div>
+                    <SchiessplanOrderForm />
+                </div>
             </section>
         </main>
     )

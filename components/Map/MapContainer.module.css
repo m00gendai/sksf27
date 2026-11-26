@@ -1,15 +1,40 @@
 .container{
+    --map-min-height: min(clamp(360px, 40vw, 560px), 75svh);
     position: relative;
     width: 100%;
-    aspect-ratio: 30/10;
+    height: var(--map-min-height);
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
 }
 
-@media screen and (max-aspect-ratio: 13/9){
-    .container{
-        aspect-ratio: 3/4;
+.fillAvailableSpace{
+    flex: 1 0 auto;
+    height: auto;
+    min-height: var(--map-min-height);
+    align-items: stretch;
+}
+
+/* The map canvas must not determine the flexible container's intrinsic height. */
+.fillAvailableSpace > div{
+    position: absolute;
+    inset: 0;
+    height: auto;
+}
+
+@media (min-width: 900px) and (max-width: 1899px) {
+    .fillAvailableSpace {
+        /* Keep the responsive minimum while allowing the map to fill spare height. */
+        --map-min-height: min(clamp(360px, calc(40vw - 200px), 560px), 75svh);
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1279px) {
+    .fillAvailableSpace {
+        /* In the stacked layout, let the map absorb space instead of the hero. */
+        --map-min-height: min(clamp(400px, 40vw, 480px), 75svh);
+        flex: 1 0 auto;
+        height: auto;
     }
 }
